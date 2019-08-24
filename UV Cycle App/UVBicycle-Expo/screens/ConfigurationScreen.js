@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   View,
   Button,
+  Form
 } from 'react-native';
 
 import { CheckBox } from 'react-native-elements'
@@ -21,147 +22,132 @@ import { MonoText } from '../components/StyledText';
 export default class ConfigurationScreen extends Component {
   constructor(props) {
     super(props);
-    this.onChangeFirstName = this.onChangeFirstName.bind(this);
-    this.onChangeLastName = this.onChangeLastName.bind(this);
-    this.onChangeSkinType = this.onChangeSkinType.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
     this.state = {
       firstName: '',
       lastName: '',
-      // checked: [false, false, false, false, false, false]
-      checkbox: [
-        {checked: true, value: 1},
-        {checked: false, value: 2},
-        {checked: false, value: 3},
-        {checked: false, value: 4},
-        {checked: false, value: 5},
-        {checked: false, value: 6}
-      ]
+      skinType: 1
     }
   }
 
-  onChangeFirstName (e) {
-    this.setState({
-      firstName: e.target.value
-    });
-  }
-
-  onChangeLastName (e) {
-    this.setState({
-      lastName: e.target.value
-    });
-  }
-
-  onChangeSkinType(e) {
-    this.setState({
-
+  addNewUser = () => {
+    var data = {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      skinType: 1
+    }
+    fetch("http://192.168.1.236:8082/user", {
+        method: 'POST',
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
     })
+    .then((response) => response.json())
+    .then((responseJson) => console.log('Success: ' + responseJson))
+    .catch(function(err){console.log(err)});
+    alert(JSON.stringify(data));
   }
-
-  onSubmit (e) {
-    e.preventDefault();
-  }
-
 
   render() {
-  return (
-    
-    <View style={styles.container}>
-      <ScrollView
-        style={styles.container}
-        contentContainerStyle={styles.contentContainer}>
-        <View style={styles.titleContainer}>
-          <Text style={styles.title}>UV Cycle</Text>
-        </View>
-
-        <View style={styles.welcomeContainer}>
-
-          <Text style={styles.welcomeText}>
-            Welcome to use UV Cycle by Bicycle Queensland and Wyzards
-          </Text>
-
-        </View>
-
-        <View 
-          style={styles.detailsContainer}
-          onSubmit={this.onSubmit}>
-          <Text style={styles.detailsInstructionText}>
-            Please complete your details and set up UV sensor.
-          </Text>
-
-          <View style={styles.detailsLabel}>
-            {/* <Text style={styles.detailsLabelText}>First Name: </Text> */}
-            <TextInput
-            style={styles.detailsLabelInput}
-            placeholder={ "First Name" }
-            onChange={this.onChangeFirstName}
-            />
-          </View>
-          <View style={styles.detailsLabel}>
-            {/* <Text style={styles.detailsLabelText}>Last Name: </Text> */}
-            <TextInput
-            style={styles.detailsLabelInput}
-            placeholder={ "Last Name" }
-            onChange={this.onChangeLastName}
-            />
+    return (
+      
+      <View style={styles.container}>
+        <View
+          style={styles.container}
+          contentContainerStyle={styles.contentContainer}>
+          <View style={styles.titleContainer}>
+            <Text style={styles.title}>UV Cycle</Text>
           </View>
 
-          <View style={styles.detailsLabel}>
-            <Text style={styles.detailsInstructionText}>
-              Select your skin colour:
+          <View style={styles.welcomeContainer}>
+
+            <Text style={styles.welcomeText}>
+              Welcome to use UV Cycle by Bicycle Queensland and Wyzards
             </Text>
-          
-            <View style={styles.skinScale}>
-              <CheckBox 
-                value={1} 
-                checkedIcon={<Image style={styles.skinPicChecked} source={require('../assets/images/fitzpatrick-scale/1.png') } />}
-                uncheckedIcon={<Image style={styles.skinPic} source={require('../assets/images/fitzpatrick-scale/1.png') } />}
-                checked={this.state.checkbox[0].check}
-                onPress={this.onChangeSkinType}
-                />
-              <CheckBox 
-                value={2} 
-                checkedIcon={<Image style={styles.skinPicChecked} source={require('../assets/images/fitzpatrick-scale/2.png') } />}
-                uncheckedIcon={<Image style={styles.skinPic} source={require('../assets/images/fitzpatrick-scale/2.png') } />}
-                checked={this.state.checkbox[1].check}
-                onPress={this.onChangeSkinType}/>
-              <CheckBox 
-                value={1} 
-                checkedIcon={<Image style={styles.skinPicChecked} source={require('../assets/images/fitzpatrick-scale/3.png') } />}
-                uncheckedIcon={<Image style={styles.skinPic} source={require('../assets/images/fitzpatrick-scale/3.png') } />}/>
-              <CheckBox 
-                value={1} 
-                checkedIcon={<Image style={styles.skinPicChecked} source={require('../assets/images/fitzpatrick-scale/4.png') } />}
-                uncheckedIcon={<Image style={styles.skinPic} source={require('../assets/images/fitzpatrick-scale/4.png') } />}/>
-              <CheckBox 
-                value={1} 
-                checkedIcon={<Image style={styles.skinPicChecked} source={require('../assets/images/fitzpatrick-scale/5.png') } />}
-                uncheckedIcon={<Image style={styles.skinPic} source={require('../assets/images/fitzpatrick-scale/5.png') } />}/>
-              <CheckBox 
-                value={1} 
-                checkedIcon={<Image style={styles.skinPicChecked} source={require('../assets/images/fitzpatrick-scale/6.png') } />}
-                uncheckedIcon={<Image style={styles.skinPic} source={require('../assets/images/fitzpatrick-scale/6.png') } />}/>
-              
+
+          </View>
+
+          <View 
+            style={styles.detailsContainer}
+            onSubmit={this.onSubmit}>
+            <Text style={styles.detailsInstructionText}>
+              Please complete your details and set up UV sensor.
+            </Text>
+
+            <View style={styles.detailsLabel}>
+              {/* <Text style={styles.detailsLabelText}>First Name: </Text> */}
+              <TextInput
+              style={styles.detailsLabelInput}
+              placeholder={ "First Name" }
+              onChangeText={(text) => this.setState({firstName:text})}
+              />
+            </View>
+            <View style={styles.detailsLabel}>
+              {/* <Text style={styles.detailsLabelText}>Last Name: </Text> */}
+              <TextInput
+              style={styles.detailsLabelInput}
+              placeholder={ "Last Name" }
+              onChangeText={(text) => this.setState({lastName:text})}
+              />
+            </View>
+
+            <View style={styles.detailsLabel}>
+              <Text style={styles.detailsInstructionText}>
+                Select your skin colour:
+              </Text>
+            
+              <View style={styles.skinScale}>
+                <CheckBox 
+                  value={1} 
+                  checkedIcon={<Image style={styles.skinPicChecked} source={require('../assets/images/fitzpatrick-scale/1.png') } />}
+                  uncheckedIcon={<Image style={styles.skinPic} source={require('../assets/images/fitzpatrick-scale/1.png') } />}
+                  checked={true}
+                  onPress={this.onChangeSkinType}
+                  />
+                <CheckBox 
+                  value={2} 
+                  checkedIcon={<Image style={styles.skinPicChecked} source={require('../assets/images/fitzpatrick-scale/2.png') } />}
+                  uncheckedIcon={<Image style={styles.skinPic} source={require('../assets/images/fitzpatrick-scale/2.png') } />}
+                  checked={true}
+                  onPress={this.onChangeSkinType}/>
+                <CheckBox 
+                  value={1} 
+                  checkedIcon={<Image style={styles.skinPicChecked} source={require('../assets/images/fitzpatrick-scale/3.png') } />}
+                  uncheckedIcon={<Image style={styles.skinPic} source={require('../assets/images/fitzpatrick-scale/3.png') } />}/>
+                <CheckBox 
+                  value={1} 
+                  checkedIcon={<Image style={styles.skinPicChecked} source={require('../assets/images/fitzpatrick-scale/4.png') } />}
+                  uncheckedIcon={<Image style={styles.skinPic} source={require('../assets/images/fitzpatrick-scale/4.png') } />}/>
+                <CheckBox 
+                  value={1} 
+                  checkedIcon={<Image style={styles.skinPicChecked} source={require('../assets/images/fitzpatrick-scale/5.png') } />}
+                  uncheckedIcon={<Image style={styles.skinPic} source={require('../assets/images/fitzpatrick-scale/5.png') } />}/>
+                <CheckBox 
+                  value={1} 
+                  checkedIcon={<Image style={styles.skinPicChecked} source={require('../assets/images/fitzpatrick-scale/6.png') } />}
+                  uncheckedIcon={<Image style={styles.skinPic} source={require('../assets/images/fitzpatrick-scale/6.png') } />}/>
+                
+              </View>
+            </View>
+
+            <View style={styles.detailsLabel}>
+              <TouchableOpacity style={styles.uvButton} >
+                <Text style={styles.buttonText}>Set up UV sensor</Text>
+              </TouchableOpacity>
+            </View>
+            
+            <View style={styles.detailsLabel}>
+              <TouchableOpacity style={styles.uvButton} onPress={this.addNewUser}>
+                <Text style={styles.buttonText}>Finish</Text>
+              </TouchableOpacity>
             </View>
           </View>
 
-          <View style={styles.detailsLabel}>
-            <TouchableOpacity style={styles.uvButton} >
-              <Text style={styles.buttonText}>Set up UV sensor</Text>
-            </TouchableOpacity>
-          </View>
-          
-          <View style={styles.detailsLabel}>
-            <TouchableOpacity style={styles.uvButton} >
-              <Text style={styles.buttonText}>Finish</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
+        </View >
 
-      </ScrollView >
-
-    </View>
-  );
+      </View>
+    );
   }
 }
 

@@ -29,6 +29,22 @@ SettingsStack.navigationOptions = {
 
 SettingsStack.path = '';
 
+const ConfigurationStack = createStackNavigator(
+  {
+    Settings: ConfigurationScreen,
+  },
+  config
+);
+
+ConfigurationStack.navigationOptions = {
+  tabBarLabel: 'Configuration',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
+  ),
+};
+
+ConfigurationStack.path = '';
+
 const HomeStack = createStackNavigator(
   {
     Home: HomeScreen,
@@ -72,6 +88,7 @@ LinksStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
   SettingsStack,
+  ConfigurationStack,
   HomeStack,
   LinksStack
 });
