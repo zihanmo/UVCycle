@@ -1,4 +1,4 @@
-import { users } from "collections";
+var User = require('./collections').User;
 var express = require('express');
 var mongoose = require('mongoose');
 
@@ -34,18 +34,18 @@ app.post('/user', function(req, res) {
   var userData = req.body;
   console.log('Have got user configuration data');
   console.log(userData);
-  // db.on('connected', function() {
-  //   console.log('database connected')
-  // })
+  
   MongoClient.connect(url, { useNewUrlParser: true },function(err, db) {
     if (err) throw err;
     console.log('database connected');
 
     // create new user record
-    var user = new users(userData);
+    var user = new User(userData);
+    // insert user to database
     user.save(function(err) {
       if (err) throw err;
       else console.log('User has been saved successfully');
+      console.log(user);
     });
   });
 })
