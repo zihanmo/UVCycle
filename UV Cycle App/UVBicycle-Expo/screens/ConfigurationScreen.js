@@ -52,7 +52,7 @@ export default class ConfigurationScreen extends Component {
   render() {
     return (
       
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <View
           style={styles.container}
           contentContainerStyle={styles.contentContainer}>
@@ -146,7 +146,7 @@ export default class ConfigurationScreen extends Component {
 
         </View >
 
-      </View>
+      </ScrollView>
     );
   }
 }
