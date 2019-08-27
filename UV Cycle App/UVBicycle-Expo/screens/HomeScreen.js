@@ -161,8 +161,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   welcomeImage: {
-    width: 170,
-    height: 170,
+    width: 150,
+    height: 150,
     resizeMode: 'contain',
     marginTop: 3,
 
@@ -262,21 +262,21 @@ const styles = StyleSheet.create({
   },
   weatherContainer: {
    
-
+height: "100%",
     backgroundColor: '#ffffff',
    
   },
   headerContainer: {
-
+height:"50%",
     alignItems: 'center',
   
   },
  
   BodyContainer: {
-    marginTop:30,
+  
     alignItems: 'center',
     justifyContent: 'center',
-
+    height:"50%",
     flexDirection: 'row'
   },
   title: {
@@ -298,7 +298,7 @@ const styles = StyleSheet.create({
   },
 
   weather1con:{
-
+height:"50%",
   width:"20%",
   backgroundColor:'#000',
   height:190,
