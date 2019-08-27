@@ -14,7 +14,6 @@ import {
 } from 'react-native';
 
 import { CheckBox } from 'react-native-elements'
-import CheckBoxGroup from "react-native-checkbox-group"
 import { MonoText } from '../components/StyledText';
 
 // import { black, grey, white, hidden } from 'ansi-colors';
@@ -23,17 +22,30 @@ export default class ConfigurationScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      email: '',
+      password: '',
       firstName: '',
       lastName: '',
-      skinType: 1
+      skinType: 0,
+      sensorName: '',
+      checked: [false, false, false, false, false, false]
     }
+  }
+
+  setSkinType(value) {
+    let newChecked = [false, false, false, false, false, false];
+    newChecked[value-1] = true;
+    this.setState({
+      checked: newChecked,
+      skinType: value
+    })
   }
 
   addNewUser = () => {
     var data = {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
-      skinType: 1
+      skinType: this.state.skinType
     }
     fetch("http://192.168.1.236:8082/user", {
         method: 'POST',
@@ -52,7 +64,7 @@ export default class ConfigurationScreen extends Component {
   render() {
     return (
       
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <View
           style={styles.container}
           contentContainerStyle={styles.contentContainer}>
@@ -60,13 +72,13 @@ export default class ConfigurationScreen extends Component {
             <Text style={styles.title}>UV Cycle</Text>
           </View>
 
-          <View style={styles.welcomeContainer}>
+          {/* <View style={styles.welcomeContainer}>
 
             <Text style={styles.welcomeText}>
               Welcome to use UV Cycle by Bicycle Queensland and Wyzards
             </Text>
 
-          </View>
+          </View> */}
 
           <View 
             style={styles.detailsContainer}
@@ -74,6 +86,22 @@ export default class ConfigurationScreen extends Component {
             <Text style={styles.detailsInstructionText}>
               Please complete your details and set up UV sensor.
             </Text>
+
+            <View style={styles.detailsLabel}>
+              <TextInput
+              style={styles.detailsLabelInput}
+              placeholder={ "Email" }
+              onChangeText={(text) => this.setState({email:text})}
+              />
+            </View>
+
+            <View style={styles.detailsLabel}>
+              <TextInput
+              style={styles.detailsLabelInput}
+              placeholder={ "Password" }
+              onChangeText={(text) => this.setState({password:text})}
+              />
+            </View>
 
             <View style={styles.detailsLabel}>
               {/* <Text style={styles.detailsLabelText}>First Name: </Text> */}
@@ -99,34 +127,40 @@ export default class ConfigurationScreen extends Component {
             
               <View style={styles.skinScale}>
                 <CheckBox 
-                  value={1} 
                   checkedIcon={<Image style={styles.skinPicChecked} source={require('../assets/images/fitzpatrick-scale/1.png') } />}
                   uncheckedIcon={<Image style={styles.skinPic} source={require('../assets/images/fitzpatrick-scale/1.png') } />}
-                  checked={true}
-                  onPress={this.onChangeSkinType}
+                  checked={this.state.checked[0]}
+                  // onPress={(value) => this.setState({ checked: !this.state.checked[0] })}
+                  onPress={() => this.setSkinType(1)}
                   />
                 <CheckBox 
-                  value={2} 
                   checkedIcon={<Image style={styles.skinPicChecked} source={require('../assets/images/fitzpatrick-scale/2.png') } />}
                   uncheckedIcon={<Image style={styles.skinPic} source={require('../assets/images/fitzpatrick-scale/2.png') } />}
-                  checked={true}
-                  onPress={this.onChangeSkinType}/>
+                  checked={this.state.checked[1]}
+                  onPress={() => this.setSkinType(2)}
+                  />
                 <CheckBox 
-                  value={1} 
                   checkedIcon={<Image style={styles.skinPicChecked} source={require('../assets/images/fitzpatrick-scale/3.png') } />}
-                  uncheckedIcon={<Image style={styles.skinPic} source={require('../assets/images/fitzpatrick-scale/3.png') } />}/>
+                  uncheckedIcon={<Image style={styles.skinPic} source={require('../assets/images/fitzpatrick-scale/3.png') } />}
+                  checked={this.state.checked[2]}
+                  onPress={() => this.setSkinType(3)}
+                  />
+
                 <CheckBox 
-                  value={1} 
                   checkedIcon={<Image style={styles.skinPicChecked} source={require('../assets/images/fitzpatrick-scale/4.png') } />}
-                  uncheckedIcon={<Image style={styles.skinPic} source={require('../assets/images/fitzpatrick-scale/4.png') } />}/>
+                  uncheckedIcon={<Image style={styles.skinPic} source={require('../assets/images/fitzpatrick-scale/4.png') } />}
+                  checked={this.state.checked[3]}
+                  onPress={() => this.setSkinType(4)}/>
                 <CheckBox 
-                  value={1} 
                   checkedIcon={<Image style={styles.skinPicChecked} source={require('../assets/images/fitzpatrick-scale/5.png') } />}
-                  uncheckedIcon={<Image style={styles.skinPic} source={require('../assets/images/fitzpatrick-scale/5.png') } />}/>
+                  uncheckedIcon={<Image style={styles.skinPic} source={require('../assets/images/fitzpatrick-scale/5.png') } />}
+                  checked={this.state.checked[4]}
+                  onPress={() => this.setSkinType(5)}/>
                 <CheckBox 
-                  value={1} 
                   checkedIcon={<Image style={styles.skinPicChecked} source={require('../assets/images/fitzpatrick-scale/6.png') } />}
-                  uncheckedIcon={<Image style={styles.skinPic} source={require('../assets/images/fitzpatrick-scale/6.png') } />}/>
+                  uncheckedIcon={<Image style={styles.skinPic} source={require('../assets/images/fitzpatrick-scale/6.png') } />}
+                  checked={this.state.checked[5]}
+                  onPress={() => this.setSkinType(6)}/>
                 
               </View>
             </View>
@@ -146,7 +180,7 @@ export default class ConfigurationScreen extends Component {
 
         </View >
 
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -183,7 +217,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   detailsContainer: {
-    marginTop: 50,
+    // marginTop: 50,
     marginHorizontal: 30,
   },
   detailsInstructionText: {
@@ -194,10 +228,10 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   detailsLabelText: {
-    fontSize: 20
+    fontSize: 15
   },
   detailsLabelInput: {
-    height: 40,
+    height: 45,
     padding: 8,
     fontSize: 24,
     borderWidth: 2,
