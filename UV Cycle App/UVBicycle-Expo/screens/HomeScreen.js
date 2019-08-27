@@ -299,7 +299,7 @@ const styles = StyleSheet.create({
 
   weather1con:{
 
-  width:75,
+  width:"20%",
   backgroundColor:'#000',
   height:190,
     alignItems: 'center',
