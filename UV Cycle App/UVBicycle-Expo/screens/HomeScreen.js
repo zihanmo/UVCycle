@@ -1,9 +1,8 @@
 import * as WebBrowser from 'expo-web-browser';
-import React from 'react';
+import React, {Component} from 'react';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import PropTypes from 'prop-types';
-
 
 import {
   Image,
@@ -17,77 +16,127 @@ import {
 
 import { MonoText } from '../components/StyledText';
 
+export default class WeatherScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoading: false,
+      temperature: 0,
+      error: null
+    }
+  }
 
-export default function HomeScreen({image1, time2,time3, time4,time5, time6,weather1, temperature,location,temperature2,weather2, temperature3,weather3, temperature4,weather4, temperature5,weather5,temperature6,weather6,}) {
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        this.fetchWeather(position.coords.latitude, position.coords.longitude);
+      },
+      error => {
+        this.setState({
+          error: 'Error Gettig Weather Condtions'
+        });
+      }
+    );
+  }
+  
+  fetchWeather(lat, lon) {
+    fetch(`https://api.darksky.net/forecast/1c881bd9bc7c58c09bf74c28b5ffe195/${lat},${lon}?units=si`)
+    .then(res => res.json())
+    .then(json => {
+      // console.log(json);
+      this.setState({ 
+        temperature: Math.round(json.daily.data[0].temperatureMax),
+        temperature2: Math.round(json.daily.data[1].temperatureMax),
+        temperature3: Math.round(json.daily.data[2].temperatureMax),
+        temperature4: Math.round(json.daily.data[3].temperatureMax),
+        temperature5: Math.round(json.daily.data[4].temperatureMax),
+        temperature6: Math.round(json.daily.data[5].temperatureMax),
+        weather1: json.daily.data[0].icon,
+        weather2: json.daily.data[1].icon,
+        weather3: json.daily.data[2].icon,
+        weather4: json.daily.data[3].icon,
+        weather5: json.daily.data[4].icon,
+        weather6: json.daily.data[5].icon,
+        time1: UNIXToDay(json.daily.data[0].time*1000),
+        time2: UNIXToDay(json.daily.data[1].time*1000),
+        time3: UNIXToDay(json.daily.data[2].time*1000),
+        time4: UNIXToDay(json.daily.data[3].time*1000),
+        time5: UNIXToDay(json.daily.data[4].time*1000),
+        time6: UNIXToDay(json.daily.data[5].time*1000),
+        location: json.timezone,
+        
+        isLoading: false
+      });
+    });
+  }
+
+  render() {
+    const { isLoading, location,temperature,temperature2,temperature3,temperature4,temperature5,temperature6,
+      weather1, weather2, weather3, weather4, weather5, weather6,time1, time2,time3, time4, time5, time6,image1} = this.state;
+    return (
+      <View style={styles.container}>
+        {isLoading ? (
+          <View style={styles.loadingContainer}>
+            <Text style={styles.loadingText}>Fetching The Weather</Text>
+          </View>
+        ) : (
+          <HomeScreen location={location} temperature={temperature} image1={image1} time1={time1} time2={time2} time3={time3} time4={time4} time5={time5} time6={time6} temperature2={temperature2} temperature3={temperature3} temperature4={temperature4}
+           temperature5={temperature5} temperature6={temperature6} weather1={weather1} weather2={weather2} weather4={weather4} weather3={weather3} weather5={weather5} weather6={weather6}/>
+        )}
+      </View>
+    );
+  }
+}
+WeatherScreen.navigationOptions = {
+  header: null,
+};
+
+export function HomeScreen({image1, time2,time3, time4,time5, time6,weather1, temperature,location,temperature2,weather2, temperature3,weather3, temperature4,weather4, temperature5,weather5,temperature6,weather6}) {
 
   return (
-    
-    
-    
-
-
-
-        <View style={styles.weatherContainer}>
-      <View style={styles.headerContainer}>
-      <Text style={styles.subtitle}>Weather Forecast</Text>
+      <View style={styles.weatherContainer}>
+        <View style={styles.headerContainer}>
+          <Text style={styles.subtitle}>Weather Forecast</Text>
   
+          {WeatherDescToImageSource(weather1)}
 
+          <Text style={styles.tempText11}>{temperature} C</Text>
+          <Text style={styles.tempText1}>{weather1}</Text>
+        </View>
 
-   
-      {WeatherDescToImageSource(weather1)}
+        <View style={styles.BodyContainer}>
 
-      
+          <View style={styles.weather1con}>
+            <Text style={styles.tempText}>{time2}</Text>
+            {WeatherDescToSmallImageSource(weather2)}
+            <Text style={styles.tempText}>{temperature2} C</Text>
+          </View>
 
+          <View style={styles.weather1con}>
+            <Text style={styles.tempText}>{time3}</Text>
+              {WeatherDescToSmallImageSource(weather3)}
+            <Text style={styles.tempText}>{temperature3} C</Text>
+          </View>
 
-    
+          <View style={styles.weather1con}>
+            <Text style={styles.tempText}>{time4}</Text>
+              {WeatherDescToSmallImageSource(weather4)}
+            <Text style={styles.tempText}>{temperature4} C</Text>
+          </View>
 
-      <Text style={styles.tempText11}>{temperature} C</Text>
-      <Text style={styles.tempText1}>{weather1}</Text>
+          <View style={styles.weather1con}>
+            <Text style={styles.tempText}>{time5}</Text>
+            {WeatherDescToSmallImageSource(weather5)}
+            <Text style={styles.tempText}>{temperature5} C</Text>
+          </View>
+
+          <View style={styles.weather1con}>
+            <Text style={styles.tempText}>{time6}</Text>
+            {WeatherDescToSmallImageSource(weather6)}
+            <Text style={styles.tempText}>{temperature6} C</Text>
+          </View>
+        </View>
       </View>
-
-      
-      <View style={styles.BodyContainer}>
-
-      <View style={styles.weather1con}>
-      <Text style={styles.tempText}>{time2}</Text>
-      {WeatherDescToSmallImageSource(weather2)}
-      <Text style={styles.tempText}>{temperature2} C</Text>
-    
-      </View>
-
-      <View style={styles.weather1con}>
-      <Text style={styles.tempText}>{time3}</Text>
-      {WeatherDescToSmallImageSource(weather3)}
-      <Text style={styles.tempText}>{temperature3} C</Text>
- 
-      </View>
-
-      <View style={styles.weather1con}>
-      <Text style={styles.tempText}>{time4}</Text>
-      {WeatherDescToSmallImageSource(weather4)}
-      <Text style={styles.tempText}>{temperature4} C</Text>
-
-      </View>
-
-      <View style={styles.weather1con}>
-      <Text style={styles.tempText}>{time5}</Text>
-      {WeatherDescToSmallImageSource(weather5)}
-      <Text style={styles.tempText}>{temperature5} C</Text>
-   
-      </View>
-
-      <View style={styles.weather1con}>
-      <Text style={styles.tempText}>{time6}</Text>
-      {WeatherDescToSmallImageSource(weather6)}
-      <Text style={styles.tempText}>{temperature6} C</Text>
-   
-      </View>
-      </View>
-      
-    
-    </View>
-   
-     
   );
 }
 
@@ -116,6 +165,29 @@ function DevelopmentModeNotice() {
         You are not in development mode: your app will run at full speed.
       </Text>
     );
+  }
+}
+
+function UNIXToDay(timestamp) {
+  var day = (new Date(timestamp)).getDay()
+  
+  switch (day) {
+    case 0:
+      return "Sunday";
+    case 1:
+      return "Monday";
+    case 2:
+      return "Tuesday";
+    case 3:
+      return "Wednesday";
+    case 4:
+      return "Thursday";
+    case 5:
+      return "Friday";
+    case 6:
+      return "Saturday";
+    default:
+      return "ERROR";
   }
 }
 
@@ -409,38 +481,19 @@ function WeatherDescToImageSource(weatherDesc) {
       }
       style={styles.welcomeImage}
     />;
-
-
-
-
-
   }
 }
-
-
-
-
-
-
-
-
-
-
-
 
 function WeatherDescToSmallImageSource(weatherDesc1) {
   
   switch (weatherDesc1) {
     case "partly-cloudy-day":
-      return    <Image style={styles.imageweather}
-      source={
-        require('../assets/images/partly-cloudy-day1.png')
-
-      }
+      return <Image style={styles.imageweather}
+      source={require('../assets/images/partly-cloudy-day1.png')}
       style={styles.welcomeImage2}
     />;
     case "clear-day":
-      return    <Image style={styles.imageweather2}
+      return <Image style={styles.imageweather2}
       source={
         require('../assets/images/clear-day1.png')
 
@@ -448,67 +501,43 @@ function WeatherDescToSmallImageSource(weatherDesc1) {
       style={styles.welcomeImage2}
     />;
     case "partly-cloudy-night":
-      return    <Image style={styles.imageweather}
-      source={
-        require('../assets/images/partly-cloudy-night1.png')
-
-      }
+      return <Image style={styles.imageweather}
+      source={require('../assets/images/partly-cloudy-night1.png')}
       style={styles.welcomeImage2}
     />;
     case "partly-cloudy-day":
-      return    <Image style={styles.imageweather}
-      source={
-        require('../assets/images/partly-cloudy-day1.png')
-
-      }
+      return <Image style={styles.imageweather}
+      source={require('../assets/images/partly-cloudy-day1.png')}
       style={styles.welcomeImage2}
     />;
     case "cloudy":
-      return    <Image style={styles.imageweather}
-      source={
-        require('../assets/images/cloudy1.png')
-
-      }
+      return <Image style={styles.imageweather}
+      source={require('../assets/images/cloudy1.png')}
       style={styles.welcomeImage2}
     />;
     case "rain":
-      return    <Image style={styles.imageweather}
-      source={
-        require('../assets/images/rain1.png')
-
-      }
+      return <Image style={styles.imageweather}
+      source={require('../assets/images/rain1.png')}
       style={styles.welcomeImage2}
     />;
     case "sleet":
-      return    <Image style={styles.imageweather}
-      source={
-        require('../assets/images/sleet1.png')
-
-      }
+      return <Image style={styles.imageweather}
+      source={require('../assets/images/sleet1.png')}
       style={styles.welcomeImage2}
     />;
     case "snow":
-      return    <Image style={styles.imageweather}
-      source={
-        require('../assets/images/snow1.png')
-
-      }
+      return <Image style={styles.imageweather}
+      source={require('../assets/images/snow1.png')}
       style={styles.welcomeImage2}
     />;
     case "wind":
-      return    <Image style={styles.imageweather}
-      source={
-        require('../assets/images/wind1.png')
-
-      }
+      return <Image style={styles.imageweather}
+      source={require('../assets/images/wind1.png')}
       style={styles.welcomeImage2}
     />;
     case "fog":
-      return    <Image style={styles.imageweather}
-      source={
-        require('../assets/images/fog1.png')
-
-      }
+      return <Image style={styles.imageweather}
+      source={require('../assets/images/fog1.png')}
       style={styles.welcomeImage2}
     />;
 

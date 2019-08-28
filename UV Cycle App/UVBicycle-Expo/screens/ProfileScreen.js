@@ -7,7 +7,7 @@ import {
   Text,
   StyleSheet
 } from 'react-native'
-export default class SettingsScreen extends Component {
+export default class ProfileScreen extends Component {
   
   render() {
     return (
@@ -80,6 +80,6 @@ const styles = StyleSheet.create({
     marginRight: 10
   }
 });
-SettingsScreen.navigationOptions = {
+ProfileScreen.navigationOptions = {
   title: 'Setting',
 };

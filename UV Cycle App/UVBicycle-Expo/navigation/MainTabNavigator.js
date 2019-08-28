@@ -1,33 +1,19 @@
 import React from 'react';
 import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+import Colors from '../constants/Colors';
 
 import TabBarIcon from '../components/TabBarIcon';
 import ConfigurationScreen from '../screens/ConfigurationScreen';
 import LinksScreen from '../screens/LinksScreen';
-import SettingsScreen from '../screens/SettingsScreen';
-import HomeScreen from '../screens/HomeScreen';
+import ProfileScreen from '../screens/ProfileScreen';
+import WeatherScreen from '../screens/HomeScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
   default: {},
 });
-
-const SettingsStack = createStackNavigator(
-  {
-    Settings: SettingsScreen,
-  },
-  config
-);
-
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
-  ),
-};
-
-SettingsStack.path = '';
 
 const ConfigurationStack = createStackNavigator(
   {
@@ -45,15 +31,15 @@ ConfigurationStack.navigationOptions = {
 
 ConfigurationStack.path = '';
 
-const HomeStack = createStackNavigator(
+const WeatherStack = createStackNavigator(
   {
-    Home: HomeScreen,
+    Weather: WeatherScreen,
   },
   config
 );
 
-HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
+WeatherStack.navigationOptions = {
+  tabBarLabel: 'Weather',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -66,7 +52,7 @@ HomeStack.navigationOptions = {
   ),
 };
 
-HomeStack.path = '';
+WeatherStack.path = '';
 
 const LinksStack = createStackNavigator(
   {
@@ -84,13 +70,29 @@ LinksStack.navigationOptions = {
 
 LinksStack.path = '';
 
+const ProfileStack = createStackNavigator(
+  {
+    Profile: ProfileScreen,
+  },
+  config
+);
+
+ProfileStack.navigationOptions = {
+  tabBarLabel: 'Profile',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-contact' : 'md-contact'} />
+  ),
+};
+
+ProfileStack.path = '';
+
 
 
 const tabNavigator = createBottomTabNavigator({
-  SettingsStack,
   ConfigurationStack,
-  HomeStack,
-  LinksStack
+  WeatherStack,
+  LinksStack,
+  ProfileStack
 });
 
 tabNavigator.path = '';
