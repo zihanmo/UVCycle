@@ -224,7 +224,7 @@ const styles = StyleSheet.create({
  
   welcomeContainer: {
     alignItems: 'center',
-    marginTop: 30,
+    paddingBottom:30,
     marginBottom: 20,
   },
 
@@ -233,9 +233,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   welcomeImage: {
-    width: 150,
-    height: 150,
+    width: 165,
+    height: 165,
     resizeMode: 'contain',
+    paddingBottom:40,
     marginTop: 3,
 
   },
@@ -339,50 +340,52 @@ height: "100%",
    
   },
   headerContainer: {
-height:"50%",
+height:"65%",
     alignItems: 'center',
+    backgroundColor: '#ffffff',
   
   },
  
   BodyContainer: {
-  
+    backgroundColor: '#000000',
     alignItems: 'center',
     justifyContent: 'center',
-    height:"50%",
+    height:"35%",
     flexDirection: 'row'
   },
   title: {
     marginTop:17,
     fontSize: 13,
-    color: '#6495ed'
+    color: '#1E6738'
   },
   tempText1: {
     fontSize: 24,
-    color: '#6495ed',
+    color: '#1E6738',
     marginTop:7
   },
 
   tempText11: {
     fontSize: 44,
-    color: '#6495ed',
+    color: '#1E6738',
     marginTop:7,
     fontWeight: 'bold',
   },
 
   weather1con:{
-height:"50%",
+
   width:"20%",
   backgroundColor:'#000',
-  height:190,
+  height:210,
     alignItems: 'center',
-    borderColor: '#000'
+    borderColor: '#000',
+    fontWeight: 'bold',
   },
   
   subtitle: {
-    marginTop:60,
-    marginBottom:20,
+  paddingTop:40,
+  paddingBottom:20,
     fontSize: 33,
-    color: '#000'
+    color: '#1E6738',
     
   },
   imageweather2:{
