@@ -5,7 +5,7 @@ import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import Colors from '../constants/Colors';
 
 import TabBarIcon from '../components/TabBarIcon';
-import ConfigurationScreen from '../screens/ConfigurationScreen';
+import SignupScreen from '../screens/SignupScreen';
 import LinksScreen from '../screens/LinksScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import WeatherScreen from '../screens/HomeScreen';
@@ -15,21 +15,21 @@ const config = Platform.select({
   default: {},
 });
 
-const ConfigurationStack = createStackNavigator(
+const SignupStack = createStackNavigator(
   {
-    Settings: ConfigurationScreen,
+    Settings: SignupScreen,
   },
   config
 );
 
-ConfigurationStack.navigationOptions = {
-  tabBarLabel: 'Configuration',
+SignupStack.navigationOptions = {
+  tabBarLabel: 'Signup',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
   ),
 };
 
-ConfigurationStack.path = '';
+SignupStack.path = '';
 
 const WeatherStack = createStackNavigator(
   {
@@ -89,7 +89,7 @@ ProfileStack.path = '';
 
 
 const tabNavigator = createBottomTabNavigator({
-  ConfigurationStack,
+  SignupStack,
   WeatherStack,
   LinksStack,
   ProfileStack

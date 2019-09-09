@@ -80,12 +80,10 @@ export default class ConfigurationScreen extends Component {
 
           </View> */}
 
-          <View 
-            style={styles.detailsContainer}
-            onSubmit={this.onSubmit}>
-            <Text style={styles.detailsInstructionText}>
+          <View style={styles.detailsContainer}>
+            {/* <Text style={styles.detailsInstructionText}>
               Please complete your details and set up UV sensor.
-            </Text>
+            </Text> */}
 
             <View style={styles.detailsLabel}>
               <TextInput
@@ -177,6 +175,7 @@ export default class ConfigurationScreen extends Component {
               </TouchableOpacity>
             </View>
           </View>
+          <Image style={styles.logo} source={require('../assets/images/BicycleQueensland.jpg') } />
 
         </View >
 
@@ -271,5 +270,10 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     borderWidth: 2
+  },
+  logo: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    flexWrap: 'nowrap'
   }
 });
