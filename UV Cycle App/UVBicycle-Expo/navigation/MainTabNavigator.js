@@ -7,7 +7,7 @@ import TabBarIcon from '../components/TabBarIcon';
 import SignupScreen from '../screens/SignupScreen';
 import LinksScreen from '../screens/LinksScreen';
 import ProfileScreen from '../screens/ProfileScreen';
-import WeatherScreen from '../screens/HomeScreen';
+import WeatherScreen from '../screens/WeatherForecastScreen';
 import InstructionScreen from '../screens/InstructionScreen';
 
 const config = Platform.select({
