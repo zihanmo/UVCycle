@@ -3,12 +3,12 @@ import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import Colors from '../constants/Colors';
-
 import TabBarIcon from '../components/TabBarIcon';
 import SignupScreen from '../screens/SignupScreen';
 import LinksScreen from '../screens/LinksScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import WeatherScreen from '../screens/HomeScreen';
+import InstructionScreen from '../screens/InstructionScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -30,6 +30,7 @@ SignupStack.navigationOptions = {
 };
 
 SignupStack.path = '';
+
 
 const WeatherStack = createStackNavigator(
   {
@@ -54,6 +55,7 @@ WeatherStack.navigationOptions = {
 
 WeatherStack.path = '';
 
+
 const LinksStack = createStackNavigator(
   {
     Links: LinksScreen,
@@ -69,6 +71,7 @@ LinksStack.navigationOptions = {
 };
 
 LinksStack.path = '';
+
 
 const ProfileStack = createStackNavigator(
   {
@@ -87,12 +90,36 @@ ProfileStack.navigationOptions = {
 ProfileStack.path = '';
 
 
+const InstructionStack = createStackNavigator(
+  {
+    Settings: InstructionScreen,
+  },
+  config
+);
+
+InstructionStack.navigationOptions = {
+  tabBarLabel: 'README',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-information-circle${focused ? '' : '-outline'}`
+          : 'md-information-circle'
+      }
+    />
+  ),
+};
+InstructionStack.path = '';
+
 
 const tabNavigator = createBottomTabNavigator({
   SignupStack,
   WeatherStack,
   LinksStack,
-  ProfileStack
+  ProfileStack,
+  LinksStack,
+  InstructionStack
 });
 
 tabNavigator.path = '';
