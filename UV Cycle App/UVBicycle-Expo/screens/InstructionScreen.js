@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import * as WebBrowser from 'expo-web-browser';
-import { View, ScrollView, Text, StyleSheet, Platform, Image } from 'react-native'
+import { View, ScrollView, Text, StyleSheet, Platform, Image, TouchableOpacity } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
 import Touchable from 'react-native-platform-touchable';
 
 export default class InstructionScreen extends Component {
   render() {
+    const { navigation } = this.props.navigation;
     return (
       <ScrollView style = {styles.container}>
         <View style = {styles.desc}>
@@ -43,12 +44,20 @@ export default class InstructionScreen extends Component {
             </Text>
           </View>
         </View>
+        <View style={styles.detailsLabel}>
+          <TouchableOpacity style={styles.uvButton} onPress={()=>navigation('Main')}>
+            <Text style={styles.buttonText}>Back</Text>
+          </TouchableOpacity>
+        </View>
       </ScrollView>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  container: {
+    paddingTop: 100
+  },
   desc: {
     flex: 1,
     flexDirection: 'row',
@@ -98,5 +107,6 @@ const styles = StyleSheet.create({
 
 });
 InstructionScreen.navigationOptions = {
+  header: null,
   title: 'Information',
 };

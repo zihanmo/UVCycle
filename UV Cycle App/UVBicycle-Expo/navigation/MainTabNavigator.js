@@ -123,27 +123,27 @@ ProfileStack.navigationOptions = {
 ProfileStack.path = '';
 
 
-const InstructionStack = createStackNavigator(
-  {
-    Settings: InstructionScreen,
-  },
-  config
-);
+// const InstructionStack = createStackNavigator(
+//   {
+//     Settings: InstructionScreen,
+//   },
+//   config
+// );
 
-InstructionStack.navigationOptions = {
-  tabBarLabel: 'README',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
-      }
-    />
-  ),
-};
-InstructionStack.path = '';
+// InstructionStack.navigationOptions = {
+//   tabBarLabel: 'README',
+//   tabBarIcon: ({ focused }) => (
+//     <TabBarIcon
+//       focused={focused}
+//       name={
+//         Platform.OS === 'ios'
+//           ? `ios-information-circle${focused ? '' : '-outline'}`
+//           : 'md-information-circle'
+//       }
+//     />
+//   ),
+// };
+// InstructionStack.path = '';
 
 
 const tabNavigator = createBottomTabNavigator({
@@ -153,7 +153,6 @@ const tabNavigator = createBottomTabNavigator({
   ProfileStack,
   LinksStack,
   UvForecastStack,
-  InstructionStack
 });
 
 tabNavigator.path = '';
