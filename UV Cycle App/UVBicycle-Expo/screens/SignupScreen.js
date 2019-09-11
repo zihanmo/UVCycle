@@ -10,15 +10,12 @@ import {
   TouchableOpacity,
   View,
   Button,
-  Form
 } from 'react-native';
 
 import { CheckBox } from 'react-native-elements'
-import { MonoText } from '../components/StyledText';
+import { StackNavigator } from 'react-navigation';
 
-// import { black, grey, white, hidden } from 'ansi-colors';
-// export default function ConfigurationScreen() {
-export default class ConfigurationScreen extends Component {
+export default class SignupScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -62,6 +59,8 @@ export default class ConfigurationScreen extends Component {
   }
 
   render() {
+    const { navigate } = this.props.navigation;
+
     return (
       
       <ScrollView style={styles.container}>
@@ -72,18 +71,7 @@ export default class ConfigurationScreen extends Component {
             <Text style={styles.title}>UV Cycle</Text>
           </View>
 
-          {/* <View style={styles.welcomeContainer}>
-
-            <Text style={styles.welcomeText}>
-              Welcome to use UV Cycle by Bicycle Queensland and Wyzards
-            </Text>
-
-          </View> */}
-
           <View style={styles.detailsContainer}>
-            {/* <Text style={styles.detailsInstructionText}>
-              Please complete your details and set up UV sensor.
-            </Text> */}
 
             <View style={styles.detailsLabel}>
               <TextInput
@@ -173,6 +161,10 @@ export default class ConfigurationScreen extends Component {
               <TouchableOpacity style={styles.uvButton} onPress={this.addNewUser}>
                 <Text style={styles.buttonText}>Finish</Text>
               </TouchableOpacity>
+
+              <TouchableOpacity onPress={() => navigate("Login")}>
+                <Text>Already have account? Login here</Text>
+              </TouchableOpacity>
             </View>
           </View>
           <Image style={styles.logo} source={require('../assets/images/BicycleQueensland.jpg') } />
@@ -184,7 +176,7 @@ export default class ConfigurationScreen extends Component {
   }
 }
 
-ConfigurationScreen.navigationOptions = {
+SignupScreen.navigationOptions = {
   header: null,
 };
 

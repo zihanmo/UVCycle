@@ -12,7 +12,15 @@ export default class ProfileScreen extends Component {
   render() {
     return (
       <ScrollView style={styles.container}>
+
+        <View>
+          <Text style={styles.subtitle}>Proifle</Text>
+        </View>
+
         <View style={styles.settings}>
+
+          
+
           <View style={styles.settingContainer}>
             <MaterialIcons name="brightness-medium" size={25} color="gray" style={styles.settingIcons}/>
             <Text style={styles.settingText}>Display</Text>
@@ -78,8 +86,15 @@ const styles = StyleSheet.create({
   },
   settingIcons: {
     marginRight: 10
-  }
+  },
+  subtitle: {
+    paddingTop:40,
+    paddingBottom:20,
+    fontSize: 33,
+    color: '#1E6738',
+    alignSelf: 'center'
+    },
 });
 ProfileScreen.navigationOptions = {
-  title: 'Setting',
+  header: null,
 };

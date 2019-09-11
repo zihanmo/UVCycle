@@ -9,6 +9,7 @@ import LinksScreen from '../screens/LinksScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import WeatherScreen from '../screens/WeatherForecastScreen';
 import InstructionScreen from '../screens/InstructionScreen';
+import LoginScreen from '../screens/LoginScreen'
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -17,7 +18,7 @@ const config = Platform.select({
 
 const SignupStack = createStackNavigator(
   {
-    Settings: SignupScreen,
+    Signup: SignupScreen,
   },
   config
 );
