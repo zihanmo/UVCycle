@@ -4,7 +4,6 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import Colors from '../constants/Colors';
 import TabBarIcon from '../components/TabBarIcon';
-import SignupScreen from '../screens/SignupScreen';
 import LinksScreen from '../screens/LinksScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import WeatherScreen from '../screens/WeatherForecastScreen';
@@ -15,22 +14,6 @@ const config = Platform.select({
   web: { headerMode: 'screen' },
   default: {},
 });
-
-const SignupStack = createStackNavigator(
-  {
-    Settings: SignupScreen,
-  },
-  config
-);
-
-SignupStack.navigationOptions = {
-  tabBarLabel: 'Signup',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
-  ),
-};
-
-SignupStack.path = '';
 
 
 const WeatherStack = createStackNavigator(
@@ -141,7 +124,6 @@ InstructionStack.path = '';
 
 
 const tabNavigator = createBottomTabNavigator({
-  SignupStack,
   WeatherStack,
   LinksStack,
   ProfileStack,
