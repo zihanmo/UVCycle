@@ -6,7 +6,7 @@ import Touchable from 'react-native-platform-touchable';
 
 export default class InstructionScreen extends Component {
   render() {
-    const { navigation } = this.props.navigation;
+    const { navigate } = this.props.navigation;
     return (
       <ScrollView style = {styles.container}>
         <View style = {styles.desc}>
@@ -45,7 +45,7 @@ export default class InstructionScreen extends Component {
           </View>
         </View>
         <View style={styles.detailsLabel}>
-          <TouchableOpacity style={styles.uvButton} onPress={()=>navigation('Main')}>
+          <TouchableOpacity style={styles.uvButton} onPress={ () => navigate("Main")}>
             <Text style={styles.buttonText}>Back</Text>
           </TouchableOpacity>
         </View>

@@ -10,6 +10,7 @@ import WeatherScreen from '../screens/WeatherForecastScreen';
 import InstructionScreen from '../screens/InstructionScreen';
 import UvForecastScreen from '../screens/UvForecastScreen';
 import HomeScreen from '../screens/HomeScreen'
+import LoginScreen from '../screens/LoginScreen'
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -18,7 +19,7 @@ const config = Platform.select({
 
 const HomeStack = createStackNavigator(
   {
-    Home: HomeScreen,
+    Home: HomeScreen
   },
   config
 );

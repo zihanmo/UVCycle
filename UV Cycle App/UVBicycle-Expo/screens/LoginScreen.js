@@ -13,33 +13,43 @@ import {
   Form
 } from 'react-native';
 
-import { CheckBox } from 'react-native-elements'
-
-export default class ConfigurationScreen extends Component {
+export default class LoginScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
       email: '',
-      password: '',
-      firstName: '',
-      lastName: '',
-      skinType: 0,
-      sensorName: '',
-      checked: [false, false, false, false, false, false]
+      password: ''
     }
   }
 
-  setSkinType(value) {
-    let newChecked = [false, false, false, false, false, false];
-    newChecked[value-1] = true;
-    this.setState({
-      checked: newChecked,
-      skinType: value
+  login = () => {
+    fetch("http://192.168.1.236:8082/login", {
+        method: 'POST',
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            email: this.state.email,
+            password: this.state.password,
+        })
     })
+  
+    .then((response) => response.json())
+    .then((responseJson) => {
+  
+        if(responseJson.login==='true') {
+            alert('Welcome ' + responseJson.email)
+        } else {
+            alert(responseJson.email)
+        }
+    })
+    .catch((error) => console.error(error))
   }
 
-
   render() {
+    const { navigate } = this.props.navigation;
+
     return (
       
       <ScrollView style={styles.container}>
@@ -71,14 +81,19 @@ export default class ConfigurationScreen extends Component {
             </View>
             
             <View style={styles.detailsLabel}>
-              <TouchableOpacity style={styles.uvButton} onPress={this.addNewUser}>
+
+              <TouchableOpacity style={styles.uvButton} onPress={this.login}>
                 <Text style={styles.buttonText}>Login</Text>
               </TouchableOpacity>
+
+              <TouchableOpacity onPress={() => navigate("Signup")}>
+                <Text>Sign Up</Text>
+              </TouchableOpacity>
+
             </View>
         </View>
 
         <Image style={styles.logo} source={require('../assets/images/BicycleQueensland.jpg') } />
-
         </View >
 
       </ScrollView>
@@ -86,8 +101,10 @@ export default class ConfigurationScreen extends Component {
   }
 }
 
-ConfigurationScreen.navigationOptions = {
+
+LoginScreen.navigationOptions = {
   header: null,
+  title: 'Login'
 };
 
 const styles = StyleSheet.create({

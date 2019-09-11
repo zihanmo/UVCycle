@@ -4,6 +4,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 
 import MainTabNavigator from './MainTabNavigator';
 import Login from '../screens/LoginScreen';
+import Signup from '../screens/SignupScreen'
 import Information from '../screens/InstructionScreen'
 
 export default createAppContainer(
@@ -11,6 +12,8 @@ export default createAppContainer(
     // You could add another route here for authentication.
     // Read more at https://reactnavigation.org/docs/en/auth-flow.html
     Main: MainTabNavigator,
-    Info: Information
+    Info: Information,
+    Signup: Signup,
+    Login: Login
   })
 );
