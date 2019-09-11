@@ -80,7 +80,7 @@ export default class WeatherScreen extends Component {
             <Text style={styles.loadingText}>Fetching The Weather</Text>
           </View>
         ) : (
-          <HomeScreen location={location} temperature={temperature} image1={image1} time1={time1} time2={time2} time3={time3} time4={time4} time5={time5} time6={time6} temperature2={temperature2} temperature3={temperature3} temperature4={temperature4}
+          <WeatherForecast location={location} temperature={temperature} image1={image1} time1={time1} time2={time2} time3={time3} time4={time4} time5={time5} time6={time6} temperature2={temperature2} temperature3={temperature3} temperature4={temperature4}
            temperature5={temperature5} temperature6={temperature6} weather1={weather1} weather2={weather2} weather4={weather4} weather3={weather3} weather5={weather5} weather6={weather6}/>
         )}
       </View>
@@ -91,7 +91,7 @@ WeatherScreen.navigationOptions = {
   header: null,
 };
 
-export function HomeScreen({image1, time2,time3, time4,time5, time6,weather1, temperature,location,temperature2,weather2, temperature3,weather3, temperature4,weather4, temperature5,weather5,temperature6,weather6}) {
+export function WeatherForecast({image1, time2,time3, time4,time5, time6,weather1, temperature,location,temperature2,weather2, temperature3,weather3, temperature4,weather4, temperature5,weather5,temperature6,weather6}) {
 
   return (
       <View style={styles.weatherContainer}>
@@ -100,7 +100,7 @@ export function HomeScreen({image1, time2,time3, time4,time5, time6,weather1, te
   
           {WeatherDescToImageSource(weather1)}
 
-          <Text style={styles.tempText11}>{temperature} C</Text>
+          <Text style={styles.tempText11}>{temperature} ℃</Text>
           <Text style={styles.tempText1}>{weather1}</Text>
         </View>
 
@@ -140,7 +140,7 @@ export function HomeScreen({image1, time2,time3, time4,time5, time6,weather1, te
   );
 }
 
-HomeScreen.navigationOptions = {
+WeatherForecast.navigationOptions = {
   header: null,
 };
 

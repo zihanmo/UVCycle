@@ -16,8 +16,6 @@ import {
 import { CheckBox } from 'react-native-elements'
 import { MonoText } from '../components/StyledText';
 
-// import { black, grey, white, hidden } from 'ansi-colors';
-// export default function ConfigurationScreen() {
 export default class ConfigurationScreen extends Component {
   constructor(props) {
     super(props);

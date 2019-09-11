@@ -9,12 +9,35 @@ import ProfileScreen from '../screens/ProfileScreen';
 import WeatherScreen from '../screens/WeatherForecastScreen';
 import InstructionScreen from '../screens/InstructionScreen';
 import UvForecastScreen from '../screens/UvForecastScreen';
+import HomeScreen from '../screens/HomeScreen'
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
   default: {},
 });
 
+const HomeStack = createStackNavigator(
+  {
+    Home: HomeScreen,
+  },
+  config
+);
+
+HomeStack.navigationOptions = {
+  tabBarLabel: 'Home',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-information-circle${focused ? '' : '-outline'}`
+          : 'md-information-circle'
+      }
+    />
+  ),
+};
+
+HomeStack.path = '';
 
 const WeatherStack = createStackNavigator(
   {
@@ -124,6 +147,7 @@ InstructionStack.path = '';
 
 
 const tabNavigator = createBottomTabNavigator({
+  HomeStack,
   WeatherStack,
   LinksStack,
   ProfileStack,
