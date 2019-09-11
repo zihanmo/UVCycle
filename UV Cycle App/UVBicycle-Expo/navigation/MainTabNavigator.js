@@ -9,6 +9,7 @@ import LinksScreen from '../screens/LinksScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import WeatherScreen from '../screens/WeatherForecastScreen';
 import InstructionScreen from '../screens/InstructionScreen';
+import UvForecastScreen from '../screens/UvForecastScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -73,6 +74,32 @@ LinksStack.navigationOptions = {
 LinksStack.path = '';
 
 
+
+
+
+const UvForecastStack = createStackNavigator(
+  {
+    Links: UvForecastScreen,
+  },
+  config
+);
+
+UvForecastStack.navigationOptions = {
+  tabBarLabel: 'UV forecast',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
+  ),
+};
+
+UvForecastStack.path = '';
+
+
+
+
+
+
+
+
 const ProfileStack = createStackNavigator(
   {
     Profile: ProfileScreen,
@@ -119,6 +146,7 @@ const tabNavigator = createBottomTabNavigator({
   LinksStack,
   ProfileStack,
   LinksStack,
+  UvForecastStack,
   InstructionStack
 });
 
