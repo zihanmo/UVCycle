@@ -63,7 +63,7 @@ export default class LinkScreen extends Component {
                         svg={axesSvg}
                     />
                     <View style={{ flex: 1, marginLeft: 10 }}>
-                    <ImageBackground source={require('E:/studying/2019sem2/DECO3801/deco3801-teamwyzards/UV Cycle App/UVBicycle-Expo/indexback.png')} style={{width: '100%', height: '100%'}}>
+                    <ImageBackground source={require('../assets/images/indexback.png')} style={{width: '100%', height: '100%'}}>
                         <LineChart
                             style={{ flex: 1 }}
                             data={indexes}
