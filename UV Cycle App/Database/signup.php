@@ -23,6 +23,13 @@ if (!isset($check)) {
     $query = "INSERT INTO Users (`firstname`, `lastname`, `password`, `email`, `sensor`, `skintype`) 
         VALUES ('$firstname', '$lastname', '$password', '$email', '$sensor', $skintype)";
     $db->query($query);
-    echo "insert user success!";
+    $response = "Sign Up successfully";
+    $responseJson = json_encode($response);
+    echo ($responseJson);
+} else {
+    $response = "Email has already used";
+    $responseJson = json_encode($response);
+    echo ($responseJson);
 }
+$db->disconnect();
 ?>

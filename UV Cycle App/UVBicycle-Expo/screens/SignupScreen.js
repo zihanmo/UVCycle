@@ -58,6 +58,9 @@ export default class SignupScreen extends Component {
     })
     .then((response) => response.json())
     .then((responseJson) => {
+      if (responseJson == "Sign Up successfully") {
+        this.props.navigation.navigate('Login');
+      }
       alert(responseJson)
     })
     .catch(function(err){console.log(err)});

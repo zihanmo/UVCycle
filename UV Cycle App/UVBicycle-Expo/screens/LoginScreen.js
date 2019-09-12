@@ -20,11 +20,9 @@ export default class LoginScreen extends Component {
       email: '',
       password: ''
     }
-    const navigate = this.props.navigation;
   }
 
   login = () => {
-    this.navigate("Main");
     fetch("http://deco3801-teamwyzards.uqcloud.net/login.php", {
         method: 'POST',
         headers: {
@@ -39,14 +37,16 @@ export default class LoginScreen extends Component {
   
     .then((response) => response.json())
     .then((responseJson) => {
-  
+        if (responseJson == "Credential matched!") {
+          this.props.navigation.navigate('Main');
+        }
         alert(responseJson)
     })
     .catch((error) => console.error(error))
   }
 
   render() {
-
+    const { navigate } = this.props.navigation;
     return (
       
       <ScrollView style={styles.container}>
