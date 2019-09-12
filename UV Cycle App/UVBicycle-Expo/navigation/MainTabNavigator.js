@@ -4,34 +4,41 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import Colors from '../constants/Colors';
 import TabBarIcon from '../components/TabBarIcon';
-import SignupScreen from '../screens/SignupScreen';
 import LinksScreen from '../screens/LinksScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import WeatherScreen from '../screens/WeatherForecastScreen';
 import InstructionScreen from '../screens/InstructionScreen';
 import UvForecastScreen from '../screens/UvForecastScreen';
+import HomeScreen from '../screens/HomeScreen'
+import LoginScreen from '../screens/LoginScreen'
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
   default: {},
 });
 
-const SignupStack = createStackNavigator(
+const HomeStack = createStackNavigator(
   {
-    Settings: SignupScreen,
+    Home: HomeScreen
   },
   config
 );
 
-SignupStack.navigationOptions = {
-  tabBarLabel: 'Signup',
+HomeStack.navigationOptions = {
+  tabBarLabel: 'Home',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-information-circle${focused ? '' : '-outline'}`
+          : 'md-information-circle'
+      }
+    />
   ),
 };
 
-SignupStack.path = '';
-
+HomeStack.path = '';
 
 const WeatherStack = createStackNavigator(
   {
@@ -117,37 +124,36 @@ ProfileStack.navigationOptions = {
 ProfileStack.path = '';
 
 
-const InstructionStack = createStackNavigator(
-  {
-    Settings: InstructionScreen,
-  },
-  config
-);
+// const InstructionStack = createStackNavigator(
+//   {
+//     Settings: InstructionScreen,
+//   },
+//   config
+// );
 
-InstructionStack.navigationOptions = {
-  tabBarLabel: 'README',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
-      }
-    />
-  ),
-};
-InstructionStack.path = '';
+// InstructionStack.navigationOptions = {
+//   tabBarLabel: 'README',
+//   tabBarIcon: ({ focused }) => (
+//     <TabBarIcon
+//       focused={focused}
+//       name={
+//         Platform.OS === 'ios'
+//           ? `ios-information-circle${focused ? '' : '-outline'}`
+//           : 'md-information-circle'
+//       }
+//     />
+//   ),
+// };
+// InstructionStack.path = '';
 
 
 const tabNavigator = createBottomTabNavigator({
-  SignupStack,
+  HomeStack,
   WeatherStack,
   LinksStack,
   ProfileStack,
   LinksStack,
   UvForecastStack,
-  InstructionStack
 });
 
 tabNavigator.path = '';
