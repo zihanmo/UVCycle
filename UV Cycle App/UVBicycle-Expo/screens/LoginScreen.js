@@ -201,10 +201,5 @@ const styles = StyleSheet.create({
         width: 300,
         height: 300,
         alignSelf: 'center'
-    },
-    logo: {
-        width: 300,
-        alignSelf: 'center',
-        margin: 50
     }
 });
