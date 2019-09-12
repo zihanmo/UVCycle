@@ -41,11 +41,14 @@ export default class SignupScreen extends Component {
 
   addNewUser = () => {
     var data = {
+      email: this.state.email,
+      password: this.state.password,
       firstName: this.state.firstName,
       lastName: this.state.lastName,
-      skinType: this.state.skinType
+      skinType: this.state.skinType,
+      sensorName: this.state.sensorName
     }
-    fetch("http://192.168.1.236:8082/user", {
+    fetch("http://deco3801-teamwyzards.uqcloud.net/signup.php", {
         method: 'POST',
         headers: {
             "Accept": "application/json",
@@ -54,9 +57,10 @@ export default class SignupScreen extends Component {
         body: JSON.stringify(data)
     })
     .then((response) => response.json())
-    .then((responseJson) => console.log('Success: ' + responseJson))
+    .then((responseJson) => {
+      alert(responseJson)
+    })
     .catch(function(err){console.log(err)});
-    alert(JSON.stringify(data));
   }
 
   render() {
@@ -267,6 +271,7 @@ const styles = StyleSheet.create({
   logo: {
     flexDirection: 'row',
     justifyContent: 'center',
-    flexWrap: 'nowrap'
+    flexWrap: 'nowrap',
+    alignSelf: 'center'
   }
 });

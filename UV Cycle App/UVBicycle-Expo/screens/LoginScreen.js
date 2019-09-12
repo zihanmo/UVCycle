@@ -20,10 +20,12 @@ export default class LoginScreen extends Component {
       email: '',
       password: ''
     }
+    const navigate = this.props.navigation;
   }
 
   login = () => {
-    fetch("http://192.168.1.236:8082/login", {
+    this.navigate("Main");
+    fetch("http://deco3801-teamwyzards.uqcloud.net/login.php", {
         method: 'POST',
         headers: {
             "Accept": "application/json",
@@ -38,17 +40,12 @@ export default class LoginScreen extends Component {
     .then((response) => response.json())
     .then((responseJson) => {
   
-        if(responseJson.login==='true') {
-            alert('Welcome ' + responseJson.email)
-        } else {
-            alert(responseJson.email)
-        }
+        alert(responseJson)
     })
     .catch((error) => console.error(error))
   }
 
   render() {
-    const { navigate } = this.props.navigation;
 
     return (
       
@@ -191,11 +188,10 @@ const styles = StyleSheet.create({
         borderWidth: 2
     },
     logo: {
-        width: 250,
-        height: 70,
-        padding: 50,
-        alignItems: 'center',
-        borderWidth: 2
+        flexDirection: 'row',
+        justifyContent: 'center',
+        flexWrap: 'nowrap',
+        alignSelf: 'center'
     },
     teamLogo: {
         width: 300,
