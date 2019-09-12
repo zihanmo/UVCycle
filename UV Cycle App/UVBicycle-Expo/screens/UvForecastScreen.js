@@ -433,92 +433,6 @@ height:"15%",
 
   
 
-function WeatherDescToImageSource(weatherDesc) {
-  
-  switch (weatherDesc) {
-    case "partly-cloudy-day":
-      return    <Image style={styles.imageweather}
-      source={
-        require('../assets/images/partly-cloudy-day.png')
-
-      }
-      style={styles.welcomeImage}
-    />;
-    case "clear-day":
-      return    <Image style={styles.imageweather2}
-      source={
-        require('../assets/images/clear-day.png')
-
-      }
-      style={styles.welcomeImage}
-    />;
-    case "partly-cloudy-night":
-      return    <Image style={styles.imageweather}
-      source={
-        require('../assets/images/partly-cloudy-night.png')
-
-      }
-      style={styles.welcomeImage}
-    />;
-    case "partly-cloudy-day":
-      return    <Image style={styles.imageweather}
-      source={
-        require('../assets/images/partly-cloudy-day.png')
-
-      }
-      style={styles.welcomeImage}
-    />;
-    case "cloudy":
-      return    <Image style={styles.imageweather}
-      source={
-        require('../assets/images/cloudy.png')
-
-      }
-      style={styles.welcomeImage}
-    />;
-    case "rain":
-      return    <Image style={styles.imageweather}
-      source={
-        require('../assets/images/rain.png')
-
-      }
-      style={styles.welcomeImage}
-    />;
-    case "sleet":
-      return    <Image style={styles.imageweather}
-      source={
-        require('../assets/images/sleet.png')
-
-      }
-      style={styles.welcomeImage}
-    />;
-    case "snow":
-      return    <Image style={styles.imageweather}
-      source={
-        require('../assets/images/snow.png')
-
-      }
-      style={styles.welcomeImage}
-    />;
-    case "wind":
-      return    <Image style={styles.imageweather}
-      source={
-        require('../assets/images/wind.png')
-
-      }
-      style={styles.welcomeImage}
-    />;
-    case "fog":
-      return    <Image style={styles.imageweather}
-      source={
-        require('../assets/images/fog.png')
-
-      }
-      style={styles.welcomeImage}
-    />;
-  }
-}
-
 function ChangeColorBasedOnUv(UVindex) {
   
   switch (UVindex) {
@@ -530,11 +444,11 @@ function ChangeColorBasedOnUv(UVindex) {
         return "green";
       
     case 3:
-      return "yellow";
+      return "#e7ce00";
       case 4:
-        return "yellow";
+        return "#e7ce00";
         case 5:
-          return "yellow";
+          return "#e7ce00";
 
     case 6:
       return "orange";
