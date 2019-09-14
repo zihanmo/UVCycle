@@ -2,15 +2,14 @@ import * as WebBrowser from 'expo-web-browser';
 import React, {Component} from 'react';
 import {
   Image,
-  Platform,
   ScrollView,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
-  Button,
-  Form
+  AsyncStorage,
+  KeyboardAvoidingView
 } from 'react-native';
 
 export default class LoginScreen extends Component {
@@ -23,6 +22,8 @@ export default class LoginScreen extends Component {
   }
 
   login = () => {
+    let keys = ["email", "name", "skinType", "sensor"];
+    AsyncStorage.multiRemove(keys)
     fetch("http://deco3801-teamwyzards.uqcloud.net/login.php", {
         method: 'POST',
         headers: {
@@ -38,9 +39,11 @@ export default class LoginScreen extends Component {
     .then((response) => response.json())
     .then((responseJson) => {
         if (responseJson == "Credential matched!") {
+          // AsyncStorage.setItem("email", this.state.email);
+          AsyncStorage.setItem("email", this.state.email);
           this.props.navigation.navigate('Main');
         }
-        alert(responseJson)
+        alert(responseJson);
     })
     .catch((error) => console.error(error))
   }
@@ -57,10 +60,9 @@ export default class LoginScreen extends Component {
             <Text style={styles.title}>UV Cycle</Text>
         </View>
         <Image style={styles.teamLogo} source={require('../assets/images/TeamWyzards.png') } />
-        <View 
-            style={styles.detailsContainer}
-            onSubmit={this.onSubmit}>
-
+        <KeyboardAvoidingView 
+            style={styles.detailsContainer} ref="scrollView">
+            
             <View style={styles.detailsLabel}>
               <TextInput
               style={styles.detailsLabelInput}
@@ -88,7 +90,7 @@ export default class LoginScreen extends Component {
               </TouchableOpacity>
 
             </View>
-        </View>
+        </KeyboardAvoidingView>
 
         <Image style={styles.logo} source={require('../assets/images/BicycleQueensland.jpg') } />
         </View >

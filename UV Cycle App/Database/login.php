@@ -5,14 +5,6 @@ session_start();
 
 $user = json_decode(file_get_contents('php://input'), true);
 
-
-// if (isset($_POST["remember"])) {
-//     setcookie("email", $_POST["email"], time() + 60 * 60 * 24, "/");
-//     $_COOKIE["email"] = $_POST["email"];
-// } else {
-//     setcookie("email", null, -1, "/");
-// }
-
 // Check in DB
 $db = new MySQLDatabase();
 $db->connect();

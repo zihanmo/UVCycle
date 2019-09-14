@@ -1,15 +1,59 @@
 import React, {Component} from 'react';
 import { ExpoConfigView } from '@expo/samples';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+import { connectActionSheet } from '@expo/react-native-action-sheet'
 import { 
   View,
   ScrollView,
   Text,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
+  AsyncStorage
 } from 'react-native'
 export default class ProfileScreen extends Component {
+
   
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+      name: '',
+      skinType: 0,
+      sensor: ''
+    }
+    this.fetchData();
+  }
+
+  fetchData() {
+    AsyncStorage.getItem("email").then(res => {
+      var data = {email: res}
+      fetch("http://deco3801-teamwyzards.uqcloud.net/profile.php", {
+        method: 'POST',
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        const fullName = responseJson.firstname + responseJson.lastname
+        const skinType = responseJson.skintype
+        const sensor = responseJson.sensor
+        const email = responseJson.email
+        
+        this.setState({
+          email: email,
+          name: fullName,
+          skinType: skinType,
+          sensor: sensor
+        })
+      })
+      .catch((error) => console.error(error))
+    })
+  }
+
   render() {
     const { navigate } = this.props.navigation;
     return (
@@ -21,17 +65,16 @@ export default class ProfileScreen extends Component {
 
         <View style={styles.settings}>
 
-          
-
           <View style={styles.settingContainer}>
             <MaterialIcons name="brightness-medium" size={25} color="gray" style={styles.settingIcons}/>
-            <Text style={styles.settingText}>Username</Text>
+            <Text style={styles.settingText}>{this.state.email}</Text>
           </View>
 
           <View style={styles.settingContainer}>
-          <MaterialIcons name="notifications" size={25} color="gray" style={styles.settingIcons} />
-            <Text style={styles.settingText}>Email</Text>
+            <MaterialIcons name="notifications" size={25} color="gray" style={styles.settingIcons} />
+            <Text style={styles.settingText}>{this.state.name}</Text>
           </View>
+
         </View>
 
         <View style={styles.settings}>
