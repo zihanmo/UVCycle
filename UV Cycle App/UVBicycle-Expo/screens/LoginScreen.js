@@ -21,9 +21,11 @@ export default class LoginScreen extends Component {
     }
   }
 
+  /**
+   * Fetch data to check authentication, checking is doing in php file.
+   * Once the credential matched, save email in AsyncStorage
+   */
   login = () => {
-    let keys = ["email", "name", "skinType", "sensor"];
-    AsyncStorage.multiRemove(keys)
     fetch("http://deco3801-teamwyzards.uqcloud.net/login.php", {
         method: 'POST',
         headers: {
@@ -35,12 +37,11 @@ export default class LoginScreen extends Component {
             password: this.state.password,
         })
     })
-  
     .then((response) => response.json())
     .then((responseJson) => {
         if (responseJson == "Credential matched!") {
-          // AsyncStorage.setItem("email", this.state.email);
           AsyncStorage.setItem("email", this.state.email);
+          // redirect to HomeScreen
           this.props.navigation.navigate('Main');
         }
         alert(responseJson);
@@ -67,14 +68,17 @@ export default class LoginScreen extends Component {
               <TextInput
               style={styles.detailsLabelInput}
               placeholder={ "Email" }
+              autoCapitalize = {'none'}
               onChangeText={(text) => this.setState({email:text})}
               />
             </View>
 
             <View style={styles.detailsLabel}>
               <TextInput
+              secureTextEntry={true}
               style={styles.detailsLabelInput}
               placeholder={ "Password" }
+              autoCapitalize = {'none'}
               onChangeText={(text) => this.setState({password:text})}
               />
             </View>
@@ -86,7 +90,7 @@ export default class LoginScreen extends Component {
               </TouchableOpacity>
 
               <TouchableOpacity onPress={() => navigate("Signup")}>
-                <Text>Sign Up</Text>
+                <Text style={styles.textLink}>Sign Up</Text>
               </TouchableOpacity>
 
             </View>
@@ -107,97 +111,102 @@ LoginScreen.navigationOptions = {
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-    },
-    contentContainer: {
-        paddingTop: 30,
-    },
-    titleContainer: {
-        alignItems: 'center',
-        paddingTop: 70,
-        marginBottom: 50,
-    },
-    title: {
-        fontSize: 30,
-        color: '#1E6738'
-    },
-    welcomeContainer: {
-        alignItems: 'center',
-        marginHorizontal: 50,
-    },
-    welcomeText: {
-        fontSize: 17,
-        color: 'rgba(96,100,109, 1)',
-        lineHeight: 24,
-        textAlign: 'center',
-    },
-    detailsContainer: {
-        // marginTop: 50,
-        marginHorizontal: 30,
-    },
-    detailsInstructionText: {
-        lineHeight: 24,
-        fontSize: 20
-    },
-    detailsLabel: {
-        marginVertical: 10,
-    },
-    detailsLabelText: {
-        fontSize: 15
-    },
-    detailsLabelInput: {
-        height: 45,
-        padding: 8,
-        fontSize: 24,
-        borderWidth: 2,
-        borderColor: 'grey',
-        borderRadius: 5
-    },
-    skinScale: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        flexWrap: 'nowrap'
-    },
-    skinPic: {
-        height: 40,
-        width: 40,
-        marginHorizontal: -15
-    },
-    skinPicChecked: {
-        height: 40,
-        width: 40,
-        borderWidth: 2,
-        marginHorizontal: -15,
-        borderRadius: 5
-    },
-    uvButton: {
-        color: '#fff',
-        backgroundColor: '#1E6738',
-        alignItems: 'center',
-        borderRadius: 5
-    },
-    buttonText: {
-        fontSize: 20,
-        color: '#fff',
-        textAlign: 'center',
-        margin: 10
-    },
-    checkBox: {
-        width: 50,
-        height: 50,
-        borderWidth: 2
-    },
-    logo: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        flexWrap: 'nowrap',
-        alignSelf: 'center'
-    },
-    teamLogo: {
-        width: 300,
-        height: 300,
-        alignSelf: 'center'
-    }
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  contentContainer: {
+    paddingTop: 30,
+  },
+  titleContainer: {
+    alignItems: 'center',
+    paddingTop: 70,
+    marginBottom: 50,
+  },
+  title: {
+    fontSize: 30,
+    color: '#1E6738'
+  },
+  welcomeContainer: {
+    alignItems: 'center',
+    marginHorizontal: 50,
+  },
+  welcomeText: {
+    fontSize: 17,
+    color: 'rgba(96,100,109, 1)',
+    lineHeight: 24,
+    textAlign: 'center',
+  },
+  detailsContainer: {
+    marginHorizontal: 30,
+  },
+  detailsInstructionText: {
+    lineHeight: 24,
+    fontSize: 20
+  },
+  detailsLabel: {
+    marginVertical: 10,
+  },
+  detailsLabelText: {
+    fontSize: 15
+  },
+  detailsLabelInput: {
+    height: 45,
+    padding: 8,
+    fontSize: 24,
+    borderWidth: 2,
+    borderColor: 'grey',
+    borderRadius: 5
+  },
+  skinScale: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    flexWrap: 'nowrap'
+  },
+  skinPic: {
+    height: 40,
+    width: 40,
+    marginHorizontal: -15
+  },
+  skinPicChecked: {
+    height: 40,
+    width: 40,
+    borderWidth: 2,
+    marginHorizontal: -15,
+    borderRadius: 5
+  },
+  uvButton: {
+    color: '#fff',
+    backgroundColor: '#41BD63',
+    alignItems: 'center',
+    borderRadius: 5,
+    marginVertical: 10
+  },
+  buttonText: {
+    fontSize: 20,
+    color: '#fff',
+    textAlign: 'center',
+    margin: 10
+  },
+  checkBox: {
+    width: 50,
+    height: 50,
+    borderWidth: 2
+  },
+  logo: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    flexWrap: 'nowrap',
+    alignSelf: 'center'
+  },
+  teamLogo: {
+    width: 300,
+    height: 300,
+    alignSelf: 'center'
+  },
+  textLink: {
+    fontSize: 16,
+    color: '#41BD63',
+    textAlign: 'center'
+  }
 });

@@ -1,22 +1,18 @@
-import * as WebBrowser from 'expo-web-browser';
 import React, {Component} from 'react';
+import ValidationComponent from 'react-native-form-validator';
 import {
   Image,
-  Platform,
   ScrollView,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
-  Button,
 } from 'react-native';
 
 import { CheckBox } from 'react-native-elements'
-import { StackNavigator } from 'react-navigation';
 
-
-export default class SignupScreen extends Component {
+export default class SignupScreen extends ValidationComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,6 +26,10 @@ export default class SignupScreen extends Component {
     }
   }
 
+  /**
+   * Set the skin type to specific value
+   * @param {Integer} value - the number of skin type
+   */
   setSkinType(value) {
     let newChecked = [false, false, false, false, false, false];
     newChecked[value-1] = true;
@@ -39,6 +39,31 @@ export default class SignupScreen extends Component {
     })
   }
 
+  formValidation = () => {
+    this.validate({
+      email: {email: true, required: true},
+      password: {minlength: 6, required: true},
+      firstName: {minlength: 1, required: true},
+      lastName: {minlength: 1, required: true}
+    });
+    if (this.isFieldInError("email")) {
+      alert("Please enter correct email")
+    } else if (this.isFieldInError("password")) {
+      alert("Password should has least 6 characters")
+    } else if (this.isFieldInError("firstname")) {
+      alert("Please enter you first name")
+    } else if (this.isFieldInError("lastname")) {
+      alert("Please enter you last name")
+    } 
+    if (this.isFormValid()) {
+      this.addNewUser();
+    }
+  }
+
+  /**
+   * Signup function to add new user in database
+   * Save email into AsyncStorage
+   */
   addNewUser = () => {
     var data = {
       email: this.state.email,
@@ -83,6 +108,8 @@ export default class SignupScreen extends Component {
 
             <View style={styles.detailsLabel}>
               <TextInput
+              ref={"email"}
+              autoCapitalize = {'none'}
               style={styles.detailsLabelInput}
               placeholder={ "Email" }
               onChangeText={(text) => this.setState({email:text})}
@@ -91,6 +118,9 @@ export default class SignupScreen extends Component {
 
             <View style={styles.detailsLabel}>
               <TextInput
+              ref={"password"}
+              autoCapitalize = {'none'}
+              secureTextEntry={true}
               style={styles.detailsLabelInput}
               placeholder={ "Password" }
               onChangeText={(text) => this.setState({password:text})}
@@ -98,8 +128,8 @@ export default class SignupScreen extends Component {
             </View>
 
             <View style={styles.detailsLabel}>
-              {/* <Text style={styles.detailsLabelText}>First Name: </Text> */}
               <TextInput
+              ref={"firstname"}
               style={styles.detailsLabelInput}
               placeholder={ "First Name" }
               onChangeText={(text) => this.setState({firstName:text})}
@@ -108,11 +138,13 @@ export default class SignupScreen extends Component {
             <View style={styles.detailsLabel}>
               {/* <Text style={styles.detailsLabelText}>Last Name: </Text> */}
               <TextInput
+              ref={"lastname"}
               style={styles.detailsLabelInput}
               placeholder={ "Last Name" }
               onChangeText={(text) => this.setState({lastName:text})}
               />
             </View>
+            
 
             <View style={styles.detailsLabel}>
               <Text style={styles.detailsInstructionText}>
@@ -124,7 +156,6 @@ export default class SignupScreen extends Component {
                   checkedIcon={<Image style={styles.skinPicChecked} source={require('../assets/images/fitzpatrick-scale/1.png') } />}
                   uncheckedIcon={<Image style={styles.skinPic} source={require('../assets/images/fitzpatrick-scale/1.png') } />}
                   checked={this.state.checked[0]}
-                  // onPress={(value) => this.setState({ checked: !this.state.checked[0] })}
                   onPress={() => this.setSkinType(1)}
                   />
                 <CheckBox 
@@ -139,7 +170,6 @@ export default class SignupScreen extends Component {
                   checked={this.state.checked[2]}
                   onPress={() => this.setSkinType(3)}
                   />
-
                 <CheckBox 
                   checkedIcon={<Image style={styles.skinPicChecked} source={require('../assets/images/fitzpatrick-scale/4.png') } />}
                   uncheckedIcon={<Image style={styles.skinPic} source={require('../assets/images/fitzpatrick-scale/4.png') } />}
@@ -166,12 +196,14 @@ export default class SignupScreen extends Component {
             </View>
             
             <View style={styles.detailsLabel}>
-              <TouchableOpacity style={styles.uvButton} onPress={this.addNewUser}>
+              <TouchableOpacity style={styles.uvButton} onPress={this.formValidation}>
                 <Text style={styles.buttonText}>Finish</Text>
               </TouchableOpacity>
+              <Text>
+          </Text>
 
               <TouchableOpacity onPress={() => navigate("Login")}>
-                <Text>Already have account? Login here</Text>
+                <Text style={styles.textLink}>Already have account? Login here</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -256,7 +288,7 @@ const styles = StyleSheet.create({
   },
   uvButton: {
     color: '#fff',
-    backgroundColor: '#1E6738',
+    backgroundColor: '#41BD63',
     alignItems: 'center',
     borderRadius: 5
   },
@@ -276,5 +308,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexWrap: 'nowrap',
     alignSelf: 'center'
+  },
+  textLink: {
+    fontSize: 16,
+    color: '#41BD63',
+    textAlign: 'center',
+    marginTop: 10
   }
 });

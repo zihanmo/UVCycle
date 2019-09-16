@@ -12,8 +12,6 @@ import {
 } from 'react-native'
 export default class ProfileScreen extends Component {
 
-  
-
   constructor(props) {
     super(props);
     this.state = {
@@ -25,7 +23,12 @@ export default class ProfileScreen extends Component {
     this.fetchData();
   }
 
+  /**
+   * Fetch data from server to get user information by email
+   * Set state according to responsed Json
+   */
   fetchData() {
+    // Get email value stored in asyncstorage
     AsyncStorage.getItem("email").then(res => {
       var data = {email: res}
       fetch("http://deco3801-teamwyzards.uqcloud.net/profile.php", {
@@ -38,11 +41,11 @@ export default class ProfileScreen extends Component {
       })
       .then((response) => response.json())
       .then((responseJson) => {
-        const fullName = responseJson.firstname + responseJson.lastname
+        // combile first name and last name
+        const fullName = responseJson.firstname + " " + responseJson.lastname
         const skinType = responseJson.skintype
         const sensor = responseJson.sensor
         const email = responseJson.email
-        
         this.setState({
           email: email,
           name: fullName,
@@ -54,8 +57,16 @@ export default class ProfileScreen extends Component {
     })
   }
 
+  /**
+   * Clear AsyncStorage and redirect screent to Login
+   */
+  logout = async () => {
+    AsyncStorage.clear();
+    this.props.navigation.navigate("Login")
+  }
+
   render() {
-    const { navigate } = this.props.navigation;
+    
     return (
       <ScrollView style={styles.container}>
 
@@ -98,8 +109,8 @@ export default class ProfileScreen extends Component {
             <Text style={styles.buttonText}>Setup UV Sensor</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={()=>navigate("Login")}>
-            <Text style={styles.logout}>Log out</Text>
+          <TouchableOpacity onPress={this.logout}>
+            <Text style={styles.textLink}>Log out</Text>
           </TouchableOpacity>
           
 
@@ -161,7 +172,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     margin: 10
   },
-  logout: {
+  textLink: {
     fontSize: 20,
     color: '#41BD63',
     textAlign: 'center'
@@ -169,4 +180,5 @@ const styles = StyleSheet.create({
 });
 ProfileScreen.navigationOptions = {
   header: null,
+  title: "Profile"
 };
