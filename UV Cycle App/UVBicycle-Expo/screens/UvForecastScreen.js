@@ -437,32 +437,32 @@ function ChangeColorBasedOnUv(UVindex) {
   
   switch (UVindex) {
     case 0:
-      return "green";
+      return "#A5CF2E";
       case 1:
-      return "green";
+      return "#A5CF2E";
       case 2:
-        return "green";
+        return "	#A5CF2E";
       
     case 3:
-      return "#e7ce00";
+      return "#EBD826";
       case 4:
-        return "#e7ce00";
+        return "#EBD826";
         case 5:
-          return "#e7ce00";
+          return "#EBD826";
 
     case 6:
-      return "orange";
+      return "#FEA71A";
     case 7:
-      return "orange";
+      return "#FEA71A";
     case 8:
-      return "red";
+      return "#FE4C1E";
       case 9:
-        return "red";
+        return "#FE4C1Ed";
         case 10:
-          return "red";
+          return "#FE4C1E";
       
     case 11:
-        return "violet";
+        return "#B568B6";
 
       
 

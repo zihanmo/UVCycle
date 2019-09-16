@@ -1,4 +1,4 @@
-import { AppLoading } from 'expo';
+import EXPO, { AppLoading } from 'expo';
 import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
 import React, { useState } from 'react';
@@ -11,7 +11,17 @@ import AppNavigator from './navigation/AppNavigator';
 // mongoose.Promise = global.Promise;
 // mongoose.connect("mongodb://localhost:27017/UVBicycle");
 
+
+
+
+
+
+
 export default function App(props) {
+
+
+
+  
   const [isLoadingComplete, setLoadingComplete] = useState(false);
 
   if (!isLoadingComplete && !props.skipLoadingScreen) {

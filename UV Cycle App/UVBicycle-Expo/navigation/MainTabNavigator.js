@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform } from 'react-native';
+import { Image,Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import Colors from '../constants/Colors';
@@ -26,16 +26,17 @@ const HomeStack = createStackNavigator(
 
 HomeStack.navigationOptions = {
   tabBarLabel: 'Home',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
-      }
-    />
-  ),
+  tabBarIcon: ({ focused }) => {
+    const image = focused
+    ? require('../assets/images/homeiconactive.png')
+    : require('../assets/images/homeiconinactive.png')
+    return (
+        <Image
+            source={image}
+            style={{height:25, width:25}}
+        />
+    )
+}
 };
 
 HomeStack.path = '';
@@ -49,16 +50,17 @@ const WeatherStack = createStackNavigator(
 
 WeatherStack.navigationOptions = {
   tabBarLabel: 'Weather',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
-      }
-    />
-  ),
+  tabBarIcon: ({ focused }) => {
+    const image = focused
+    ? require('../assets/images/forecasticonactive.png')
+    : require('../assets/images/forecasticoninactive.png')
+    return (
+        <Image
+            source={image}
+            style={{height:25, width:25}}
+        />
+    )
+}
 };
 
 WeatherStack.path = '';
@@ -72,10 +74,18 @@ const LinksStack = createStackNavigator(
 );
 
 LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
-  ),
+  tabBarLabel: 'UV history',
+  tabBarIcon: ({ focused }) =>{
+    const image = focused
+    ? require('../assets/images/historyiconactive.png')
+    : require('../assets/images/historyiconinactive.png')
+    return (
+        <Image
+            source={image}
+            style={{height:25, width:25}}
+        />
+    )
+}
 };
 
 LinksStack.path = '';
@@ -93,9 +103,17 @@ const UvForecastStack = createStackNavigator(
 
 UvForecastStack.navigationOptions = {
   tabBarLabel: 'UV forecast',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
-  ),
+  tabBarIcon: ({ focused }) => {
+    const image = focused
+    ? require('../assets/images/forecasticonactive.png')
+    : require('../assets/images/forecasticoninactive.png')
+    return (
+        <Image
+            source={image}
+            style={{height:25, width:25}}
+        />
+    )
+}
 };
 
 UvForecastStack.path = '';
@@ -116,9 +134,17 @@ const ProfileStack = createStackNavigator(
 
 ProfileStack.navigationOptions = {
   tabBarLabel: 'Profile',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-contact' : 'md-contact'} />
-  ),
+  tabBarIcon: ({ focused }) =>{
+    const image = focused
+    ? require('../assets/images/homeiconactive.png')
+    : require('../assets/images/homeiconinactive.png')
+    return (
+        <Image
+            source={image}
+            style={{height:25, width:25}}
+        />
+    )
+}
 };
 
 ProfileStack.path = '';
