@@ -1,14 +1,18 @@
 import React, {Component} from 'react';
 import { ExpoConfigView } from '@expo/samples';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
-import { connectActionSheet } from '@expo/react-native-action-sheet'
+import { connectActionSheet } from '@expo/react-native-action-sheet';
+import Modal from "react-native-modal";
+import { CheckBox } from 'react-native-elements'
 import { 
   View,
+  Button,
   ScrollView,
   Text,
   StyleSheet,
   TouchableOpacity,
-  AsyncStorage
+  AsyncStorage,
+  Image
 } from 'react-native'
 export default class ProfileScreen extends Component {
 
@@ -18,7 +22,11 @@ export default class ProfileScreen extends Component {
       email: '',
       name: '',
       skinType: 0,
-      sensor: ''
+      romanNumerals: ["I", "II", "III", "IV", "V", "VI"],
+      sensor: '',
+      skinRomanNumeral: '',
+      isModalVisible: false,
+      checked: [false, false, false, false, false, false],
     }
     this.fetchData();
   }
@@ -43,17 +51,61 @@ export default class ProfileScreen extends Component {
       .then((responseJson) => {
         // combile first name and last name
         const fullName = responseJson.firstname + " " + responseJson.lastname
-        const skinType = responseJson.skintype
+        const skintype = responseJson.skintype
         const sensor = responseJson.sensor
         const email = responseJson.email
         this.setState({
           email: email,
           name: fullName,
-          skinType: skinType,
-          sensor: sensor
+          skinType: skintype,
+          sensor: sensor,
+          skinRomanNumeral: this.state.romanNumerals[skintype-1]
         })
       })
       .catch((error) => console.error(error))
+    })
+  }
+
+  /**
+   * Control visibility of the pop-up modal
+   */
+  toggleModal = () => {
+    this.setState({ isModalVisible: !this.state.isModalVisible });
+  };
+
+  /**
+   * Update skin type stored in database
+   */
+  updateSkinType(){
+    this.toggleModal();
+    var data = {
+      email: this.state.email,
+      skintype: this.state.skinType
+    }
+    fetch("http://deco3801-teamwyzards.uqcloud.net/update.php", {
+      method: 'POST',
+      headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+    .catch((error) => console.error(error))
+    this.setState({
+      skinRomanNumeral: this.state.romanNumerals[data.skintype-1]
+    })
+  }
+
+  /**
+   * Set the skin type to specific value
+   * @param {Integer} value - the number of skin type
+   */
+  setSkinType(value) {
+    let newChecked = [false, false, false, false, false, false];
+    newChecked[value-1] = true;
+    this.setState({
+      checked: newChecked,
+      skinType: value
     })
   }
 
@@ -66,7 +118,6 @@ export default class ProfileScreen extends Component {
   }
 
   render() {
-    
     return (
       <ScrollView style={styles.container}>
 
@@ -91,7 +142,7 @@ export default class ProfileScreen extends Component {
         <View style={styles.settings}>
           <View style={styles.settingContainer}>
             <MaterialIcons name="more-vert" size={25} color="gray" style={styles.settingIcons} />
-            <Text style={styles.settingText}>Skin Type</Text>
+            <Text style={styles.settingText}>Skin Type {this.state.skinRomanNumeral}</Text>
           </View>
           <View style={styles.settingMoreContainer}>
             <MaterialIcons name="bluetooth" size={25} color="gray" style={styles.settingIcons} />
@@ -101,7 +152,7 @@ export default class ProfileScreen extends Component {
 
         <View style={styles.buttonContainer}>
 
-          <TouchableOpacity style={styles.uvButton}>
+          <TouchableOpacity style={styles.uvButton} onPress={this.toggleModal}>
             <Text style={styles.buttonText}>Change Skin Type</Text>
           </TouchableOpacity>
 
@@ -113,11 +164,51 @@ export default class ProfileScreen extends Component {
             <Text style={styles.textLink}>Log out</Text>
           </TouchableOpacity>
           
-
         </View>
-        
+        <View>
+          <Modal isVisible={this.state.isModalVisible}>
+            <View style={{ marginTop: 100 }}>
+              <View style={styles.skinScale}>
+                <CheckBox 
+                  checkedIcon={<Image style={styles.skinPicChecked} source={require('../assets/images/fitzpatrick-scale/1.png') } />}
+                  uncheckedIcon={<Image style={styles.skinPic} source={require('../assets/images/fitzpatrick-scale/1.png') } />}
+                  checked={this.state.checked[0]}
+                  onPress={() => this.setSkinType(1)}
+                  />
+                <CheckBox 
+                  checkedIcon={<Image style={styles.skinPicChecked} source={require('../assets/images/fitzpatrick-scale/2.png') } />}
+                  uncheckedIcon={<Image style={styles.skinPic} source={require('../assets/images/fitzpatrick-scale/2.png') } />}
+                  checked={this.state.checked[1]}
+                  onPress={() => this.setSkinType(2)}
+                  />
+                <CheckBox 
+                  checkedIcon={<Image style={styles.skinPicChecked} source={require('../assets/images/fitzpatrick-scale/3.png') } />}
+                  uncheckedIcon={<Image style={styles.skinPic} source={require('../assets/images/fitzpatrick-scale/3.png') } />}
+                  checked={this.state.checked[2]}
+                  onPress={() => this.setSkinType(3)}
+                  />
+                <CheckBox 
+                  checkedIcon={<Image style={styles.skinPicChecked} source={require('../assets/images/fitzpatrick-scale/4.png') } />}
+                  uncheckedIcon={<Image style={styles.skinPic} source={require('../assets/images/fitzpatrick-scale/4.png') } />}
+                  checked={this.state.checked[3]}
+                  onPress={() => this.setSkinType(4)}/>
+                <CheckBox 
+                  checkedIcon={<Image style={styles.skinPicChecked} source={require('../assets/images/fitzpatrick-scale/5.png') } />}
+                  uncheckedIcon={<Image style={styles.skinPic} source={require('../assets/images/fitzpatrick-scale/5.png') } />}
+                  checked={this.state.checked[4]}
+                  onPress={() => this.setSkinType(5)}/>
+                <CheckBox 
+                  checkedIcon={<Image style={styles.skinPicChecked} source={require('../assets/images/fitzpatrick-scale/6.png') } />}
+                  uncheckedIcon={<Image style={styles.skinPic} source={require('../assets/images/fitzpatrick-scale/6.png') } />}
+                  checked={this.state.checked[5]}
+                  onPress={() => this.setSkinType(6)}/>
+              </View>
+              <Button title="Cancel" onPress={this.toggleModal} />
+              <Button title="Confirm" onPress={() => this.updateSkinType()} />
+            </View>
+          </Modal>
+        </View>
       </ScrollView>
-
     )
   }
 }
@@ -176,7 +267,29 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#41BD63',
     textAlign: 'center'
-  }
+  },
+  skinPic: {
+    height: 40,
+    width: 40,
+    marginHorizontal: -15
+  },
+  skinScale: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    flexWrap: 'nowrap'
+  },
+  skinPic: {
+    height: 40,
+    width: 40,
+    marginHorizontal: -15
+  },
+  skinPicChecked: {
+    height: 40,
+    width: 40,
+    borderWidth: 2,
+    marginHorizontal: -15,
+    borderRadius: 5
+  },
 });
 ProfileScreen.navigationOptions = {
   header: null,

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import ValidationComponent from 'react-native-form-validator';
+import { CheckBox } from 'react-native-elements'
 import {
   Image,
   ScrollView,
@@ -9,8 +10,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-
-import { CheckBox } from 'react-native-elements'
 
 export default class SignupScreen extends ValidationComponent {
   constructor(props) {
@@ -39,6 +38,9 @@ export default class SignupScreen extends ValidationComponent {
     })
   }
 
+  /**
+   * Check if every input is valid
+   */
   formValidation = () => {
     this.validate({
       email: {email: true, required: true},
