@@ -38,7 +38,16 @@ export default class UvForecastScreen extends Component {
       }
     );
   }
+
+
+
+
   
+/**
+   * Fetch data from DarkSky API to get hourly 
+   * UV index and the time for each index
+   */
+
   fetchWeather(lat, lon) {
     fetch(`https://api.darksky.net/forecast/1c881bd9bc7c58c09bf74c28b5ffe195/${lat},${lon}?units=si`)
     .then(res => res.json())
@@ -430,7 +439,10 @@ height:"15%",
 });
 
 
-
+ /**
+   * change the color of UV container based on the UV index
+   * @param {Integer} UVindex - the forecast UV index from API
+   */
   
 
 function ChangeColorBasedOnUv(UVindex) {

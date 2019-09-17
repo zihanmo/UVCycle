@@ -38,7 +38,12 @@ export default class WeatherScreen extends Component {
       }
     );
   }
-  
+  /**
+   * Fetch data from DarkSky API to get dayly 
+   * temperature, weather and the time for each 
+   * weather
+   */
+
   fetchWeather(lat, lon) {
     fetch(`https://api.darksky.net/forecast/1c881bd9bc7c58c09bf74c28b5ffe195/${lat},${lon}?units=si`)
     .then(res => res.json())
@@ -167,7 +172,11 @@ function DevelopmentModeNotice() {
     );
   }
 }
-
+ /**
+   * Convert the UNIX time to the day
+   * @param {int} timestamp - the UNIX time from dark sky api
+   */
+  
 function UNIXToDay(timestamp) {
   var day = (new Date(timestamp)).getDay()
   
@@ -397,7 +406,11 @@ height:"65%",
 
 });
 
-
+ /**
+   * Change the weather images based on weather description
+   * @param {String} weatherDesc - the weather from DarkSky API
+   */
+  
 
   
 
@@ -486,6 +499,13 @@ function WeatherDescToImageSource(weatherDesc) {
     />;
   }
 }
+
+
+ /**
+   * Change the weather images based on weather description
+   * @param {String} weatherDesc1 - the weather from DarkSky API
+   */
+  
 
 function WeatherDescToSmallImageSource(weatherDesc1) {
   
