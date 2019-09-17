@@ -1,5 +1,5 @@
-import * as WebBrowser from 'expo-web-browser';
 import React, {Component} from 'react';
+import ValidationComponent from 'react-native-form-validator';
 import {
   Image,
   ScrollView,
@@ -12,13 +12,24 @@ import {
   KeyboardAvoidingView
 } from 'react-native';
 
-export default class LoginScreen extends Component {
+export default class LoginScreen extends ValidationComponent {
+
   constructor(props) {
     super(props);
     this.state = {
       email: '',
       password: ''
     }
+  }
+
+  /**
+   * Check if every input is valid
+   */
+  formValidation = () => {
+    this.validate({
+      email: {email: true, required: true},
+      password: {minlength: 6, required: true}
+    });
   }
 
   /**
