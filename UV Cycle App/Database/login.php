@@ -30,9 +30,4 @@ if ($row = mysqli_fetch_array($result)) {
     echo ($failJson);
 }
 $db->disconnect();
-
-if (isset($_GET["signout"])) {
-    session_destroy();
-    // header("Location: index.php");
-}
 ?> 

@@ -13,8 +13,6 @@ $query = "SELECT * FROM Users WHERE email = '$email'";
 $result = $db->query($query);
 
 $row = mysqli_fetch_array($result);
-// $respond = "email:" + $email + ",name:" + $row["firstname"] + " " + $row["lastname"] 
-// + ",skinType:" + $row["skintype"] + ", sensor:" + $row["sensor"];
 echo json_encode($row);
 
 
