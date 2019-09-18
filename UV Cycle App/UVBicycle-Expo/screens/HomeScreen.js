@@ -12,6 +12,9 @@ export default class HomeScreen extends Component {
     }
   }
 
+  /**
+   * Fetch weather according to location before loading the page
+   */
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(
       position => {
@@ -27,8 +30,8 @@ export default class HomeScreen extends Component {
 
   /**
    * Fetch data from Dark Sky API for temperature, location and weather
-   * @param {*} lat latitude
-   * @param {*} lon longitude
+   * @param {Float} lat latitude
+   * @param {Float} lon longitude
    */
   fetchWeather(lat, lon) {
     fetch(`https://api.darksky.net/forecast/1c881bd9bc7c58c09bf74c28b5ffe195/${lat},${lon}?units=si`)
@@ -47,67 +50,51 @@ export default class HomeScreen extends Component {
     const { location,temperature, weather1 } = this.state;
     return (
       <ScrollView style={styles.container}>
-          <View style={styles.infoContainer}>
-            <View style = {styles.weather}>
-              {WeatherDescToImageSource(weather1)}
-            </View>
-            <View style = {styles.tempnloc}>
-              <Text style = {styles.tempstyle}> {temperature}°C </Text>
-              <View style = {styles.location}>
-                <Image style = {styles.loc} source = {require('../assets/images/loc.png')}/>
-                <Text style = {styles.loctex}> {location} </Text>
-              </View> 
-            </View>
+        <View style={styles.infoContainer}>
+          <View style = {styles.weather}>
+            {WeatherDescToImageSource(weather1)}
           </View>
+          <View style = {styles.tempnloc}>
+            <Text style = {styles.tempstyle}> {temperature}°C </Text>
+            <View style = {styles.location}>
+              <Image style = {styles.loc} source = {require('../assets/images/loc.png')}/>
+              <Text style = {styles.loctex}> {location} </Text>
+            </View> 
+          </View>
+        </View>
 
-          <View>
-            <TouchableOpacity onPress={this.navigateToInfo}>
+        <View>
+          <TouchableOpacity
+            style={styles.infoButton} 
+            onPress={()=>this.props.navigation.navigate("Info")}>
             <Ionicons
               name={Platform.OS === 'ios' ? 'ios-information-circle' : 'md-information-circle'}
-              size={25}
-              style={{ marginBottom: -2 }}
+              size={30}
+              style={{ marginBottom: -2, color: 'gray' }}
             />
-            </TouchableOpacity>
-          </View>
+          </TouchableOpacity>
+        </View>
 
-          <View style = {styles.dash}>
-            <View style = {styles.dashcontainer}>
-              <Image style = {styles.maindash} source = {require('../assets/images/low.png')}/>
-            </View>
-            <TouchableOpacity style={styles.button}>
-              <Text style={styles.sharebtn}>Refresh</Text>
-            </TouchableOpacity>
-          </View>  
-          <View style = {styles.timecontainer}>
-            <View style = {styles.timetex}>
-              <Text style = {styles.tex1}>Time Elapsed</Text>
-              <Text style = {styles.tex2}>Exposed to UV</Text>
-            </View>
-            <View style = {styles.howlong}>
-              <Text style = {styles.timespent}>9:41</Text>
-            </View>
+        <View style = {styles.dash}>
+          <View style = {styles.dashcontainer}>
+            <Image style = {styles.maindash} source = {require('../assets/images/low.png')}/>
           </View>
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.sharebtn}>Refresh</Text>
+          </TouchableOpacity>
+        </View>  
+        <View style = {styles.timecontainer}>
+          <View style = {styles.timetex}>
+            <Text style = {styles.tex1}>Time Elapsed</Text>
+            <Text style = {styles.tex2}>Exposed to UV</Text>
+          </View>
+          <View style = {styles.howlong}>
+            <Text style = {styles.timespent}>9:41</Text>
+          </View>
+        </View>
       </ScrollView>
     );
   }
-}
-export function WeatherForecast({weather1, temperature,location}) {
-    return (
-      <ScrollView style={styles.container}>
-          <View style={styles.infoContainer}>
-            <View style = {styles.weather}>
-              {WeatherDescToImageSource(weather1)}
-            </View>
-            <View style = {styles.tempnloc}>
-              <Text style = {styles.tempstyle}> {temperature}°C </Text>
-              <View style = {styles.location}>
-                <Image style = {styles.loc} source = {require('../assets/images/homeiconinactive.png')}/>
-                <Text style = {styles.loctex}> {location} </Text>
-              </View> 
-            </View>
-          </View>
-      </ScrollView>
-    );
 }
 
 HomeScreen.navigationOptions = {
@@ -206,13 +193,16 @@ const styles = StyleSheet.create({
     height: 80,
   },
   infoButton: {
-
+    color: 'grey',
+    marginTop: 10,
+    marginRight: 10,
+    alignSelf: 'flex-end'
   }
 });
 
 /**
  * Change weather image based on weather description 
- * @param {*} weatherDesc - weather description from the API
+ * @param {String} weatherDesc - weather description from the API
  */
 function WeatherDescToImageSource(weatherDesc) {
   

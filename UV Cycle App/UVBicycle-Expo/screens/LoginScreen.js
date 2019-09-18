@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Header } from 'react-navigation';
 import ValidationComponent from 'react-native-form-validator';
 import {
   Image,
@@ -65,51 +66,53 @@ export default class LoginScreen extends ValidationComponent {
     return (
       
       <ScrollView style={styles.container}>
-        <View
-            style={styles.container}
-            contentContainerStyle={styles.contentContainer}>
-        <View style={styles.titleContainer}>
-            <Text style={styles.title}>UV Cycle</Text>
-        </View>
-        <Image style={styles.teamLogo} source={require('../assets/images/TeamWyzards.png') } />
-        <KeyboardAvoidingView 
-            style={styles.detailsContainer} ref="scrollView">
+        <KeyboardAvoidingView
+            style={styles.detailsContainer} 
+            behavior="position" >
+          <View
+              style={styles.container}
+              contentContainerStyle={styles.contentContainer}>
+            <View style={styles.titleContainer}>
+              <Text style={styles.title}>UV Cycle</Text>
+            </View>
+            <Image style={styles.teamLogo} source={require('../assets/images/TeamWyzards.png') } />
+          
+            <View>
             
-            <View style={styles.detailsLabel}>
-              <TextInput
-              style={styles.detailsLabelInput}
-              placeholder={ "Email" }
-              autoCapitalize = {'none'}
-              onChangeText={(text) => this.setState({email:text})}
-              />
-            </View>
+              <View style={styles.detailsLabel}>
+                <TextInput
+                style={styles.detailsLabelInput}
+                placeholder={ "Email" }
+                autoCapitalize = {'none'}
+                onChangeText={(text) => this.setState({email:text})}
+                />
+              </View>
 
-            <View style={styles.detailsLabel}>
-              <TextInput
-              secureTextEntry={true}
-              style={styles.detailsLabelInput}
-              placeholder={ "Password" }
-              autoCapitalize = {'none'}
-              onChangeText={(text) => this.setState({password:text})}
-              />
-            </View>
+              <View style={styles.detailsLabel}>
+                <TextInput
+                secureTextEntry={true}
+                style={styles.detailsLabelInput}
+                placeholder={ "Password" }
+                autoCapitalize = {'none'}
+                onChangeText={(text) => this.setState({password:text})}/>
+              </View>
             
-            <View style={styles.detailsLabel}>
+              <View style={styles.detailsLabel}>
 
-              <TouchableOpacity style={styles.uvButton} onPress={this.login}>
-                <Text style={styles.buttonText}>Login</Text>
-              </TouchableOpacity>
+                <TouchableOpacity style={styles.uvButton} onPress={this.login}>
+                  <Text style={styles.buttonText}>Login</Text>
+                </TouchableOpacity>
 
-              <TouchableOpacity onPress={() => navigate("Signup")}>
-                <Text style={styles.textLink}>Sign Up</Text>
-              </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigate("Signup")}>
+                  <Text style={styles.textLink}>Sign Up</Text>
+                </TouchableOpacity>
 
+              </View>
             </View>
+
+            <Image style={styles.logo} source={require('../assets/images/BicycleQueensland.jpg') } />
+          </View >
         </KeyboardAvoidingView>
-
-        <Image style={styles.logo} source={require('../assets/images/BicycleQueensland.jpg') } />
-        </View >
-
       </ScrollView>
     );
   }
@@ -149,7 +152,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   detailsContainer: {
-    marginHorizontal: 30,
+    flex: 1,
+    marginHorizontal: 30
   },
   detailsInstructionText: {
     lineHeight: 24,

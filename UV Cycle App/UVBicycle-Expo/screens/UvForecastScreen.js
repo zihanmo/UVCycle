@@ -1,20 +1,11 @@
 import * as WebBrowser from 'expo-web-browser';
 import React, {Component} from 'react';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-
-import PropTypes from 'prop-types';
-
 import {
-  Image,
   Platform,
-  ScrollView,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
 } from 'react-native';
-
-import { MonoText } from '../components/StyledText';
 
 export default class UvForecastScreen extends Component {
   constructor(props) {
@@ -39,11 +30,7 @@ export default class UvForecastScreen extends Component {
     );
   }
 
-
-
-
-  
-/**
+  /**
    * Fetch data from DarkSky API to get hourly 
    * UV index and the time for each index
    */
@@ -98,81 +85,85 @@ UvForecastScreen.navigationOptions = {
 export function HomeScreen({image1, time1,uv1,uv2,uv3, uv4,uv5, uv6, time2,time3, time4,time5, time6}) {
 
   return (
-      <View style={styles.weatherContainer}>
-        <View style={styles.headerContainer}>
-          <Text style={styles.subtitle}>UV Forecast</Text>
-
-     
-        </View>
-        <View style={styles.UVbigContainer}>
-        <View style={{  height:"13%",
-    width:"90%",
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom:12,
-    borderRadius:20,
-    justifyContent: 'center',backgroundColor: ChangeColorBasedOnUv(uv1)}}>
-        <Text style={styles.timeText}>{time1}:00</Text>
-        <Text style={styles.tempText}>{uv1}</Text>
-        </View>
-
-        <View style={{  height:"13%",
-    width:"90%",
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom:12,
-    borderRadius:20,
-    justifyContent: 'center',backgroundColor: ChangeColorBasedOnUv(uv2)}}>
-        <Text style={styles.timeText}>{time2}:00</Text>
-        <Text style={styles.tempText}>{uv2}</Text>
+    <View style={styles.weatherContainer}>
+      <View style={styles.headerContainer}>
+        <Text style={styles.subtitle}>UV Forecast</Text>
+      </View>
+      <View style={styles.UVbigContainer}>
+        <View 
+          style={{  
+            height:"13%",
+            width:"90%",
+            flexDirection: 'row',
+            alignItems: 'center',
+            marginBottom:12,
+            borderRadius:20,
+            justifyContent: 'center',backgroundColor: ChangeColorBasedOnUv(uv1)}}>
+          <Text style={styles.timeText}>{time1}:00</Text>
+          <Text style={styles.tempText}>{uv1}</Text>
         </View>
 
-       <View style={{  height:"13%",
-    width:"90%",
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom:12,
-    borderRadius:20,
-    justifyContent: 'center',backgroundColor: ChangeColorBasedOnUv(uv3)}}>
-        <Text style={styles.timeText}>{time3}:00</Text>
-        <Text style={styles.tempText}>{uv3}</Text>
+        <View style={{  
+          height:"13%",
+          width:"90%",
+          flexDirection: 'row',
+          alignItems: 'center',
+          marginBottom:12,
+          borderRadius:20,
+          justifyContent: 'center',backgroundColor: ChangeColorBasedOnUv(uv2)}}>
+          <Text style={styles.timeText}>{time2}:00</Text>
+          <Text style={styles.tempText}>{uv2}</Text>
         </View>
 
-        <View style={{  height:"13%",
-    width:"90%",
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom:12,
-    borderRadius:20,
-    justifyContent: 'center',backgroundColor: ChangeColorBasedOnUv(uv4)}}>
-        <Text style={styles.timeText}>{time4}:00</Text>
-        <Text style={styles.tempText}>{uv4}</Text>
+        <View style={{  
+          height:"13%",
+          width:"90%",
+          flexDirection: 'row',
+          alignItems: 'center',
+          marginBottom:12,
+          borderRadius:20,
+          justifyContent: 'center',backgroundColor: ChangeColorBasedOnUv(uv3)}}>
+            <Text style={styles.timeText}>{time3}:00</Text>
+            <Text style={styles.tempText}>{uv3}</Text>
         </View>
 
-        <View style={{  height:"13%",
-    width:"90%",
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom:12,
-    borderRadius:20,
-    justifyContent: 'center',backgroundColor: ChangeColorBasedOnUv(uv5)}}>
-        <Text style={styles.timeText}>{time5}:00</Text>
-        <Text style={styles.tempText}>{uv5}</Text>
+        <View style={{  
+          height:"13%",
+          width:"90%",
+          flexDirection: 'row',
+          alignItems: 'center',
+          marginBottom:12,
+          borderRadius:20,
+          justifyContent: 'center',backgroundColor: ChangeColorBasedOnUv(uv4)}}>
+            <Text style={styles.timeText}>{time4}:00</Text>
+            <Text style={styles.tempText}>{uv4}</Text>
         </View>
 
-        <View style={{  height:"13%",
-    width:"90%",
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom:12,
-    borderRadius:20,
-    justifyContent: 'center',backgroundColor: ChangeColorBasedOnUv(uv6)}}>
-        <Text style={styles.timeText}>{time6}:00</Text>
-        <Text style={styles.tempText}>{uv6}</Text>
+        <View style={{  
+          height:"13%",
+          width:"90%",
+          flexDirection: 'row',
+          alignItems: 'center',
+          marginBottom:12,
+          borderRadius:20,
+          justifyContent: 'center',backgroundColor: ChangeColorBasedOnUv(uv5)}}>
+          <Text style={styles.timeText}>{time5}:00</Text>
+          <Text style={styles.tempText}>{uv5}</Text>
         </View>
+
+        <View style={{  
+          height:"13%",
+          width:"90%",
+          flexDirection: 'row',
+          alignItems: 'center',
+          marginBottom:12,
+          borderRadius:20,
+          justifyContent: 'center',backgroundColor: ChangeColorBasedOnUv(uv6)}}>
+          <Text style={styles.timeText}>{time6}:00</Text>
+          <Text style={styles.tempText}>{uv6}</Text>
         </View>
-        </View>
-      
+      </View>
+    </View>
   );
 }
 
@@ -206,11 +197,7 @@ function DevelopmentModeNotice() {
 
 function UNIXToDay(timestamp) {
   var day = (new Date(timestamp)).getHours()
-  
-
-      return day;
-   
-  
+    return day;
 }
 
 function handleLearnMorePress() {
@@ -244,27 +231,18 @@ const styles = StyleSheet.create({
     paddingTop: 40,
   },
   UVContainer1:{
-height:"15%",
-width:"70%",
-flexDirection: 'row',
-alignItems: 'center',
-justifyContent: 'center',
+    height:"15%",
+    width:"70%",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-
   UVbigContainer:{
     alignItems: 'center',
     justifyContent: 'center',
     height:"85%",
     width:"90%",
- 
   },
-
-
-  
-
-
-
-
   welcomeImage: {
     width: 165,
     height: 165,
@@ -273,23 +251,17 @@ justifyContent: 'center',
     marginTop: 3,
 
   },
-
   welcomeImage2: {
     width: 60,
     height: 50,
     resizeMode: 'contain',
     marginTop: 13,
     marginBottom: 30,
-   
   },
-
-
   forcastImage: {
     width: 350,
     height: 200,
-
   },
-
   getStartedContainer: {
     alignItems: 'center',
     marginHorizontal: 50,
@@ -311,22 +283,15 @@ justifyContent: 'center',
     lineHeight: 50,
     textAlign: 'center',
   },
-
-
   tempText: {
     fontSize: 33,
     color: '#fff',
     marginLeft:"50%",
-
   },
   timeText: {
     fontSize: 33,
     color: '#fff',
-
-
   },
-
-
   weathertext: {
     fontSize: 20,
     color: 'blue',
@@ -375,17 +340,15 @@ justifyContent: 'center',
   weatherContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-height: "100%",
+    height: "100%",
     backgroundColor: '#ffffff',
    
   },
   headerContainer: {
-height:"15%",
+    height:"15%",
     alignItems: 'center',
     backgroundColor: '#ffffff',
-  
   },
- 
   BodyContainer: {
     backgroundColor: '#000000',
     alignItems: 'center',
@@ -403,81 +366,62 @@ height:"15%",
     color: '#1E6738',
     marginTop:7
   },
-
   tempText11: {
     fontSize: 44,
     color: '#1E6738',
     marginTop:7,
     fontWeight: 'bold',
   },
-
   weather1con:{
-
-
-  width:"20%",
-  backgroundColor:'#000',
-  height:210,
+    width:"20%",
+    backgroundColor:'#000',
+    height:210,
     alignItems: 'center',
     borderColor: '#000',
     fontWeight: 'bold',
   },
-  
   subtitle: {
   paddingTop:40,
   paddingBottom:20,
     fontSize: 33,
     color: '#1E6738',
-    
   },
   imageweather2:{
     width: 10, 
     height: 50
   },
-
-
-
 });
 
-
- /**
-   * change the color of UV container based on the UV index
-   * @param {Integer} UVindex - the forecast UV index from API
-   */
-  
-
+/**
+ * change the color of UV container based on the UV index
+ * @param {Integer} UVindex - the forecast UV index from API
+ */
 function ChangeColorBasedOnUv(UVindex) {
   
   switch (UVindex) {
     case 0:
       return "#A5CF2E";
-      case 1:
+    case 1:
       return "#A5CF2E";
-      case 2:
-        return "	#A5CF2E";
-      
+    case 2:
+      return "#A5CF2E";
     case 3:
       return "#EBD826";
-      case 4:
-        return "#EBD826";
-        case 5:
-          return "#EBD826";
-
+    case 4:
+      return "#EBD826";
+    case 5:
+      return "#EBD826";
     case 6:
       return "#FEA71A";
     case 7:
       return "#FEA71A";
     case 8:
       return "#FE4C1E";
-      case 9:
-        return "#FE4C1Ed";
-        case 10:
-          return "#FE4C1E";
-      
+    case 9:
+      return "#FE4C1Ed";
+    case 10:
+      return "#FE4C1E";
     case 11:
-        return "#B568B6";
-
-      
-
-
+      return "#B568B6";
   }
 }
