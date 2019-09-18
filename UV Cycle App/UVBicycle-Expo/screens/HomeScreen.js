@@ -1,45 +1,77 @@
 import * as WebBrowser from 'expo-web-browser';
 import React, {Component} from 'react';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
-import {
-  Image,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-  Button,
-  Form
-} from 'react-native';
+import { Image, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, Button, Form } from 'react-native';
 import { whileStatement } from '@babel/types';
 
 export default class HomeScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isLoading: false,
+      temperature: 0,
+      error: null
     }
   }
 
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        this.fetchWeather(position.coords.latitude, position.coords.longitude);
+      },
+      error => {
+        this.setState({
+          error: 'Error Gettig Weather Condtions'
+        });
+      }
+    );
+  }
+
+  navigateToInfo() {
+    this.props.navigation.navigate("Info");
+  }
+
+  fetchWeather(lat, lon) {
+    fetch(`https://api.darksky.net/forecast/1c881bd9bc7c58c09bf74c28b5ffe195/${lat},${lon}?units=si`)
+    .then(res => res.json())
+    .then(json => {
+      this.setState({ 
+        temperature: Math.round(json.daily.data[0].temperatureMax),
+        weather1: json.daily.data[0].icon,
+        location: json.timezone,
+        isLoading: false
+      });
+    });
+  }
   render() {
+    const { location,temperature, weather1 } = this.state;
+    return (
+      <View style={styles.container}>
+        <WeatherForecast location={location} temperature={temperature} weather1={weather1} />
+    </View>
+    );
+  }
+}
+export function WeatherForecast({weather1, temperature,location}) {
+
     return (
       
       <ScrollView style={styles.container}>
           <View style={styles.infoContainer}>
             <View style = {styles.weather}>
-              <Image style = {styles.weatherpic} source = {require('../assets/images/clear-day.png')}/>
+              {WeatherDescToImageSource(weather1)}
             </View>
             <View style = {styles.tempnloc}>
-              <Text style = {styles.tempstyle}> 25°C </Text>
+              <Text style = {styles.tempstyle}> {temperature}°C </Text>
               <View style = {styles.location}>
                 <Image style = {styles.loc} source = {require('../assets/images/homeiconinactive.png')}/>
-                <Text style = {styles.loctex}> University of Queensland </Text>
+                <Text style = {styles.loctex}> {location} </Text>
               </View> 
             </View>
           </View>
+
           <View>
-            <TouchableOpacity onPress={()=>this.props.navigation.navigate("Info")}>
+            <TouchableOpacity onPress={this.navigateToInfo}>
             <Ionicons
               name={Platform.OS === 'ios' ? 'ios-information-circle' : 'md-information-circle'}
               size={25}
@@ -67,7 +99,6 @@ export default class HomeScreen extends Component {
           </View>
       </ScrollView>
     );
-  }
 }
 
 HomeScreen.navigationOptions = {
@@ -92,10 +123,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
 
-  weatherpic: {
-    width: 80,
-    height: 80,
-  },
+  // weatherpic: {
+  //   width: 80,
+  //   height: 80,
+  // },
 
   weather: {
     paddingTop: 80,
@@ -184,4 +215,64 @@ const styles = StyleSheet.create({
     marginTop: 35,
   },
 
+  imageweather: {
+    width: 80,
+    height: 80,
+  },
 });
+
+function WeatherDescToImageSource(weatherDesc) {
+  
+  switch (weatherDesc) {
+
+    case "partly-cloudy-day":
+      return    <Image style={styles.imageweather}
+      source={ require('../assets/images/partly-cloudy-day.png')}
+    />;
+
+    case "clear-day":
+      return    <Image style={styles.imageweather}
+      source={ require('../assets/images/clear-day.png')}
+    />;
+
+    case "partly-cloudy-night":
+      return    <Image style={styles.imageweather}
+      source={require('../assets/images/partly-cloudy-night.png')}
+    />;
+
+    case "partly-cloudy-day":
+      return    <Image style={styles.imageweather}
+      source={require('../assets/images/partly-cloudy-day.png')}
+    />;
+
+    case "cloudy":
+      return    <Image style={styles.imageweather}
+      source={require('../assets/images/cloudy.png')}
+    />;
+
+    case "rain":
+      return    <Image style={styles.imageweather}
+      source={require('../assets/images/rain.png')}
+    />;
+
+    case "sleet":
+      return    <Image style={styles.imageweather}
+      source={require('../assets/images/sleet.png')}
+    />;
+
+    case "snow":
+      return    <Image style={styles.imageweather}
+      source={require('../assets/images/snow.png')}
+    />;
+
+    case "wind":
+      return    <Image style={styles.imageweather}
+      source={require('../assets/images/wind.png')}
+    />;
+
+    case "fog":
+      return    <Image style={styles.imageweather}
+      source={require('../assets/images/fog.png')}
+    />;
+  }
+}
