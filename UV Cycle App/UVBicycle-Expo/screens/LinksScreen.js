@@ -5,12 +5,46 @@ import {
     Text,
     StyleSheet,
     Dimensions,
-    ImageBackground
+    ImageBackground,
 } from 'react-native'
 import {Circle} from 'react-native-svg'
+import * as scale from "d3-scale";
+import dateFns from 'date-fns'
 
 export default class LinkScreen extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            time: [],
+            index: []
+        }
+        this.test();
+    }
 
+
+    test = () => {
+        fetch('http://deco3801-teamwyzards.uqcloud.net/uvhistory.php', {
+            method: 'POST',
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                key: 'test',
+            })
+        })
+        .then((response) => response.json())
+        .then((res) => {
+            tiemstamp = res.time.split("+");
+            indexes = res.index.split("+");
+            this.setState({
+                time: tiemstamp.slice(1),
+                //tims: [1, 2, 3, 4, 5],
+                index: indexes.slice(1)
+            });
+        })
+    }
+    
     render() {
         const Decorator = ({ x, y, data }) => {
             return data.map((value, index) => (
@@ -26,28 +60,27 @@ export default class LinkScreen extends Component {
         }
 
         const axesSvg = { fontSize: 10, fill: 'grey' };
-        const verticalContentInset = { top: 10, bottom: 10 }
-        const xAxisHeight = 30
+        const verticalContentInset = { top: 10, bottom: 10 };
+        const xAxisHeight = 30;
+        const data = [];
         const indexes = [];
-        const time = [];
-        for (i = 0; i < 6; i++) {
-            for (j = 0; j < 30; j+=2){
-                // mins = "";
-                // if (0 <= j && j < 10) {
-                //     mins += ("0" + j);
-                // } else {
-                //     mins += j;
-                // }
-                indexes.push(Math.random()*11 + 1);
-            }
-            // hour = "";
-            // if (0 <= i && i < 10) {
-            //     hour += ("0" + i);
-            // } else {
-            //     hour += i;
-            // }
-            time.push(i);
+        for (i = 0; i < this.state.index.length; i++) {
+            timetemp = this.state.time[i].split(" ");
+            temp = timetemp[1].split(":");
+            data.push({
+                index: parseInt(this.state.index[i]),
+                time: temp[1]
+            });
+            // alert(timetemp[1])
+            indexes.push(parseInt(this.state.index[i]));
+            // timetemp = this.state.time[i].split(" ");
+            // temp = timetemp[1].split(":");
+            // time.push(parseInt(temp[1]));
+           
+            //time.push(i);
         }
+        // alert(data[1].time)
+
         return (
             
             <View>
@@ -57,7 +90,8 @@ export default class LinkScreen extends Component {
                 </View>
                 <View style={{ height: Dimensions.get('window').height - 200, padding: 20, flexDirection: 'row' }}>
                     <YAxis
-                        data={indexes}
+                        data={ data }
+                        yAccessor={ ({ item }) => item.index }
                         style={{ marginBottom: xAxisHeight }}
                         contentInset={verticalContentInset}
                         svg={axesSvg}
@@ -66,7 +100,7 @@ export default class LinkScreen extends Component {
                     <ImageBackground source={require('../assets/images/indexback.png')} style={{width: '100%', height: '100%'}}>
                         <LineChart
                             style={{ flex: 1 }}
-                            data={indexes}
+                            data={ indexes }
                             contentInset={verticalContentInset}
                             svg={{ stroke: 'rgb(255, 255, 255)', strokeWidth: 1.5 }}
                             gridMin={0}
@@ -78,8 +112,10 @@ export default class LinkScreen extends Component {
                     </ImageBackground>
                     <XAxis
                         style={{ marginHorizontal: -10, height: xAxisHeight, marginTop: 10 }}
-                        data={time}
-                        formatLabel={ value => `${value+6}am` }
+                        data={data}
+                        xAccessor={ ({ item }) => item.time }
+                        numberOfTicks={ data.length }
+                        formatLabel={ value => `22:${value}` }
                         contentInset={{ left: 10, right: 10 }}
                         svg={axesSvg}
                     />
