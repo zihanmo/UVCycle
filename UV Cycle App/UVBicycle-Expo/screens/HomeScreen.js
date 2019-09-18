@@ -1,8 +1,6 @@
-import * as WebBrowser from 'expo-web-browser';
 import React, {Component} from 'react';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
-import { Image, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, Button, Form } from 'react-native';
-import { whileStatement } from '@babel/types';
+import { Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View, Button, Form } from 'react-native';
 
 export default class HomeScreen extends Component {
   constructor(props) {
@@ -27,10 +25,6 @@ export default class HomeScreen extends Component {
     );
   }
 
-  navigateToInfo() {
-    this.props.navigation.navigate("Info");
-  }
-
   fetchWeather(lat, lon) {
     fetch(`https://api.darksky.net/forecast/1c881bd9bc7c58c09bf74c28b5ffe195/${lat},${lon}?units=si`)
     .then(res => res.json())
@@ -46,32 +40,10 @@ export default class HomeScreen extends Component {
   render() {
     const { location,temperature, weather1 } = this.state;
     return (
-      <View style={styles.container}>
-        <WeatherForecast location={location} temperature={temperature} weather1={weather1} />
-    </View>
-    );
-  }
-}
-export function WeatherForecast({weather1, temperature,location}) {
-
-    return (
-      
       <ScrollView style={styles.container}>
-          <View style={styles.infoContainer}>
-            <View style = {styles.weather}>
-              {WeatherDescToImageSource(weather1)}
-            </View>
-            <View style = {styles.tempnloc}>
-              <Text style = {styles.tempstyle}> {temperature}°C </Text>
-              <View style = {styles.location}>
-                <Image style = {styles.loc} source = {require('../assets/images/homeiconinactive.png')}/>
-                <Text style = {styles.loctex}> {location} </Text>
-              </View> 
-            </View>
-          </View>
-
-          <View>
-            <TouchableOpacity onPress={this.navigateToInfo}>
+        <WeatherForecast location={location} temperature={temperature} weather1={weather1} />
+        <View style={styles.infoButton}>
+            <TouchableOpacity onPress={()=>this.props.navigation.navigate("Info")}>
             <Ionicons
               name={Platform.OS === 'ios' ? 'ios-information-circle' : 'md-information-circle'}
               size={25}
@@ -99,6 +71,25 @@ export function WeatherForecast({weather1, temperature,location}) {
           </View>
       </ScrollView>
     );
+  }
+}
+export function WeatherForecast({weather1, temperature,location}) {
+    return (
+      <ScrollView style={styles.container}>
+          <View style={styles.infoContainer}>
+            <View style = {styles.weather}>
+              {WeatherDescToImageSource(weather1)}
+            </View>
+            <View style = {styles.tempnloc}>
+              <Text style = {styles.tempstyle}> {temperature}°C </Text>
+              <View style = {styles.location}>
+                <Image style = {styles.loc} source = {require('../assets/images/homeiconinactive.png')}/>
+                <Text style = {styles.loctex}> {location} </Text>
+              </View> 
+            </View>
+          </View>
+      </ScrollView>
+    );
 }
 
 HomeScreen.navigationOptions = {
@@ -115,63 +106,47 @@ const styles = StyleSheet.create({
     height: 200,
     flexDirection: 'row',
   },
-  
   timecontainer: {
     backgroundColor: '#41BD63',
     height: 200,
     marginTop: 40,
     flexDirection: 'row',
   },
-
-  // weatherpic: {
-  //   width: 80,
-  //   height: 80,
-  // },
-
   weather: {
     paddingTop: 80,
     paddingLeft: 30,
   },
-
   tempstyle: {
     color: '#fff',
     fontSize: 30,
   },
-
   tempnloc: {
     paddingTop: 80,
     paddingLeft: 20,
   },
-
   loctex: {
     color: '#fff',
     fontSize: 20,
   },
-
   loc: {
     width: 20,
     height: 20,
   },
-
   location: {
     flexDirection: 'row',
     paddingTop: 20,
   },
-
   dashcontainer: {},
-
   maindash: {
     width: 300,
     height: 150,
   },
-
   dash: {
     justifyContent: 'center',
     alignContent: 'center',
     alignItems: 'center',
     marginTop: 60,
   },
-
   button: {
     backgroundColor: '#41BD63',
     alignItems: 'center',
@@ -179,7 +154,6 @@ const styles = StyleSheet.create({
     margin: 30,
     marginTop: 50,
   },
-
   sharebtn: {
     fontSize: 30,
     color: '#fff',
@@ -187,7 +161,6 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginRight: 20,
   },
-
   timespent: {
     fontSize: 60,
     color: '#fff',
@@ -195,30 +168,28 @@ const styles = StyleSheet.create({
     textShadowOffset: {width: -1, height: 1},
     textShadowRadius: 10,
   },
-
   timetex: {
     alignItems: 'center',
     margin: 40,
   },
-
   tex1: {
     color: '#fff',
     fontSize: 30,
   },
-
   tex2: {
     color: '#fff',
     fontSize: 25,
   },
-
   howlong: {
     marginTop: 35,
   },
-
   imageweather: {
     width: 80,
     height: 80,
   },
+  infoButton: {
+
+  }
 });
 
 function WeatherDescToImageSource(weatherDesc) {

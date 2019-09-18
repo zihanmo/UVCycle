@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-import { ExpoConfigView } from '@expo/samples';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
-import { connectActionSheet } from '@expo/react-native-action-sheet';
 import Modal from "react-native-modal";
 import { CheckBox } from 'react-native-elements'
 import { 
