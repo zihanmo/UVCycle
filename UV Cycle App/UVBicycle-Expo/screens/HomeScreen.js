@@ -41,9 +41,21 @@ export default class HomeScreen extends Component {
     const { location,temperature, weather1 } = this.state;
     return (
       <ScrollView style={styles.container}>
-        <WeatherForecast location={location} temperature={temperature} weather1={weather1} />
-        <View style={styles.infoButton}>
-            <TouchableOpacity onPress={()=>this.props.navigation.navigate("Info")}>
+          <View style={styles.infoContainer}>
+            <View style = {styles.weather}>
+              {WeatherDescToImageSource(weather1)}
+            </View>
+            <View style = {styles.tempnloc}>
+              <Text style = {styles.tempstyle}> {temperature}°C </Text>
+              <View style = {styles.location}>
+                <Image style = {styles.loc} source = {require('../assets/images/loc.png')}/>
+                <Text style = {styles.loctex}> {location} </Text>
+              </View> 
+            </View>
+          </View>
+
+          <View>
+            <TouchableOpacity onPress={this.navigateToInfo}>
             <Ionicons
               name={Platform.OS === 'ios' ? 'ios-information-circle' : 'md-information-circle'}
               size={25}
@@ -129,8 +141,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   loc: {
-    width: 20,
-    height: 20,
+    width: 15,
+    height: 21,
   },
   location: {
     flexDirection: 'row',
