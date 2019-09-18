@@ -27,6 +27,10 @@ export default class HomeScreen extends Component {
     );
   }
 
+  navigateToInfo() {
+    this.props.navigation.navigate("Info");
+  }
+
   fetchWeather(lat, lon) {
     fetch(`https://api.darksky.net/forecast/1c881bd9bc7c58c09bf74c28b5ffe195/${lat},${lon}?units=si`)
     .then(res => res.json())
@@ -65,8 +69,9 @@ export function WeatherForecast({weather1, temperature,location}) {
               </View> 
             </View>
           </View>
+
           <View>
-            <TouchableOpacity onPress={()=>this.props.navigation.navigate("Info")}>
+            <TouchableOpacity onPress={this.navigateToInfo}>
             <Ionicons
               name={Platform.OS === 'ios' ? 'ios-information-circle' : 'md-information-circle'}
               size={25}
@@ -226,7 +231,7 @@ function WeatherDescToImageSource(weatherDesc) {
     />;
 
     case "clear-day":
-      return    <Image style={styles.imageweather2}
+      return    <Image style={styles.imageweather}
       source={ require('../assets/images/clear-day.png')}
     />;
 
