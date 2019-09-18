@@ -18,11 +18,14 @@ export default class LinkScreen extends Component {
             time: [],
             index: []
         }
-        this.test();
+        this.getindex();
     }
 
-
-    test = () => {
+    /**
+     * fetch historical UVindex from database
+     * store timestamp and unindex to state variable
+     */
+    getindex = () => {
         fetch('http://deco3801-teamwyzards.uqcloud.net/uvhistory.php', {
             method: 'POST',
             headers: {
@@ -39,7 +42,6 @@ export default class LinkScreen extends Component {
             indexes = res.index.split("+");
             this.setState({
                 time: tiemstamp.slice(1),
-                //tims: [1, 2, 3, 4, 5],
                 index: indexes.slice(1)
             });
         })
@@ -71,20 +73,11 @@ export default class LinkScreen extends Component {
                 index: parseInt(this.state.index[i]),
                 time: temp[1]
             });
-            // alert(timetemp[1])
             indexes.push(parseInt(this.state.index[i]));
-            // timetemp = this.state.time[i].split(" ");
-            // temp = timetemp[1].split(":");
-            // time.push(parseInt(temp[1]));
-           
-            //time.push(i);
         }
-        // alert(data[1].time)
 
         return (
-            
             <View>
-                
                 <View style={styles.titleContainer}>
                     <Text style={styles.title}>UV history index</Text>
                 </View>
@@ -115,6 +108,7 @@ export default class LinkScreen extends Component {
                         data={data}
                         xAccessor={ ({ item }) => item.time }
                         numberOfTicks={ data.length }
+                        // format improvement
                         formatLabel={ value => `22:${value}` }
                         contentInset={{ left: 10, right: 10 }}
                         svg={axesSvg}
