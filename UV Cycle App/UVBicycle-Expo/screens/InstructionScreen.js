@@ -45,8 +45,8 @@ export default class InstructionScreen extends Component {
           </View>
         </View>
         <View style={styles.detailsLabel}>
-          <TouchableOpacity style={styles.uvButton} onPress={ () => navigate("Main")}>
-            <Text style={styles.buttonText}>Back</Text>
+          <TouchableOpacity style={styles.uvButton} onPress={() => navigate("Main")}>
+            <Text style={styles.textLink}>Back</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -76,35 +76,33 @@ const styles = StyleSheet.create({
       },
     }),
   },
-
   subTitle: {
     color: '#41BD63',
     fontSize: 18,
     fontWeight: 'bold',
   },
-
   desctext: {
     color: 'grey',
     fontSize: 15,
   },
-
   titlePic: {
     height: 50,
     width: 50,
     resizeMode: 'center',
   },
-
   sub: {
     marginRight: 50,
   },
-
   picCon: {
     justifyContent: 'center',
     alignItems: 'center',
     padding: 5,
+  },
+  textLink: {
+    fontSize: 16,
+    color: '#41BD63',
+    textAlign: 'center'
   }
-
-
 });
 InstructionScreen.navigationOptions = {
   header: null,

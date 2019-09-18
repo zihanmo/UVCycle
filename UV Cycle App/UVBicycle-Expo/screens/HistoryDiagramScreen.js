@@ -19,7 +19,7 @@ import {
   Circle
 } from 'react-native-svg';
 
-export default class LinkScreen extends Component {
+export default class HistoryDiagramScreen extends Component {
   
   constructor(props) {
     super(props);
@@ -88,7 +88,7 @@ export default class LinkScreen extends Component {
     }
 
     return (
-      <View>
+      <ScrollView>
         <View style={styles.titleContainer}>
           <Text style={styles.title}>UV history index</Text>
         </View>
@@ -108,8 +108,8 @@ export default class LinkScreen extends Component {
                 svg={{ stroke: 'rgb(255, 255, 255)', strokeWidth: 1.5 }}
                 gridMin={0}
                 gridMax={12}>
-              <Grid/>
-              <Decorator/>
+                <Grid/>
+                <Decorator/>
               </LineChart>
             </ImageBackground>
             <XAxis
@@ -123,7 +123,7 @@ export default class LinkScreen extends Component {
               svg={axesSvg}/>
           </View>
         </View>
-      </View>
+      </ScrollView>
     )
   }
 }
@@ -136,12 +136,17 @@ const styles = StyleSheet.create({
     paddingTop: 30,
   },
   titleContainer: {
-    alignItems: 'center',
-    marginTop: 20,
-    marginBottom: 10,
+    alignItems: 'center'
   },
   title: {
-    fontSize: 30,
-    color: '#1E6738'
+    paddingTop:40,
+    paddingBottom:20,
+    fontSize: 33,
+    color: '#1E6738',
+    alignSelf: 'center'
   },
 });
+
+HistoryDiagramScreen.navigationOptions = {
+  header: null,
+};

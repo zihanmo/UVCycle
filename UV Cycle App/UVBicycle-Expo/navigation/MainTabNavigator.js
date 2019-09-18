@@ -4,13 +4,11 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import Colors from '../constants/Colors';
 import TabBarIcon from '../components/TabBarIcon';
-import LinksScreen from '../screens/LinksScreen';
+import HistoryDiagramScreen from '../screens/HistoryDiagramScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import WeatherScreen from '../screens/WeatherForecastScreen';
-import InstructionScreen from '../screens/InstructionScreen';
 import UvForecastScreen from '../screens/UvForecastScreen';
 import HomeScreen from '../screens/HomeScreen'
-import LoginScreen from '../screens/LoginScreen'
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -66,14 +64,14 @@ WeatherStack.navigationOptions = {
 WeatherStack.path = '';
 
 
-const LinksStack = createStackNavigator(
+const HistoryDiagramStack = createStackNavigator(
   {
-    Links: LinksScreen,
+    HistoryDiagram: HistoryDiagramScreen,
   },
   config
 );
 
-LinksStack.navigationOptions = {
+HistoryDiagramStack.navigationOptions = {
   tabBarLabel: 'UV history',
   tabBarIcon: ({ focused }) =>{
     const image = focused
@@ -88,7 +86,7 @@ LinksStack.navigationOptions = {
 }
 };
 
-LinksStack.path = '';
+HistoryDiagramStack.path = '';
 
 
 
@@ -96,7 +94,7 @@ LinksStack.path = '';
 
 const UvForecastStack = createStackNavigator(
   {
-    Links: UvForecastScreen,
+    UvForecast: UvForecastScreen,
   },
   config
 );
@@ -117,13 +115,6 @@ UvForecastStack.navigationOptions = {
 };
 
 UvForecastStack.path = '';
-
-
-
-
-
-
-
 
 const ProfileStack = createStackNavigator(
   {
@@ -149,36 +140,11 @@ ProfileStack.navigationOptions = {
 
 ProfileStack.path = '';
 
-
-// const InstructionStack = createStackNavigator(
-//   {
-//     Settings: InstructionScreen,
-//   },
-//   config
-// );
-
-// InstructionStack.navigationOptions = {
-//   tabBarLabel: 'README',
-//   tabBarIcon: ({ focused }) => (
-//     <TabBarIcon
-//       focused={focused}
-//       name={
-//         Platform.OS === 'ios'
-//           ? `ios-information-circle${focused ? '' : '-outline'}`
-//           : 'md-information-circle'
-//       }
-//     />
-//   ),
-// };
-// InstructionStack.path = '';
-
-
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
   WeatherStack,
-  LinksStack,
   ProfileStack,
-  LinksStack,
+  HistoryDiagramStack,
   UvForecastStack,
 });
 
