@@ -25,6 +25,11 @@ export default class HomeScreen extends Component {
     );
   }
 
+  /**
+   * Fetch data from Dark Sky API for temperature, location and weather
+   * @param {*} lat latitude
+   * @param {*} lon longitude
+   */
   fetchWeather(lat, lon) {
     fetch(`https://api.darksky.net/forecast/1c881bd9bc7c58c09bf74c28b5ffe195/${lat},${lon}?units=si`)
     .then(res => res.json())
@@ -37,6 +42,7 @@ export default class HomeScreen extends Component {
       });
     });
   }
+  // Views displayed in the home screen
   render() {
     const { location,temperature, weather1 } = this.state;
     return (
@@ -204,6 +210,10 @@ const styles = StyleSheet.create({
   }
 });
 
+/**
+ * Change weather image based on weather description 
+ * @param {*} weatherDesc - weather description from the API
+ */
 function WeatherDescToImageSource(weatherDesc) {
   
   switch (weatherDesc) {
