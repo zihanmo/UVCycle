@@ -120,13 +120,13 @@ export default class ProfileScreen extends Component {
       <ScrollView style={styles.container}>
 
         <View>
-          <Text style={styles.subtitle}>Proifle</Text>
+          <Text style={styles.subtitle}>Profile</Text>
         </View>
 
         <View style={styles.settings}>
 
           <View style={styles.settingContainer}>
-            <MaterialIcons name="brightness-medium" size={25} color="gray" style={styles.settingIcons}/>
+            <MaterialIcons name="more-vert" size={25} color="gray" style={styles.settingIcons}/>
             <Text style={styles.settingText}>{this.state.email}</Text>
           </View>
 
@@ -139,7 +139,7 @@ export default class ProfileScreen extends Component {
 
         <View style={styles.settings}>
           <View style={styles.settingContainer}>
-            <MaterialIcons name="more-vert" size={25} color="gray" style={styles.settingIcons} />
+            <MaterialIcons name="brightness-medium" size={25} color="gray" style={styles.settingIcons} />
             <Text style={styles.settingText}>Skin Type {this.state.skinRomanNumeral}</Text>
           </View>
           <View style={styles.settingMoreContainer}>
