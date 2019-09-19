@@ -187,7 +187,6 @@ export default class SignupScreen extends ValidationComponent {
                   uncheckedIcon={<Image style={styles.skinPic} source={require('../assets/images/fitzpatrick-scale/6.png') } />}
                   checked={this.state.checked[5]}
                   onPress={() => this.setSkinType(6)}/>
-                
               </View>
             </View>
 
@@ -201,8 +200,6 @@ export default class SignupScreen extends ValidationComponent {
               <TouchableOpacity style={styles.uvButton} onPress={this.formValidation}>
                 <Text style={styles.buttonText}>Finish</Text>
               </TouchableOpacity>
-              <Text>
-          </Text>
 
               <TouchableOpacity onPress={() => navigate("Login")}>
                 <Text style={styles.textLink}>Already have account? Login here</Text>
@@ -210,9 +207,7 @@ export default class SignupScreen extends ValidationComponent {
             </View>
           </View>
           <Image style={styles.logo} source={require('../assets/images/BicycleQueensland.jpg') } />
-
         </View >
-
       </ScrollView>
     );
   }

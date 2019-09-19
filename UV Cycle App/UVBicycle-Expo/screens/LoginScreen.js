@@ -1,5 +1,4 @@
-import React, {Component} from 'react';
-import { Header } from 'react-navigation';
+import React from 'react';
 import ValidationComponent from 'react-native-form-validator';
 import {
   Image,

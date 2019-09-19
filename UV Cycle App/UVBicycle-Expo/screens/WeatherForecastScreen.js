@@ -1,7 +1,5 @@
 import * as WebBrowser from 'expo-web-browser';
 import React, {Component} from 'react';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import PropTypes from 'prop-types';
 import {
   Image,
   Platform,
@@ -11,7 +9,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { MonoText } from '../components/StyledText';
 export default class WeatherScreen extends Component {
   constructor(props) {
     super(props);
@@ -155,11 +152,11 @@ function DevelopmentModeNotice() {
     );
   }
 }
- /**
-   * Convert the UNIX time to the day
-   * @param {int} timestamp - the UNIX time from dark sky api
-   */
-  
+
+/**
+ * Convert the UNIX time to the day
+ * @param {int} timestamp - the UNIX time from dark sky api
+ */
 function UNIXToDay(timestamp) {
   var day = (new Date(timestamp)).getDay()
   
@@ -404,10 +401,10 @@ const styles = StyleSheet.create({
     },
 });
 
- /**
-   * Change the weather images based on weather description
-   * @param {String} weatherDesc - the weather from DarkSky API
-   */
+/**
+ * Change the weather images based on weather description
+ * @param {String} weatherDesc - the weather from DarkSky API
+ */
 function WeatherDescToImageSource(weatherDesc) {
   
   switch (weatherDesc) {
@@ -494,10 +491,10 @@ function WeatherDescToImageSource(weatherDesc) {
   }
 }
 
- /**
-   * Change the weather images based on weather description
-   * @param {String} weatherDesc1 - the weather from DarkSky API
-   */
+/**
+ * Change the weather images based on weather description
+ * @param {String} weatherDesc1 - the weather from DarkSky API
+ */
 function WeatherDescToSmallImageSource(weatherDesc1) {
   
   switch (weatherDesc1) {

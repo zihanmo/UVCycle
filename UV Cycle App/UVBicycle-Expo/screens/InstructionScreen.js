@@ -1,8 +1,13 @@
 import React, {Component} from 'react';
-import * as WebBrowser from 'expo-web-browser';
-import { View, ScrollView, Text, StyleSheet, Platform, Image, TouchableOpacity } from 'react-native'
-import { Ionicons } from '@expo/vector-icons';
-import Touchable from 'react-native-platform-touchable';
+import {
+  View,
+  ScrollView,
+  Text,
+  StyleSheet,
+  Platform,
+  Image,
+  TouchableOpacity
+} from 'react-native'
 
 export default class InstructionScreen extends Component {
   render() {

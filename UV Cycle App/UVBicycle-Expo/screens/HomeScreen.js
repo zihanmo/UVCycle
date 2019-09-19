@@ -1,6 +1,14 @@
-import React, {Component} from 'react';
-import { Ionicons, MaterialIcons } from '@expo/vector-icons';
-import { Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View, Button, Form } from 'react-native';
+import React, { Component } from 'react';
+import { Ionicons } from '@expo/vector-icons';
+import { 
+  Image, 
+  Platform, 
+  ScrollView, 
+  StyleSheet, 
+  Text, 
+  TouchableOpacity, 
+  View
+} from 'react-native';
 
 export default class HomeScreen extends Component {
   constructor(props) {

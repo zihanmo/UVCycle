@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 import Modal from "react-native-modal";
 import { CheckBox } from 'react-native-elements'
 import { 
