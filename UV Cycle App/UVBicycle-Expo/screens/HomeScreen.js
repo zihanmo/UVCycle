@@ -52,7 +52,9 @@ export default class HomeScreen extends Component {
       <ScrollView style={styles.container}>
         <View style={styles.infoContainer}>
           <View style = {styles.weather}>
+          <TouchableOpacity onPress={()=>this.props.navigation.navigate("Weather")}>
             {WeatherDescToImageSource(weather1)}
+          </TouchableOpacity>
           </View>
           <View style = {styles.tempnloc}>
             <Text style = {styles.tempstyle}> {temperature}°C </Text>

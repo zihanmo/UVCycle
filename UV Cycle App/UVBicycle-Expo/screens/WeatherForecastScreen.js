@@ -75,30 +75,16 @@ export default class WeatherScreen extends Component {
     const { isLoading, location,temperature,temperature2,temperature3,temperature4,temperature5,temperature6,
       weather1, weather2, weather3, weather4, weather5, weather6,time1, time2,time3, time4, time5, time6,image1} = this.state;
     return (
-      <View style={styles.container}>
-        {isLoading ? (
-          <View style={styles.loadingContainer}>
-            <Text style={styles.loadingText}>Fetching The Weather</Text>
-          </View>
-        ) : (
-          <WeatherForecast location={location} temperature={temperature} image1={image1} time1={time1} time2={time2} time3={time3} time4={time4} time5={time5} time6={time6} temperature2={temperature2} temperature3={temperature3} temperature4={temperature4}
-           temperature5={temperature5} temperature6={temperature6} weather1={weather1} weather2={weather2} weather4={weather4} weather3={weather3} weather5={weather5} weather6={weather6}/>
-        )}
-      </View>
-    );
-  }
-}
-
-WeatherScreen.navigationOptions = {
-  header: null,
-};
-
-export function WeatherForecast({image1, time2,time3, time4,time5, time6,weather1, temperature,location,temperature2,weather2, temperature3,weather3, temperature4,weather4, temperature5,weather5,temperature6,weather6}) {
-
-  return (
       <ScrollView style={styles.weatherContainer}>
-        <View style={styles.headerContainer}>
+        <View style={styles.titletex}>
           <Text style={styles.subtitle}>Weather Forecast</Text>
+        </View>
+        <View style={styles.detailsLabel}>
+          <TouchableOpacity onPress={()=>this.props.navigation.navigate("Main")}>
+            <Text style={styles.textLink}>Back</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.headerContainer}>
           <View style={styles.weainfo}>
             {WeatherDescToImageSource(weather1)}
             <Text style={styles.tempText11}>{temperature} °C</Text>
@@ -139,10 +125,11 @@ export function WeatherForecast({image1, time2,time3, time4,time5, time6,weather
           </View>
         </View>
       </ScrollView>
-  );
+    );
+  }
 }
 
-WeatherForecast.navigationOptions = {
+WeatherScreen.navigationOptions = {
   header: null,
 };
 
@@ -355,6 +342,7 @@ const styles = StyleSheet.create({
     height:"65%",
     alignItems: 'center',
     backgroundColor: '#ffffff',
+    marginTop: 10,
   },
  
   BodyContainer: {
@@ -363,7 +351,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     height:"35%",
     flexDirection: 'row',
-    marginTop: 70,
+    marginTop: 40,
   },
 
   title: {
@@ -375,7 +363,7 @@ const styles = StyleSheet.create({
   tempText1: {
     fontSize: 24,
     color: '#1E6738',
-    marginTop:7
+    marginTop: 7
   },
 
   tempText11: {
@@ -404,6 +392,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 70,
   },
+
+  textLink: {
+    fontSize: 16,
+    color: '#41BD63',
+    marginLeft: 5,
+    },
+
+    titletex: {
+      alignItems: 'center',
+    },
 });
 
  /**

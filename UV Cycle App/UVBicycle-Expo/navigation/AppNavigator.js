@@ -6,6 +6,7 @@ import MainTabNavigator from './MainTabNavigator';
 import Login from '../screens/LoginScreen';
 import Signup from '../screens/SignupScreen'
 import Information from '../screens/InstructionScreen'
+import Weather from '../screens/WeatherForecastScreen'
 
 export default createAppContainer(
   createSwitchNavigator({
@@ -14,6 +15,7 @@ export default createAppContainer(
     Login: Login,
     Signup: Signup,
     Main: MainTabNavigator,
-    Info: Information
+    Info: Information,
+    Weather: Weather,
   })
 );

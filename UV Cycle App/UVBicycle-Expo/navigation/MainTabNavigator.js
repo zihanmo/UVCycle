@@ -21,7 +21,6 @@ const HomeStack = createStackNavigator(
   },
   config
 );
-
 HomeStack.navigationOptions = {
   tabBarLabel: 'Home',
   tabBarIcon: ({ focused }) => {
@@ -34,35 +33,9 @@ HomeStack.navigationOptions = {
             style={{height:25, width:25}}
         />
     )
-}
+  }
 };
-
 HomeStack.path = '';
-
-const WeatherStack = createStackNavigator(
-  {
-    Weather: WeatherScreen,
-  },
-  config
-);
-
-WeatherStack.navigationOptions = {
-  tabBarLabel: 'Weather',
-  tabBarIcon: ({ focused }) => {
-    const image = focused
-    ? require('../assets/images/forecasticonactive.png')
-    : require('../assets/images/forecasticoninactive.png')
-    return (
-        <Image
-            source={image}
-            style={{height:25, width:25}}
-        />
-    )
-}
-};
-
-WeatherStack.path = '';
-
 
 const HistoryDiagramStack = createStackNavigator(
   {
@@ -70,7 +43,6 @@ const HistoryDiagramStack = createStackNavigator(
   },
   config
 );
-
 HistoryDiagramStack.navigationOptions = {
   tabBarLabel: 'UV history',
   tabBarIcon: ({ focused }) =>{
@@ -83,14 +55,9 @@ HistoryDiagramStack.navigationOptions = {
             style={{height:25, width:25}}
         />
     )
-}
+  }
 };
-
 HistoryDiagramStack.path = '';
-
-
-
-
 
 const UvForecastStack = createStackNavigator(
   {
@@ -98,7 +65,6 @@ const UvForecastStack = createStackNavigator(
   },
   config
 );
-
 UvForecastStack.navigationOptions = {
   tabBarLabel: 'UV forecast',
   tabBarIcon: ({ focused }) => {
@@ -111,9 +77,8 @@ UvForecastStack.navigationOptions = {
             style={{height:25, width:25}}
         />
     )
-}
+  }
 };
-
 UvForecastStack.path = '';
 
 const ProfileStack = createStackNavigator(
@@ -135,14 +100,12 @@ ProfileStack.navigationOptions = {
             style={{height:25, width:25}}
         />
     )
-}
+  }
 };
-
 ProfileStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
-  WeatherStack,
   ProfileStack,
   HistoryDiagramStack,
   UvForecastStack,
