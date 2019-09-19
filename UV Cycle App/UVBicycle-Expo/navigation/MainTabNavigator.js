@@ -127,8 +127,8 @@ ProfileStack.navigationOptions = {
   tabBarLabel: 'Profile',
   tabBarIcon: ({ focused }) =>{
     const image = focused
-    ? require('../assets/images/homeiconactive.png')
-    : require('../assets/images/homeiconinactive.png')
+    ? require('../assets/images/profileiconactive.png')
+    : require('../assets/images/profileiconinactive.png')
     return (
         <Image
             source={image}
