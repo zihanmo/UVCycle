@@ -1,9 +1,7 @@
 import * as WebBrowser from 'expo-web-browser';
 import React, {Component} from 'react';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-
 import PropTypes from 'prop-types';
-
 import {
   Image,
   Platform,
@@ -13,9 +11,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-
 import { MonoText } from '../components/StyledText';
-
 export default class WeatherScreen extends Component {
   constructor(props) {
     super(props);
@@ -38,12 +34,12 @@ export default class WeatherScreen extends Component {
       }
     );
   }
+
   /**
    * Fetch data from DarkSky API to get dayly 
    * temperature, weather and the time for each 
    * weather
    */
-
   fetchWeather(lat, lon) {
     fetch(`https://api.darksky.net/forecast/1c881bd9bc7c58c09bf74c28b5ffe195/${lat},${lon}?units=si`)
     .then(res => res.json())
@@ -92,6 +88,7 @@ export default class WeatherScreen extends Component {
     );
   }
 }
+
 WeatherScreen.navigationOptions = {
   header: null,
 };
@@ -99,14 +96,14 @@ WeatherScreen.navigationOptions = {
 export function WeatherForecast({image1, time2,time3, time4,time5, time6,weather1, temperature,location,temperature2,weather2, temperature3,weather3, temperature4,weather4, temperature5,weather5,temperature6,weather6}) {
 
   return (
-      <View style={styles.weatherContainer}>
+      <ScrollView style={styles.weatherContainer}>
         <View style={styles.headerContainer}>
           <Text style={styles.subtitle}>Weather Forecast</Text>
-  
-          {WeatherDescToImageSource(weather1)}
-
-          <Text style={styles.tempText11}>{temperature} ℃</Text>
-          <Text style={styles.tempText1}>{weather1}</Text>
+          <View style={styles.weainfo}>
+            {WeatherDescToImageSource(weather1)}
+            <Text style={styles.tempText11}>{temperature} °C</Text>
+            <Text style={styles.tempText1}>{weather1}</Text>
+          </View>
         </View>
 
         <View style={styles.BodyContainer}>
@@ -114,41 +111,40 @@ export function WeatherForecast({image1, time2,time3, time4,time5, time6,weather
           <View style={styles.weather1con}>
             <Text style={styles.tempText}>{time2}</Text>
             {WeatherDescToSmallImageSource(weather2)}
-            <Text style={styles.tempText}>{temperature2} C</Text>
+            <Text style={styles.tempText}>{temperature2} °C</Text>
           </View>
 
           <View style={styles.weather1con}>
             <Text style={styles.tempText}>{time3}</Text>
               {WeatherDescToSmallImageSource(weather3)}
-            <Text style={styles.tempText}>{temperature3} C</Text>
+            <Text style={styles.tempText}>{temperature3} °C</Text>
           </View>
 
           <View style={styles.weather1con}>
             <Text style={styles.tempText}>{time4}</Text>
               {WeatherDescToSmallImageSource(weather4)}
-            <Text style={styles.tempText}>{temperature4} C</Text>
+            <Text style={styles.tempText}>{temperature4} °C</Text>
           </View>
 
           <View style={styles.weather1con}>
             <Text style={styles.tempText}>{time5}</Text>
             {WeatherDescToSmallImageSource(weather5)}
-            <Text style={styles.tempText}>{temperature5} C</Text>
+            <Text style={styles.tempText}>{temperature5} °C</Text>
           </View>
 
           <View style={styles.weather1con}>
             <Text style={styles.tempText}>{time6}</Text>
             {WeatherDescToSmallImageSource(weather6)}
-            <Text style={styles.tempText}>{temperature6} C</Text>
+            <Text style={styles.tempText}>{temperature6} °C</Text>
           </View>
         </View>
-      </View>
+      </ScrollView>
   );
 }
 
 WeatherForecast.navigationOptions = {
   header: null,
 };
-
 
 function DevelopmentModeNotice() {
   if (__DEV__) {
@@ -217,6 +213,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
+
   developmentModeText: {
     marginBottom: 20,
     color: 'rgba(0,0,0,0.4)',
@@ -224,30 +221,31 @@ const styles = StyleSheet.create({
     lineHeight: 19,
     textAlign: 'center',
   },
+
   contentContainer: {
     marginTop: 30,
   },
+
   heardercontainer: {
     paddingTop: 40,
   },
  
   welcomeContainer: {
     alignItems: 'center',
-    paddingBottom:30,
+    paddingBottom: 30,
     marginBottom: 20,
   },
 
   forcastContainer: {
-
     alignItems: 'center',
   },
+
   welcomeImage: {
     width: 165,
     height: 165,
     resizeMode: 'contain',
     paddingBottom:40,
     marginTop: 3,
-
   },
 
   welcomeImage2: {
@@ -256,31 +254,32 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     marginTop: 13,
     marginBottom: 30,
-   
   },
-
 
   forcastImage: {
     width: 350,
     height: 200,
-
   },
 
   getStartedContainer: {
     alignItems: 'center',
     marginHorizontal: 50,
   },
+
   homeScreenFilename: {
     marginVertical: 7,
   },
+
   codeHighlightText: {
     color: 'rgba(96,100,109, 0.8)',
   },
+
   codeHighlightContainer: {
     backgroundColor: 'rgba(0,0,0,0.05)',
     borderRadius: 3,
     paddingHorizontal: 4,
   },
+
   getStartedText: {
     fontSize: 30,
     color: 'black',
@@ -288,14 +287,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 
-
   tempText: {
-    fontSize: 13,
-    color: '#fff',
+    fontSize: 15,
+    color: '#000',
     marginTop:17,
-
+    fontWeight: 'bold',
   },
-
 
   weathertext: {
     fontSize: 20,
@@ -303,6 +300,7 @@ const styles = StyleSheet.create({
     lineHeight: 50,
     textAlign: 'center',
   },
+
   tabBarInfoContainer: {
     position: 'absolute',
     bottom: 0,
@@ -323,50 +321,57 @@ const styles = StyleSheet.create({
     backgroundColor: '#fbfbfb',
     paddingVertical: 20,
   },
+
   tabBarInfoText: {
     fontSize: 17,
     color: 'rgba(96,100,109, 1)',
     textAlign: 'center',
   },
+
   navigationFilename: {
     marginTop: 5,
   },
+
   helpContainer: {
     marginTop: 15,
     alignItems: 'center',
   },
+
   helpLink: {
     paddingVertical: 15,
   },
+
   helpLinkText: {
     fontSize: 14,
     color: '#2e78b7',
   },
+
   weatherContainer: {
-   
-height: "100%",
+    height: "100%",
     backgroundColor: '#ffffff',
-   
   },
+
   headerContainer: {
-height:"65%",
+    height:"65%",
     alignItems: 'center',
     backgroundColor: '#ffffff',
-  
   },
  
   BodyContainer: {
-    backgroundColor: '#000000',
+    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
     height:"35%",
-    flexDirection: 'row'
+    flexDirection: 'row',
+    marginTop: 70,
   },
+
   title: {
     marginTop:17,
     fontSize: 13,
     color: '#1E6738'
   },
+
   tempText1: {
     fontSize: 24,
     color: '#1E6738',
@@ -381,39 +386,30 @@ height:"65%",
   },
 
   weather1con:{
-
-  width:"20%",
-  backgroundColor:'#000',
-  height:210,
+    width:"20%",
+    backgroundColor:'#41BD63',
+    height:200,
     alignItems: 'center',
-    borderColor: '#000',
     fontWeight: 'bold',
   },
   
   subtitle: {
-  paddingTop:40,
-  paddingBottom:20,
+    paddingTop:40,
+    paddingBottom:20,
     fontSize: 33,
     color: '#1E6738',
-    
-  },
-  imageweather2:{
-    width: 10, 
-    height: 50
   },
 
-
-
+  weainfo: {
+    alignItems: 'center',
+    marginTop: 70,
+  },
 });
 
  /**
    * Change the weather images based on weather description
    * @param {String} weatherDesc - the weather from DarkSky API
    */
-  
-
-  
-
 function WeatherDescToImageSource(weatherDesc) {
   
   switch (weatherDesc) {
@@ -426,7 +422,7 @@ function WeatherDescToImageSource(weatherDesc) {
       style={styles.welcomeImage}
     />;
     case "clear-day":
-      return    <Image style={styles.imageweather2}
+      return    <Image style={styles.imageweather}
       source={
         require('../assets/images/clear-day.png')
 
@@ -500,13 +496,10 @@ function WeatherDescToImageSource(weatherDesc) {
   }
 }
 
-
  /**
    * Change the weather images based on weather description
    * @param {String} weatherDesc1 - the weather from DarkSky API
    */
-  
-
 function WeatherDescToSmallImageSource(weatherDesc1) {
   
   switch (weatherDesc1) {
@@ -516,7 +509,7 @@ function WeatherDescToSmallImageSource(weatherDesc1) {
       style={styles.welcomeImage2}
     />;
     case "clear-day":
-      return <Image style={styles.imageweather2}
+      return <Image style={styles.imageweather}
       source={
         require('../assets/images/clear-day1.png')
 
@@ -563,10 +556,5 @@ function WeatherDescToSmallImageSource(weatherDesc1) {
       source={require('../assets/images/fog1.png')}
       style={styles.welcomeImage2}
     />;
-
-
-
-
-
   }
 }
