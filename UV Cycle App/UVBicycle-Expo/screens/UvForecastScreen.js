@@ -1,4 +1,3 @@
-import * as WebBrowser from 'expo-web-browser';
 import React, {Component} from 'react';
 import {
   Platform,
@@ -17,6 +16,9 @@ export default class UvForecastScreen extends Component {
     }
   }
 
+  /**
+   * Fetch location before loading the page
+   */
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(
       position => {
@@ -170,46 +172,13 @@ export function HomeScreen({image1, time1,uv1,uv2,uv3, uv4,uv5, uv6, time2,time3
 HomeScreen.navigationOptions = {
   header: null,
 };
-
-
-function DevelopmentModeNotice() {
-  if (__DEV__) {
-    const learnMoreButton = (
-      <Text onPress={handleLearnMorePress} style={styles.helpLinkText}>
-        Learn more
-      </Text>
-    );
-
-    return (
-      <Text style={styles.developmentModeText}>
-        Development mode is enabled: your app will be slower but you can use
-        useful development tools. {learnMoreButton}
-      </Text>
-    );
-  } else {
-    return (
-      <Text style={styles.developmentModeText}>
-        You are not in development mode: your app will run at full speed.
-      </Text>
-    );
-  }
-}
-
+/**
+ * Convert the UNIX time to the day
+ * @param {Integer} timestamp - the UNIX time from dark sky api
+ */
 function UNIXToDay(timestamp) {
   var day = (new Date(timestamp)).getHours()
     return day;
-}
-
-function handleLearnMorePress() {
-  WebBrowser.openBrowserAsync(
-    'https://docs.expo.io/versions/latest/workflow/development-mode/'
-  );
-}
-
-function handleHelpPress() {
-  WebBrowser.openBrowserAsync(
-    'https://docs.expo.io/versions/latest/workflow/up-and-running/#cant-see-your-changes'
-  );
 }
 
 const styles = StyleSheet.create({

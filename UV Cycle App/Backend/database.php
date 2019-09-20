@@ -7,6 +7,9 @@ class MySQLDatabase {
     private $dbpassword = 'wyzards';
     private $db = 'UVCycle';
 
+    /**
+     * Connect to database
+     */
     function connect() {
         $this->link = mysqli_connect($this->dbhost, $this->dbuser, $this->dbpassword);
         if(!$this->link) {
@@ -18,6 +21,9 @@ class MySQLDatabase {
         }
     }
     
+    /**
+     * Execute query
+     */
     function query($query) {
         $result = mysqli_query($this->link, $query);
         if($result) {
@@ -29,12 +35,18 @@ class MySQLDatabase {
         return null;
     }
 
+    /**
+     * Count number of rows in result
+     */
     function numRows($query) {
         $result  = mysqli_query($this->conn, $query);
         $rowcount = mysqli_num_rows($result);
         return $rowcount;
     }
 
+    /**
+     * Disconnect from databse
+     */
     function disconnect() {
         mysqli_close($this->link);
     }

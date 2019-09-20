@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import ValidationComponent from 'react-native-form-validator';
 import { CheckBox } from 'react-native-elements'
 import {

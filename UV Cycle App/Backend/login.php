@@ -11,7 +11,7 @@ $password = $user["password"];
 $query = "SELECT * FROM Users WHERE email = '$email'";
 $result = $db->query($query);
 
-if ($row = mysqli_fetch_array($result)) {
+if ($row = mysqli_fetch_array($result)) { // If credential matched, respond success
     if ($password === $row['password']) {
         $success = "Credential matched!";
         $successJson = json_encode($success);
@@ -21,7 +21,7 @@ if ($row = mysqli_fetch_array($result)) {
         $failJson = json_encode($fail);
         echo ($failJson);
     }
-} else {
+} else { // user not exist
     $fail = "Invalid credential!";
     $failJson = json_encode($fail);
     echo ($failJson);

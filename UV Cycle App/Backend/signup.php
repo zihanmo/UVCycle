@@ -18,7 +18,7 @@ $query = "SELECT * FROM Users WHERE email = '$email'";
 $result = $db->query($query);
 $check = mysqli_fetch_array($result);
 
-if (!isset($check)) {
+if (!isset($check)) { // check if the user is existing, otherwise create a new account
     $query = "INSERT INTO Users (`firstname`, `lastname`, `password`, `email`, `sensor`, `skintype`) 
         VALUES ('$firstname', '$lastname', '$password', '$email', '$sensor', $skintype)";
     $db->query($query);
