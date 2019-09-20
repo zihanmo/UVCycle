@@ -2,7 +2,6 @@
 error_reporting(-1);
 ini_set('display_errors', 'On');
 require 'database.php';
-session_start();
 
 $db = new MySQLDatabase();
 $db->connect();

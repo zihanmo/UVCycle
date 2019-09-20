@@ -34,7 +34,8 @@ export default class LoginScreen extends ValidationComponent {
 
   /**
    * Fetch data to check authentication, checking is doing in php file.
-   * Once the credential matched, save email in AsyncStorage
+   * Once the credential matched, save email in AsyncStorage,
+   * and navigate to HomeScreen
    */
   login = () => {
     fetch("http://deco3801-teamwyzards.uqcloud.net/login.php", {

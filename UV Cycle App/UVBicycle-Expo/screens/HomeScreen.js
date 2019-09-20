@@ -7,7 +7,8 @@ import {
   StyleSheet, 
   Text, 
   TouchableOpacity, 
-  View
+  View,
+  AsyncStorage
 } from 'react-native';
 
 export default class HomeScreen extends Component {
@@ -16,12 +17,15 @@ export default class HomeScreen extends Component {
     this.state = {
       isLoading: false,
       temperature: 0,
-      error: null
+      error: null,
+      uv: 0
     }
   }
 
   /**
-   * Fetch weather according to location before loading the page
+   * Fetch weather according to location 
+   * and fetch real-time UV index 
+   * before loading the page
    */
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(
@@ -34,6 +38,13 @@ export default class HomeScreen extends Component {
         });
       }
     );
+    fetch("http://deco3801-teamwyzards.uqcloud.net/realTimeUV.php")
+    .then((response) => response.json())
+    .then((responseJson) => {
+      this.setState({
+        uv: responseJson.uvindex
+      })
+    });
   }
 
   /**
@@ -69,7 +80,8 @@ export default class HomeScreen extends Component {
             <View style = {styles.location}>
               <Image style = {styles.loc} source = {require('../assets/images/loc.png')}/>
               <Text style = {styles.loctex}> {location} </Text>
-            </View> 
+            </View>
+            <Text style = {styles.loctex}> Real-time UV Index: {this.state.uv} </Text>
           </View>
         </View>
 

@@ -1,8 +1,6 @@
 <?php
 require 'database.php';
 
-session_start();
-
 $user = json_decode(file_get_contents('php://input'), true);
 
 // Check in DB
@@ -15,7 +13,6 @@ $result = $db->query($query);
 
 if ($row = mysqli_fetch_array($result)) {
     if ($password === $row['password']) {
-        $_SESSION["email"] = $email;
         $success = "Credential matched!";
         $successJson = json_encode($success);
         echo ($successJson);

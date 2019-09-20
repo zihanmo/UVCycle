@@ -16,3 +16,10 @@ CREATE TABLE Workout (
     FOREIGN KEY (userid) REFERENCES Users(userid),
     FOREIGN KEY (historyid) REFERENCES History(historyid)
 );
+
+CREATE TABLE History (
+    historyid int NOT NULL AUTO_INCREMENT,
+    `timestamp` timestamp,
+    uvindex, int,
+    PRIMARY KEY historyid
+)
