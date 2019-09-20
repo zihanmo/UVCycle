@@ -7,8 +7,7 @@ import {
   StyleSheet, 
   Text, 
   TouchableOpacity, 
-  View,
-  AsyncStorage
+  View
 } from 'react-native';
 
 export default class HomeScreen extends Component {
@@ -18,8 +17,10 @@ export default class HomeScreen extends Component {
       isLoading: false,
       temperature: 0,
       error: null,
-      uv: 0
+      uv: 0,
+      lastRefresh: Date(Date.now()).toString()
     }
+    this.fetchUV = this.fetchUV.bind(this)
   }
 
   /**
@@ -38,6 +39,13 @@ export default class HomeScreen extends Component {
         });
       }
     );
+    this.fetchUV();
+  }
+
+  /**
+   * Fetch real-time uv index
+   */
+  fetchUV() {
     fetch("http://deco3801-teamwyzards.uqcloud.net/realTimeUV.php")
     .then((response) => response.json())
     .then((responseJson) => {
@@ -101,7 +109,7 @@ export default class HomeScreen extends Component {
           <View style = {styles.dashcontainer}>
             <Image style = {styles.maindash} source = {require('../assets/images/low.png')}/>
           </View>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button} onPress={this.fetchUV}>
             <Text style={styles.sharebtn}>Refresh</Text>
           </TouchableOpacity>
         </View>  
