@@ -5,7 +5,8 @@ import {
   LineChart,
   XAxis,
   YAxis,
-  Grid
+  Grid,
+  AreaChart
 } from 'react-native-svg-charts';
 import {
   ScrollView,
@@ -18,6 +19,7 @@ import {
 import {
   Circle
 } from 'react-native-svg';
+import * as shape from 'd3-shape';
 
 export default class HistoryDiagramScreen extends Component {
   
@@ -104,8 +106,10 @@ export default class HistoryDiagramScreen extends Component {
               <LineChart
                 style={{ flex: 1 }}
                 data={ indexes }
+                //contentInset={{ top: 30, bottom: 30 }}
+                curve={shape.curveNatural}
                 contentInset={verticalContentInset}
-                svg={{ stroke: 'rgb(255, 255, 255)', strokeWidth: 1.5 }}
+                svg={{ stroke: 'rgb(0, 0, 0)', strokeWidth: 3 }}
                 gridMin={0}
                 gridMax={12}>
                 <Grid/>
