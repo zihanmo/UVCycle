@@ -109,10 +109,9 @@ export default class LoginScreen extends ValidationComponent {
 
               </View>
             </View>
-
-            <Image style={styles.logo} source={require('../assets/images/BicycleQueensland.jpg') } />
           </View >
         </KeyboardAvoidingView>
+        <Image style={styles.logo} source={require('../assets/images/BicycleQueensland.jpg') } />
       </ScrollView>
     );
   }

@@ -10,6 +10,7 @@ $user = json_decode(file_get_contents('php://input'), true);
 $firstname = $user["firstName"];
 $lastname = $user["lastName"];
 $password = $user["password"];
+$password = password_hash($password, PASSWORD_DEFAULT);
 $email = $user["email"];
 $skintype = $user["skinType"];
 $sensor = $user["sensorName"];

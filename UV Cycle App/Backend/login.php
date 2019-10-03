@@ -12,7 +12,8 @@ $query = "SELECT * FROM Users WHERE email = '$email'";
 $result = $db->query($query);
 
 if ($row = mysqli_fetch_array($result)) { // If credential matched, respond success
-    if ($password === $row['password']) {
+    $hash = $row["password"];
+    if (password_verify($password, $hash)) {
         $success = "Credential matched!";
         $successJson = json_encode($success);
         echo ($successJson);
