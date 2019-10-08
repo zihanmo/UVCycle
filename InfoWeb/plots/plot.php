@@ -1,3 +1,4 @@
+<!--run "npm install chart.js --save" in the terminal to install chart.js-->
 <html>
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
