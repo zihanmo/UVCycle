@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Weizhou's Portfolio</title>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/animate.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            /* code from W3C school */
+            .container {
+                display: inline-block;
+                cursor: pointer;
+                padding: 2em;
+            }
+            
+            .bar1, .bar2, .bar3 {
+                width: 35px;
+                height: 5px;
+                background-color: #333;
+                margin: 6px 0;
+                transition: 0.4s;
+            }
+            
+            .change .bar1 {
+                transform: rotate(-45deg) translate(-9px, 6px);
+            }
+            
+            .change .bar2 {opacity: 0;}
+            
+            .change .bar3 {
+                transform: rotate(45deg) translate(-8px, -8px);
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <div class="container" onclick="myFunction(this)">
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
+                </div>
+                <script>
+                    function myFunction(x) {
+                        x.classList.toggle("change");
+                        $("nav ul").toggle("hidden");
+                    }
+                    
+                    
+                </script>
+                <ul>
+                    <a href="#about-me"><li>About me</li></a>
+                    <a href="#self-work"><li>My Work</li></a>
+                    <a href="#other-work"><li>Other Work</li></a>
+                    <a href="#course-reflection"><li>Course Reflection</li></a>
+                </ul>
+                
+            </nav>
+        </header>
+
+        <section id="all">
+
+            <section id="title">
+                <h1>Hello :)</h1>
+                <div id="logo">
+                    <img src="img/logo.png">
+                </div>
+                <p>A Web Developer.</p>
+                <div class="go-down">
+                    <a href="#about-me"><button>Discover More</button></a>
+                </div>
+            </section>
+
+            <!-- *************************** ABOUT ME *************************** -->
+
+            <section id="about-me">
+                <h1>About Me</h1>
+                <hr>
+
+                <div class="content" id="self-intro">
+                    <article>
+                        
+                        <div id="intro" data-scroll-class="visible fadeInDown" class="hidden animated">
+                            <h2 id="name">Weizhou Ren</h2>
+                            <p>An easy going girl who loves travelling and programming.
+                            I’m doing bachelor of IT. I can do both of design and code but prefer programming.  
+                                Hope to design and create more interesting things in life.
+                            </p>
+                        </div>
+
+                        <div id="chart" data-scroll-class="visible fadeInLeft" class="hidden animated">
+                            <h2>Personal Skill</h2>
+                            <img src="img/chart.png" width="300px">
+                        </div>
+                    </article>
+
+                    <figure>
+                        <img src="img/weizhou.jpeg" width="300px" id="me" data-scroll-class="visible fadeInRight" class="hidden animated">
+                        <div id="contact-me" data-scroll-class="visible fadeInUp" class="hidden animated">
+                            <h3>Contact Me</h3>
+                            <div>
+                                <a href="https://www.facebook.com/weizhou.ren" class="fa fa-facebook"></a>
+                                <a href="https://twitter.com/WeizhouR" class="fa fa-twitter"></a>
+                                <a href="https://www.instagram.com/willzhouzhou/" class="fa fa-instagram"></a>
+                                <a href="#footer"><i class="fas fa-plus"></i></a>
+                            </div>
+                        </div>
+                    </figure>
+                </div>
+            </section>
+    
+            <!-- *************************** PROCESS *************************** -->
+            <section id="self-work">
+                <h1 data-scroll-class="rollIn" class="animated">My Work</h1>
+                <hr>
+
+                <section id="summary">
+                    
+                    <div class="content">
+                        <div>
+                            <h1 data-scroll-class="visible fadeInLeft" class="hidden animated">Summary</h1>
+                        </div>
+
+                        <div id="p">
+                            <p data-scroll-class="visible fadeInRight" class="hidden animated">In the process of completing the project, I am mainly responsible for implementing the Dictionary which is the most functional page on the website. As a developer, my work is focused on Part B and Part C. In addition, I assisted in writing the report in the whole process. </p>
+                            <p data-scroll-class="visible fadeInRight" class="hidden animated">Play in Indi-genius Teens! <a href="https://u4k.interaction.courses/website/">Click Here!</a></p>
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <section class="assess" id="part-a">
+                    <div class="part-week hidden animated" data-scroll-class="visible fadeIn">
+                        <h2>Part A</h2>
+                        <p>Week 4 - 6</p>
+                    </div>
+                    
+                    <div class="content animated" data-scroll-class="fadeInLeft">
+
+                        <article class="desc hidden animated" data-scroll-class="visible fadeInLeft">
+                            <ul>
+                                <li><a>Design: Wireframe</a></li>
+                                <li><a>Reflection</a></li>
+                            </ul>
+
+                            <article>
+                                <div class="description">
+                                    <p >Our team designed the overall structure of the website by discussing. 
+                                I did not do much design work except on Dictionary page (we initially called it Exploration). 
+                                The dictionary can be used to search specific word and learn each word in English or Aboriginal form.</p>
+                                    <p>The design functions including 
+                                        <ul id="parta-ul">
+                                            <li>Search words in English or Aboriginal language</li>
+                                            <li>Change language by clicking the switch button</li>
+                                            <li>See corresponding information by click on a word</li>
+                                            <li>Words can be sorted alphabetically</li>
+                                        </ul>
+                                    </p>
+                                </div>
+                                <p class="part-reflection">Every member was actively discussing and making comments, and each step was going very smoothly. 
+                                    After getting the result of Part A, we got Distinction, which a good result for us. 
+                                    And I keep implementing the functionalities in dictionary page.
+                                </p>
+                            </article>
+                        </article>
+
+                        
+
+                        <figure class="sketch hidden animated" data-scroll-class="visible fadeInRight">
+                            <img src="img/exploration.png" height="350px">
+                            <p>Wireframe</p>
+                        </figure>
+
+                    </div>
+                </section>
+
+                <section class="assess" id="part-b">
+                    <div class="part-week">
+                        <h2>Part B</h2>
+                        <p>Week 7 - 9</p>
+                    </div>
+
+                    <div class="content animated" data-scroll-class="fadeInLeft">
+                        <figure class="sketch">
+                            <img src="img/partb.png" height="350px">
+                            <p>Achieve Functionalities</p>
+                        </figure>
+
+                        <article class="desc">
+                            <ul>
+                                <li><a>Program: Functionalities</a></li>
+                                <li><a>Reflection</a></li>
+                            </ul>
+
+                            <article>
+                                <p class="description">After finishing the paper prototype, we changed the name of this page from Exploration to Dictionary. Because the process just like using a dictionary. Users can search for words by typing English or Aboriginal words in the input box and see the corresponding information at the right-hand side of the notebook. Plus, the words can be sorted alphabetically by clicking on one of the letters from the alphabet on left-top of the notebook. To Part B, users can only learn one language (Yugarabul).</p>
+                                <p class="part-reflection">In Part B, I had done almost all the functions in Dictionary Page and beyond what MVP requires. We got High Distinction in Part B, which is a great result for us, but we still have some details that need to be improved. The tutor gave suggestions on our document. We fixed the problem on time to avoid having the same problems in remaining work. And the Demo went successfully we got lots of constructive feedback as well.</p>
+                            </article>
+                        </article>
+
+                    </div>
+                </section>  
+
+                <section class="assess" id="part-c">
+                    <div class="part-week">
+                        <h2>Part C</h2>
+                        <p>Week 10 - 12</p>
+                    </div>
+
+                    <div class="content animated" data-scroll-class="fadeInLeft">
+
+                        <article class="desc">
+                            <ul>
+                                <li><a>Program: Complete</a></li>
+                                <li><a>Reflection</a></li>
+                            </ul>
+
+                            <article>
+                                <p class="description">As the schedule we planned, I implemented the advanced functions in Part C: users can learn multiple languages, but one language each time. The selected language name is saved in local storage. Therefore, when the user clicks on a different marker in Map page, the corresponding content in the different dataset will be loaded by API. And words in the same language but in a different dataset are integrated into the corresponding language collection and displayed in Dictionary.</p>
+                                <p class="part-reflection">So far, I have had done all of the functionalities in Dictionary page. For the process, I got lots of feedback from tutors and other students. Although I encountered some difficulties during programming, I solved them in time by asking tutors for help in workshops. During the time, I learnt new knowledge such as local storage and session storage. Implementing this project is really meaningful for me.</p>
+                            </article>
+                        </article>
+
+                        
+
+                        <figure class="sketch">
+                            <img src="img/partc.png" height="350px">
+                            <p>After Adding Style</p>
+                        </figure>
+
+                    </div>
+                </section>
+
+                <section id="buttons">
+                    <button id="pre">&#10094; Prev</button>
+                    <button id="next">Next &#10095;</button>
+                    
+                </section>
+            </section>
+    
+            <!-- *************************** OtherWork *************************** -->
+            <section id="other-work">
+                <h1>Other Work</h1>
+                <hr>
+
+                <section class="other-content">
+
+                    <div id="portfolio">
+                        <h2  class="hidden animated" data-scroll-class="visible zoomIn">Portfolio</h2>
+                        <p  class="hidden animated" data-scroll-class="visible zoomIn">Scroll to see complete wireframe</p>
+                        <article>
+                            <figure  class="hidden animated" data-scroll-class="visible zoomIn">
+                                <img src="img/portfolio.png" width="400px">
+                            </figure>
+                            <p  class="hidden animated" data-scroll-class="visible zoomIn">This is the wireframe of my portfolio, the page you are looking through. This page demonstrates the process of completing the project in this course, more details can be checked in my Journal(at right-hand side). The website is implemented by HTML/CSS and JavaScript. Plus, I used the plugin of scrollClass.js to add advanced animation for elements in the page.</p>
+                        </article>
+                    </div>
+
+                    <div id="journal"  class="hidden animated" data-scroll-class="visible zoomIn">
+                        <h2  class="hidden animated" data-scroll-class="visible zoomIn">Journal</h2>
+                        <p  class="hidden animated" data-scroll-class="visible zoomIn">Click to see all Journal in Padlet</p>
+                        <article>
+                            <figure  class="hidden animated" data-scroll-class="visible zoomIn">
+                                <a href="https://deco1800-2018.padlet.org/s4493996/2ocjucynknnq"><img src="img/journal.png" width="400px"></a>
+                            </figure>
+                            
+                            <p class="hidden animated" data-scroll-class="visible zoomIn" >This is a screenshot of all of my journal. I keep writing the journal every week in this semester, the whole process and my reflection of completing the project is recorded. Scroll the picture to see the structure.</p>
+                        </article>
+                        
+                    </div>
+                    
+                </section>
+            </section>
+
+            <!-- *************************** COURSE REFLECTION *************************** -->
+            <section id="course-reflection">
+                <h1>Course Reflection</h1>
+                <hr>
+
+                <article class="ref-content">
+                    <div id="up">
+                        <div id="expectation" class="hidden animated" data-scroll-class="visible fadeInLeft">
+                            <h2>Meeting Expectation</h2>
+                            <p>At the beginning of the semester, I said I want to learn how to make a complete website with good quality and do practice in using AJAX and PHP which are key elements of IT works. After done the Major Project, I have already known how to link the interface with online data via API, which is a significant function that needs to be familiar with. In addition, I have a deeper understanding of JavaScript including how to implement the function and how to use AJAX and JSON. And the situation that made me worry at first did not happen, every member was very active, and every step went smoothly. We solved many problems together, and it’s a good experience for us to work together. Overall, I met the goals of this semester and learned a lot of new knowledge.</p>
+                        </div>
+                        
+                        <div id="learning" class="hidden animated" data-scroll-class="visible fadeInRight">
+                            <h2>Learning Across the Course</h2>
+                            <p>As a developer, I also learnt a lot how to design a website. In the Workshop and Contact hours, I communicated with tutors actively to get feedback as much as possible to make improvement on our project, which is the thing I didn’t do in DECO1400 and DECO1100. I seized the opportunities of every exercise as well to do reflection and fix problems. I really felt having discussion and exchange ideas with other is a good way for a designer. To design a good website, I should not only focus on code, but also need to consider user experience comprehensively. </p>
+                        </div>
+                    </div>
+
+                    <div id="down">
+                        <div id="suggestion" class="hidden animated" data-scroll-class="visible fadeInUp">
+                            <h2>Changes</h2>
+                            <p>Forming a team to do the project is really a good way, each member can play a role in the team and focus on a piece of work. I cannot imagine what else can be improved in this class because it is comprehensive and perfect. Finally, thanks to the teaching team for helping us in this semester!</p>
+                        </div>
+                    </div>
+    
+                </article>
+            </section>
+
+            <footer id="footer">
+                    
+                <div id="more-contact">
+                    <img src="img/logo.png">
+                    <div class="contact-element">
+                        <h2>More Contact</h2>
+                        <p>Phone:  +61 452030598</p>
+                        <p>Email:  weizhou.ren@uqconnect.edu.au</p>
+                        <p>WeChat: rainiezhouzhou</p>
+                    </div>
+                </div>
+
+                <div id="copyright">
+                    <p id="copyright">Copyright © Weizhou Ren 2018</p>
+                </div>
+                
+            </footer>
+        </section>
+        
+
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <script src="js/scrollClass.min.js"></script>
+        <script src="js/javascript.js"></script>
+    </body>
+</html>
