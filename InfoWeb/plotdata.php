@@ -3,7 +3,7 @@ require 'connectDB.php';
 
 $db = new MySQLDatabase();
 $db->connect();
-$query = "SELECT purchase_date, COUNT(*) FROM Users GROUP BY purchase_date";
+$query = "SELECT purchase_date, COUNT(*) AS clicks FROM Users GROUP BY purchase_date";
 $result = $db->query($query);
 $arr = array();
 if ($result->num_rows > 0) {

@@ -38,8 +38,6 @@ $db->connect();
             <input class="user-info" id="phone" name="phone" type="number" placeholder="Phone number..." ng-model="user.phone" ng-required="true" ng-minlength="10" required>
             <p class="form-error" ng-show="collect.phone.$invalid && collect.phone.$touched">
                     Please enter the 10-digit phone number</p>
-            
-            
         </div>
         <div id="confirm">
             <input id="but" type="submit" value="Confirm">
