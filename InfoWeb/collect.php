@@ -1,3 +1,10 @@
+<?php
+error_reporting(-1);
+ini_set('display_errors', 'On');
+require 'connectDB.php';
+$db = new MySQLDatabase();
+$db->connect();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,7 +26,7 @@
         <h1>Welcome to the UV Cycle</h1>
     </header>
 
-    <from ng-app class="link" action="" method="POST" name="collect">
+    <form ng-app class="link" action="insert.php" method="POST" name="collect">
         <div id="info">
             <input class="user-info" id="username" name="username" type="text" placeholder="Username..." ng-model="user.username" ng-required="true" required>
             <p class="form-error" ng-show="collect.username.$invalid && collect.username.$touched">Please enter your
@@ -31,11 +38,13 @@
             <input class="user-info" id="phone" name="phone" type="number" placeholder="Phone number..." ng-model="user.phone" ng-required="true" ng-minlength="10" required>
             <p class="form-error" ng-show="collect.phone.$invalid && collect.phone.$touched">
                     Please enter the 10-digit phone number</p>
+            
+            
         </div>
         <div id="confirm">
             <input id="but" type="submit" value="Confirm">
         </div>
-    </from>
+    </form>
 
     <footer class="foot">
         <p> By Team Wyzards With Andrew Demack @ <a href="https://bq.org.au/">Bicycle Queensland</a></p>

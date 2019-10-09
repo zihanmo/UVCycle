@@ -7,6 +7,12 @@
         <link rel="stylesheet" href="css/animate.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <script src="js/scrollClass.min.js"></script>
+        <script src="js/javascript.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+        <script src="js/plot.js"></script>
         <style>
             /* code from W3C school */
             .container {
@@ -60,9 +66,7 @@
                 <p>Statistics:</p>
 
             </div>
-                <div id="char">
-                    <img src="img/char.png" height="500" width="500">
-                </div>
+            <canvas id="clicked" width="800" height="400"></canvas>
         
            
             </section>
@@ -107,8 +111,6 @@
         </section>
         
 
-        <script src="js/jquery-3.3.1.min.js"></script>
-        <script src="js/scrollClass.min.js"></script>
-        <script src="js/javascript.js"></script>
+        
     </body>
 </html>
