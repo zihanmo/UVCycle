@@ -3,7 +3,7 @@
 *{
     padding: 0;
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Saira";
 }
 
 h1 {
@@ -359,4 +359,109 @@ footer #copyright {
     100% {
         transform: rotate(-10deg);
     }
+}
+.form-error {
+	color: #da3637;
+	font-family: 'Thasadith', sans-serif;
+	font-weight: lighter;
+	margin-bottom: 10px;
+}
+
+body {
+    font-family: "Saira";
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.welcome {
+    margin: auto;
+    text-align: center;
+    /* padding: 4rem; */
+    color: rgb(44, 176, 81);
+}
+
+.link {
+    margin: auto;
+    text-align: center;
+    flex-direction: column;
+    display: block;
+    width: 100%;
+}
+
+#info {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 18rem;
+}
+
+.user-info {
+    margin: 1rem auto;
+    padding: 5px 10px;
+    width: 100%;
+}
+
+#confirm {
+    margin: 10px auto;
+}
+
+#but {
+    width: 18rem;
+    background: rgb(44, 176, 81);
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+
+input {
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+#reg {
+    margin: 0 auto;
+    color: rgb(44, 176, 81);
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2rem;
+}
+
+#img {
+    max-width: 100%;
+}
+
+.foot {
+    position: fixed;
+    text-align: center;
+    bottom: 0rem;
+    width: 100%;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+.tab {
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10em;
+}
+
+table, th, td {
+    border: 0.1em solid black;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 1em;
+    text-align: center;
+}
+
+#tablenaem {
+    font-size: 2em;
 }
