@@ -124,6 +124,19 @@ nav ul a {
 #purchase {
     background-color: #41BD63;
     position: relative;
+    display: flex;
+    justify-content: center;
+    padding: 15rem 5rem;
+}
+
+#share {
+    width: 40%;
+    margin-left: 4rem;
+    margin-top: 3rem;
+}
+#share-links {
+    margin: auto;
+    margin-top: 4rem;
 }
 footer {
     background-color: white;
@@ -271,10 +284,9 @@ footer #copyright {
 
 .purchase-content {
     display: block;
-    justify-content: space-between;
-    width: 80%;
-    margin: auto;
-    padding: 10rem 5rem;
+    /* justify-content: space-between; */
+    /* margin: auto; */
+    width: 40%;
 }
 .purchase-content p {
     line-height: 2em;
