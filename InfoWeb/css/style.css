@@ -9,7 +9,6 @@
 h1 {
     text-align: center;
     font-size: 3em;
-    padding-top: 1em;
 }
 
 hr {
@@ -21,7 +20,6 @@ nav {
     position: fixed;
     width: 100%;
     z-index: 10;
-    /* background-color: rgb(243, 215, 215); */
 }
 nav ul {
     display: flex;
@@ -67,7 +65,7 @@ nav ul a {
 }
 
 #title {
-    background-color: #41BD63;
+    background-color: rgb(44, 176, 81);
     overflow: hidden;
     background-size: 100%;
     background-image: url("../img/apple-keyboard-ballpen-black-and-white-934062.jpg");
@@ -76,43 +74,41 @@ nav ul a {
     text-align: center;
 }
 #title h1 {
-    font-size: 10em;
-    color: lightgrey;
+    font-size: 12em;
+    color: white;
 }
 #title p {
     font-size: 2em;
-    opacity: 0.7;
 }
 .go-down {
     width: 300px;
     margin: auto;
-    margin-top: 2em;
+    margin-top: 15em;
 }
 .go-down button {
     padding: 0.5em;
     width: 300px;
     background-color: white;
-    color: #41BD63;
+    color: rgb(44, 176, 81);
     font-size: 2em;
     border: 4px solid white;
 }
 .go-down button:hover {
-    background-color: #41BD63;
+    background-color: rgb(44, 176, 81);
     color: white;
 }
 
 #introduction {
     position: relative;
+    padding-top: 5rem;
 }
 
 #self-work {
-    /* background-color: #a5a096; */
     position: relative;
     background-attachment: fixed;
     background-size: 100%;
     margin-top: 2em;
     background-color: #b5c1cf;
-    /* background-color: rgb(17, 81, 144); */
 }
 #self-work p,
 #self-work h1,
@@ -122,7 +118,7 @@ nav ul a {
     color: black;
 }
 #purchase {
-    background-color: #41BD63;
+    background-color: rgb(44, 176, 81);
     position: relative;
     display: flex;
     justify-content: center;
@@ -174,7 +170,7 @@ footer #copyright {
     text-align: center;
     text-decoration: none;
     border-radius: 50%;
-    color: rgb(128, 204, 121);
+    color: rgb(44, 176, 81);
 }
 
 .fa:hover {
@@ -188,7 +184,7 @@ footer #copyright {
     text-align: center;
     text-decoration: none;
     border-radius: 50%;
-    color: rgb(128, 204, 121);;
+    color: rgb(44, 176, 81);
 }
 .fas:hover {
     opacity: 0.5;
@@ -221,7 +217,6 @@ footer #copyright {
 
 .content p {
     line-height: 2em;
-    /* font-family: 'Quicksand', sans-serif; */
 }
 #summary{
     margin-bottom: 2em;
@@ -296,7 +291,7 @@ footer #copyright {
 }
 #purchase-btn {
     padding: 2rem 4rem;
-    background: #41BD63;
+    background: rgb(44, 176, 81);
     border: 4px solid white;
     color: white;
     font-size: 2rem;
@@ -304,8 +299,9 @@ footer #copyright {
 
 #purchase-btn:hover {
     background: white;
-    color: #41BD63;
+    color: rgb(44, 176, 81);
 }
+
 #expectation p {
     padding-right: 3em;
 }
@@ -362,6 +358,7 @@ footer #copyright {
 #logo {
     width: 50%;
     margin: auto;
+    padding-top: 8rem;
 }
 
 #logo img {
@@ -486,4 +483,13 @@ th, td {
 
 #tablenaem {
     font-size: 2em;
+}
+
+.funcscroll {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+.card {
+    display: inline-block;
 }
