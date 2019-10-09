@@ -489,7 +489,14 @@ th, td {
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
+    height: 100%;
 }
 .card {
     display: inline-block;
+    width: 50%;
+}
+
+#functions {
+    height: 50%;
+    width: 100%;
 }
