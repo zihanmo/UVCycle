@@ -8,7 +8,7 @@
 
 h1 {
     text-align: center;
-    font-size: 3em;
+    font-size: 2em;
 }
 
 hr {
@@ -76,23 +76,23 @@ nav ul a {
     text-align: center;
 }
 #title h1 {
-    font-size: 10rem;
+    font-size: 10em;
     color: white;
 }
 #title p {
-    font-size: 2rem;
+    font-size: 2em;
 }
 .go-down {
     width: 300px;
     margin: auto;
-    margin-top: 3rem;
+    margin-top: 3em;
 }
 .go-down button {
-    padding: 0.5rem;
+    padding: 0.5em;
     width: 300px;
     background-color: white;
     color: rgb(44, 176, 81);
-    font-size: 2rem;
+    font-size: 1em;
     border: 4px solid white;
 }
 .go-down button:hover {
@@ -102,7 +102,7 @@ nav ul a {
 
 #introduction {
     position: relative;
-    padding-top: 5rem;
+    padding-top: 5em;
 }
 
 #self-work {
@@ -124,17 +124,17 @@ nav ul a {
     position: relative;
     display: flex;
     justify-content: center;
-    height: 100%;
+    align-items: center;
+    padding: 4em 0;
 }
 
 #share {
     width: 40%;
-    margin-left: 4rem;
-    padding-top: 8rem;
+    margin-left: 4em;
 }
 #share-links {
     margin: auto;
-    margin-top: 4rem;
+    margin-top: 4em;
 }
 footer {
     background-color: white;
@@ -214,7 +214,7 @@ footer #copyright {
     justify-content: center;
     width: 80%;
     margin: auto;
-    margin-top: 5rem;
+    margin-top: 5em;
 }
 
 .content p {
@@ -284,7 +284,6 @@ footer #copyright {
     /* justify-content: space-between; */
     /* margin: auto; */
     width: 40%;
-    padding-top: 18rem;
 }
 .purchase-content p {
     line-height: 2em;
@@ -293,11 +292,11 @@ footer #copyright {
     font-family: 'Quicksand', sans-serif;
 }
 #purchase-btn {
-    padding: 2rem 4rem;
+    padding: 1em 4em;
     background: rgb(44, 176, 81);
     border: 4px solid white;
     color: white;
-    font-size: 2rem;
+    font-size: 2em;
 }
 
 #purchase-btn:hover {
@@ -309,7 +308,6 @@ footer #copyright {
     padding-right: 3em;
 }
 #other-work{
-    /* position: relative; */
     display: block;
 }
 #other-work figure {
@@ -323,7 +321,7 @@ footer #copyright {
 .portfolio {
     display: flex;
     justify-content: space-around;
-    padding: 2rem 0;
+    padding: 2em 0;
 }
 
 .portfolio article {
@@ -359,7 +357,7 @@ footer #copyright {
 #logo {
     width: 50%;
     margin: auto;
-    padding-top: 4rem;
+    padding-top: 4em;
 }
 
 #logo img {
@@ -395,7 +393,7 @@ body {
 .welcome {
     margin: auto;
     text-align: center;
-    /* padding: 4rem; */
+    /* padding: 4em; */
     color: rgb(44, 176, 81);
 }
 
@@ -414,7 +412,7 @@ body {
 }
 
 .user-info {
-    margin: 1rem auto;
+    margin: 1em auto;
     padding: 5px 10px;
     border: 2px solid;
     width: 300px;
@@ -422,7 +420,7 @@ body {
 
 #confirm {
     margin: auto;
-    width: 18rem;
+    width: 18em;
 }
 
 #but {
@@ -448,7 +446,7 @@ input {
     height: 100px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 2rem;
+    margin-top: 2em;
 }
 
 #img {
@@ -458,7 +456,7 @@ input {
 .foot {
     position: fixed;
     text-align: center;
-    bottom: 0rem;
+    bottom: 0em;
     width: 100%;
 }
 
@@ -490,7 +488,7 @@ th, td {
     overflow-x: scroll;
     width: 100%;
     display: block;
-    padding: 2rem 0;
+    padding: 2em 0;
 }
 
 .funcscroll {
@@ -498,7 +496,7 @@ th, td {
     display: flex;
 }
 .card {
-    padding: 0 3rem;
+    padding: 0 3em;
 }
 
 .card img {
@@ -508,7 +506,7 @@ th, td {
 }
 
 .card p {
-    margin-top: 2rem;
+    margin-top: 2em;
 }
 
 .portfolio h1, h2{
@@ -523,15 +521,15 @@ th, td {
 }
 
 iframe {
-    padding-top: 2rem;
+    padding-top: 2em;
 }
 
 .purposetype {
-    font-size: 3rem;
+    font-size: 3em;
     color: rgb(44, 176, 81);
 }
 
 .wecare {
-    font-size: 2rem;
+    font-size: 2em;
     color: rgb(44, 176, 81);
 }
