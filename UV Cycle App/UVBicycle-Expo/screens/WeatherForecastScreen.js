@@ -72,13 +72,17 @@ export default class WeatherScreen extends Component {
       weather1, weather2, weather3, weather4, weather5, weather6,time1, time2,time3, time4, time5, time6,image1} = this.state;
     return (
       <ScrollView style={styles.weatherContainer}>
+
+        <TouchableOpacity onPress={()=>this.props.navigation.navigate("Main")}>
+          <Image style = {styles.backPic} source = {require('../assets/images/back.png')}/>
+          </TouchableOpacity>
+
         <View style={styles.titletex}>
           <Text style={styles.subtitle}>Weather Forecast</Text>
         </View>
         <View style={styles.detailsLabel}>
-          <TouchableOpacity onPress={()=>this.props.navigation.navigate("Main")}>
-            <Text style={styles.textLink}>Back</Text>
-          </TouchableOpacity>
+
+
         </View>
         <View style={styles.headerContainer}>
           <View style={styles.weainfo}>
@@ -168,6 +172,13 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 19,
     textAlign: 'center',
+  },
+
+  backPic: {
+    height: 30,
+    width: 25,
+    marginLeft:15,
+  
   },
 
   contentContainer: {

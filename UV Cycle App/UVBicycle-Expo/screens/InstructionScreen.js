@@ -14,6 +14,9 @@ export default class InstructionScreen extends Component {
     const { navigate } = this.props.navigation;
     return (
       <ScrollView style = {styles.container}>
+          <TouchableOpacity style={styles.uvButton} onPress={() => navigate("Main")}>
+          <Image style = {styles.backPic} source = {require('../assets/images/back.png')}/>
+          </TouchableOpacity>
         <View style = {styles.desc}>
           <View style = {styles.picCon}>
             <Image style = {styles.titlePic} source = {require('../assets/images/uv.png')}/>
@@ -50,9 +53,7 @@ export default class InstructionScreen extends Component {
           </View>
         </View>
         <View style={styles.detailsLabel}>
-          <TouchableOpacity style={styles.uvButton} onPress={() => navigate("Main")}>
-            <Text style={styles.textLink}>Back</Text>
-          </TouchableOpacity>
+        
         </View>
       </ScrollView>
     );
@@ -61,7 +62,7 @@ export default class InstructionScreen extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 100
+    paddingTop: 50
   },
   desc: {
     flex: 1,
@@ -94,6 +95,13 @@ const styles = StyleSheet.create({
     height: 50,
     width: 50,
     resizeMode: 'center',
+  },
+
+  backPic: {
+    height: 30,
+    width: 25,
+    marginLeft:15,
+  
   },
   sub: {
     marginRight: 50,
