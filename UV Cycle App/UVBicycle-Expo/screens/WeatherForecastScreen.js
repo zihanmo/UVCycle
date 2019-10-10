@@ -197,8 +197,8 @@ const styles = StyleSheet.create({
   },
 
   welcomeImage: {
-    width: 165,
-    height: 165,
+    width: 100,
+    height: 100,
     resizeMode: 'contain',
     paddingBottom:40,
     marginTop: 3,
@@ -308,7 +308,7 @@ const styles = StyleSheet.create({
   },
 
   headerContainer: {
-    height:"60%",
+    height:"50%",
     alignItems: 'center',
     backgroundColor: '#ffffff',
   },
@@ -342,7 +342,7 @@ const styles = StyleSheet.create({
   weather1con:{
     width:"20%",
     backgroundColor:'#41BD63',
-    height:200,
+    height:300,
     alignItems: 'center',
     fontWeight: 'bold',
   },
