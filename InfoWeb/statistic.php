@@ -21,6 +21,7 @@ $db->connect();
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script src="js/plot.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Saira' rel='stylesheet'>
 </head>
 
 <body>
@@ -28,13 +29,11 @@ $db->connect();
         <section id="title">
 
             <div id="logo">
-                <img src="img/TeamWyzards.png" height="100" width="100">
+                <a href="http://deco3801-teamwyzards.uqcloud.net/"> <img src="img/TeamWyzards.png" width="150"></a>
             </div>
-            <p>UV cycle</p>
-
         </section>
 
-        <div id="stattitle">
+        <div id="stattitle1">
                     
                                 <p>Statistics:</p>
                         
@@ -64,7 +63,7 @@ $db->connect();
                 <?php foreach ($user as $u) :?>
                     <div id="comments">
                         <div id="comment">
-                            <p><?php echo($u["username"])?></p>
+                            <p><b><?php echo($u["username"])?>:</b></p>
                             <p><?php echo($u["comment"])?></p>
                         </div>
                     </div>
