@@ -1,196 +1,250 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>UV Cycle Informative Product Website</title>
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="css/animate.css">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link href='https://fonts.googleapis.com/css?family=Saira' rel = 'stylesheet'>
-        <style>
-            /* code from W3C school */
-            .container {
-                display: inline-block;
-                cursor: pointer;
-                padding: 2em;
-            }
-            
-            .bar1, .bar2, .bar3 {
-                width: 35px;
-                height: 5px;
-                background-color: #333;
-                margin: 6px 0;
-                transition: 0.4s;
-            }
-            
-            .change .bar1 {
-                transform: rotate(-45deg) translate(-9px, 6px);
-            }
-            
-            .change .bar2 {opacity: 0;}
-            
-            .change .bar3 {
-                transform: rotate(45deg) translate(-8px, -8px);
-            }
-        </style>
-    </head>
-    <body>
-        <header>
-            <nav>
-                <div class="container" onclick="menu(this)">
-                    <div class="bar1"></div>
-                    <div class="bar2"></div>
-                    <div class="bar3"></div>
-                </div>
-                <script>
-                    function menu(x) {
-                        x.classList.toggle("change");
-                        $("nav ul").toggle("hidden");
-                    }
-                </script>
-                <ul>
-                    <a href="#introduction"><li>Purpose</li></a>
-                    <a href="#self-work"><li>My Work</li></a>
-                    <a href="#other-work"><li>Other Work</li></a>
-                    <a href="#purchase"><li>Purchase</li></a>
-                </ul>
-                
-            </nav>
-        </header>
 
-        <section id="all">
+<head>
+    <meta charset="utf-8">
+    <title>UV Cycle Informative Product Website</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Saira' rel='stylesheet'>
+    <style>
+        /* code from W3C school */
+        .container {
+            display: inline-block;
+            cursor: pointer;
+            padding: 2em;
+        }
 
-            <section id="title">
-                <div id="logo">
-                    <img src="img/TeamWyzards.png" height="120" width="120">
-                </div>
-                <h1>UV Cycle</h1>
-                <p>Wearable tech for bike riders</p>
-                <div class="go-down">
-                    <a href="#introduction"><button>Discover More</button></a>
-                </div>
-            </section>
+        .bar1,
+        .bar2,
+        .bar3 {
+            width: 35px;
+            height: 5px;
+            background-color: #333;
+            margin: 6px 0;
+            transition: 0.4s;
+        }
 
-            <!-- *************************** PROJECT VIDEO *************************** -->
+        .change .bar1 {
+            transform: rotate(-45deg) translate(-9px, 6px);
+        }
 
-            <section id="introduction">
-                <h1>Why choose us</h1>
-                <div class="content" id="self-intro">
-                    <article>
-                        <div id="intro" data-scroll-class="visible fadeInDown" class="hidden animated">
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/tJL0rxkBx00" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
+        .change .bar2 {
+            opacity: 0;
+        }
 
-                        <div id="chart" data-scroll-class="visible fadeInLeft" class="hidden animated">
-                        </div>
-                    </article>
+        .change .bar3 {
+            transform: rotate(45deg) translate(-8px, -8px);
+        }
+    </style>
+</head>
 
-                    <figure>
-                        <!-- <img src="img/weizhou.jpeg" width="300px" id="me" data-scroll-class="visible fadeInRight" class="hidden animated"> -->
-                        <div id="contact-me" data-scroll-class="visible fadeInUp" class="hidden animated">
-                            <p>An interactive and wearable tech for bike riders, to help them have a healthy riding experience, enhancing the safety and wellbeing during their workout by tracking and demonstrating the on-time UV exposure.</p>
-                        </div>
-                    </figure>
-                </div>
-            </section>
-    
-            <!-- *************************** Feature Details *************************** -->
+<body>
+    <header>
+        <nav>
+            <div class="container" onclick="menu(this)">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+            <script>
+                function menu(x) {
+                    x.classList.toggle("change");
+                    $("nav ul").toggle("hidden");
+                }
+            </script>
+            <ul>
+                <a href="#introduction">
+                    <li>Purpose</li>
+                </a>
+                <a href="#self-work">
+                    <li>My Work</li>
+                </a>
+                <a href="#other-work">
+                    <li>Other Work</li>
+                </a>
+                <a href="#purchase">
+                    <li>Purchase</li>
+                </a>
+            </ul>
 
-            <!-- *************************** OtherWork *************************** -->
-            <section id="other-work">
+        </nav>
+    </header>
 
-                <section class="other-content">
+    <section id="all">
 
-                    <div id="portfolio">
-                        <h2  class="hidden animated" data-scroll-class="visible zoomIn">Health</h2>
-                        <p  class="hidden animated" data-scroll-class="visible zoomIn">We care</p>
-                        <article>
-                            <figure  class="hidden animated" data-scroll-class="visible zoomIn">
-                                <img src="img/portfolio.png" width="400px">
-                            </figure>
-                            <p  class="hidden animated" data-scroll-class="visible zoomIn">In recent years, with high UV index value in Queensland, there is more potential for individuals to get sunburn or even skin cancer due to the lack of proper skin protection. With our project, you can not only take measures for protecting your skin by viewing the real-time UV index during your workout, but also, keep track of what is going on with your skin while cycling.</p>
-                        </article>
-                    </div>
+        <section id="title">
+            <div id="logo">
+                <img src="img/TeamWyzards.png" height="120" width="120">
+            </div>
+            <h1>UV Cycle</h1>
+            <p>Wearable tech for bike riders</p>
+            <div class="go-down">
+                <a href="#introduction"><button>Discover More</button></a>
+            </div>
+        </section>
 
-                    <div id="journal"  class="hidden animated" data-scroll-class="visible zoomIn">
-                        <h2  class="hidden animated" data-scroll-class="visible zoomIn">Experience</h2>
-                        <p  class="hidden animated" data-scroll-class="visible zoomIn">We care</p>
-                        <article>
-                            <figure  class="hidden animated" data-scroll-class="visible zoomIn">
-                                <a href="https://deco1800-2018.padlet.org/s4493996/2ocjucynknnq"><img src="img/journal.png" width="400px"></a>
-                            </figure>
-                            <p class="hidden animated" data-scroll-class="visible zoomIn" >As a bike rider, the main thing they would consider is the riding experience. In order to minimise the extra redundant weight added on the bike and improve the experience by providing useful UV information, only a small waterproof device (The UV Ring) will be directly attached on the bike handle and seen by the users. In this way, cyclists can choose to have break if they don’t want to expose under the sun for a long time, and also have no extra weight for the riding experience.</p>
-                        </article>
-                    </div>
-                </section>
-            </section>
+        <!-- *************************** PROJECT VIDEO *************************** -->
 
-            <section id = "functions">
-                <div class = "funcscroll">
-                    <div class = "card"><p>Login with existing account, register as a new member</p></div>
-                    <div class = "card"><p>Choose your skin type and can be changed in profile to have a better control of it</p></div>
-                    <div class = "card"><p>Information page where includes some simple introduction about usage for the app and UV</p></div>
-                    <div class = "card">
-                        <img src = "img/homepage.jpeg" width = "200px">
-                        <p>Homepage – view current location, current weather, and weather forecast in order to plan for your next workout, real-time UV index which will be displayed after clicking refresh button, time spent for the workout</p>
-                    </div>
-                    <div class = "card">
-                        <p>Profile page – view and modify personal information, setup UV sensor</p>
-                        <img src = "img/profile.jpeg" width = "200px">
-                    </div>
-                    <div class = "card">
-                        <img src = "img/history.jpeg" width = "200px">
-                        <p>UV history page – view the history workout information, mainly the change of the UV exposure during each workout, workout records are able to be shared with others as a link</p>
-                    </div>
-                    <div class = "card">
-                        <p>Viewing UV forecast for the next 5 hours to have a better preparation for your workout </p>
-                        <img src = "img/uvfore.jpeg" width = "200px">
-                    </div>
-                </div>
-            </section>
+        <section id="introduction">
+            <h1>Why choose us</h1>
+            <div class="content" id="self-intro">
+                <article>
 
-            <!-- *************************** PURCHASE *************************** -->
-            <section id="purchase">
-                <article class="purchase-content">
-                    <div id="expectation" class="hidden animated" data-scroll-class="visible fadeInLeft">
-                        <h2>Click to get full feature access</h2>
-                        <p>Purchase the App and monitor your UV experience. Start your health life by using UV Cycle, get your real time UV index and history UV experience.</p>
-                    </div>
-                    
-                    <div id="purchase-button" class="hidden animated" data-scroll-class="visible fadeInRight">
-                        <a href="collect.php"><button id="purchase-btn">PURCHASE</button></a>
+                    <div id="chart" data-scroll-class="visible fadeInLeft" class="hidden animated">
                     </div>
                 </article>
-                <div id="share">
-                    <h2 class="hidden animated" data-scroll-class="visible fadeInLeft">Share our website on your social media</h2>
-                    <!-- Go to www.addthis.com/dashboard to customize your tools -->
-                    <div id="share-links" class="addthis_inline_share_toolbox hidden animated" data-scroll-class="visible fadeInRight"></div>
+
+                <figure>
+                    <!-- <img src="img/weizhou.jpeg" width="300px" id="me" data-scroll-class="visible fadeInRight" class="hidden animated"> -->
+                    <div id="contact-me" data-scroll-class="visible fadeInUp" class="hidden animated">
+                        <p>An interactive and wearable tech for bike riders, to help them have a healthy riding
+                            experience, enhancing the safety and wellbeing during their workout by tracking and
+                            demonstrating the on-time UV exposure.</p>
+                    </div>
+                </figure>
+            </div>
+        </section>
+
+        
+        <!-- *************************** OtherWork *************************** -->
+        <section id="other-work">
+
+            <section class="other-content">
+
+                <div id="portfolio">
+                    <h2 class="hidden animated" data-scroll-class="visible zoomIn">Health</h2>
+                    <p class="hidden animated" data-scroll-class="visible zoomIn">We care</p>
+                    <article>
+                        <figure class="hidden animated" data-scroll-class="visible zoomIn">
+                            <img src="img/portfolio.png" width="400px">
+                        </figure>
+                        <p class="hidden animated" data-scroll-class="visible zoomIn">In recent years, with high UV
+                            index value in Queensland, there is more potential for individuals to get sunburn or even
+                            skin cancer due to the lack of proper skin protection. With our project, you can not only
+                            take measures for protecting your skin by viewing the real-time UV index during your
+                            workout, but also, keep track of what is going on with your skin while cycling.</p>
+                    </article>
+                </div>
+
+                <div id="journal" class="hidden animated" data-scroll-class="visible zoomIn">
+                    <h2 class="hidden animated" data-scroll-class="visible zoomIn">Experience</h2>
+                    <p class="hidden animated" data-scroll-class="visible zoomIn">We care</p>
+                    <article>
+                        <figure class="hidden animated" data-scroll-class="visible zoomIn">
+                            <a href="https://deco1800-2018.padlet.org/s4493996/2ocjucynknnq"><img src="img/journal.png"
+                                    width="400px"></a>
+                        </figure>
+                        <p class="hidden animated" data-scroll-class="visible zoomIn">As a bike rider, the main thing
+                            they would consider is the riding experience. In order to minimise the extra redundant
+                            weight added on the bike and improve the experience by providing useful UV information, only
+                            a small waterproof device (The UV Ring) will be directly attached on the bike handle and
+                            seen by the users. In this way, cyclists can choose to have break if they don’t want to
+                            expose under the sun for a long time, and also have no extra weight for the riding
+                            experience.</p>
+                    </article>
                 </div>
             </section>
-
-            <footer id="footer">
-                    
-                <div id="more-contact">
-                    <img src="img/TeamWyzards.png">
-                    <div class="contact-element">
-                        <h2>How to find us</h2>
-                        <p>The University of Queensland</p>
-                    </div>
-                </div>
-
-                <div id="copyright">
-                    <p id="copyright">Copyright © TeamWyzards DECO3801-2019 with <a href = "https://bq.org.au/">Bicycle Queensland Inc.</a></p>
-                </div>
-                
-            </footer>
         </section>
-        
 
-        <script src="js/jquery-3.3.1.min.js"></script>
-        <script src="js/scrollClass.min.js"></script>
-        <script src="js/javascript.js"></script>
-        <!-- Go to www.addthis.com/dashboard to customize your tools -->
-        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5d9debc5ccaf5291"></script>
-    </body>
+        <!-- *************************** Feature Details *************************** -->
+        <section id="functions">
+            <div class="funcscroll">
+                <div class="card">
+                        <img src="img/login.PNG">
+                    <!-- <p>Login with existing account, </p> 
+                    <p>register as a new member</p> -->
+                </div>
+                <div class="card">
+                        <img src="img/signup.PNG">
+                    <!-- <p>Choose your skin type and can be changed</p> 
+                    <p>in profile to have a better control of it</p> -->
+                </div>
+                <div class="card">
+                    <!-- <p>Information page where includes some simple</p> 
+                    <p>introduction about usage for the app and UV</p> -->
+                    <img src="img/info.PNG">
+                </div>
+                <div class="card">
+                    <img src="img/homepage.PNG">
+                    <!-- <p>Homepage – view current location, current weather, </p>
+                    <p>and weather forecast in order to plan for your</p>
+                    <p>next workout, real-time UV index which will be </p>
+                    <p>displayed after clicking refresh button, time</p>
+                    <p>spent for the workout</p> -->
+                </div>
+                <div class="card">
+                    <!-- <p>Profile page – view and modify personal information,</p>
+                    <p>setup UV sensor</p> -->
+                    <img src="img/profile.PNG">
+                </div>
+                <div class="card">
+                    <img src="img/history.jpeg">
+                    <!-- <p>UV history page – view the history workout information,</p>
+                    <p>mainly the change of the UV exposure</p>
+                    <p>during each workout, workout records are able to </p>
+                    <p>be shared with others as a link</p> -->
+                </div>
+                <div class="card">
+                    <!-- <p>Viewing UV forecast for the next 5 hours to have </p>
+                    <p>a better preparation for your workout </p> -->
+                    <img src="img/uvforecast.PNG">
+                </div>
+            </div>
+        </section>
+
+        <!-- *************************** PURCHASE *************************** -->
+        <section id="purchase">
+            <article class="purchase-content">
+                <div id="expectation" class="hidden animated" data-scroll-class="visible fadeInLeft">
+                    <h2>Click to get full feature access</h2>
+                    <p>Purchase the App and monitor your UV experience. Start your health life by using UV Cycle, get
+                        your real time UV index and history UV experience.</p>
+                </div>
+
+                <div id="purchase-button" class="hidden animated" data-scroll-class="visible fadeInRight">
+                    <a href="collect.php"><button id="purchase-btn">PURCHASE</button></a>
+                </div>
+            </article>
+            <div id="share">
+                <h2 class="hidden animated" data-scroll-class="visible fadeInLeft">Share our website on your social
+                    media</h2>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/tJL0rxkBx00" frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                <div id="share-links" class="addthis_inline_share_toolbox hidden animated"
+                    data-scroll-class="visible fadeInRight"></div>
+            </div>
+        </section>
+
+        <footer id="footer">
+
+            <div id="more-contact">
+                <img src="img/TeamWyzards.png">
+                <div class="contact-element">
+                    <h2>How to find us</h2>
+                    <p>The University of Queensland</p>
+                </div>
+            </div>
+
+            <div id="copyright">
+                <p id="copyright">Copyright © TeamWyzards DECO3801-2019 with <a href="https://bq.org.au/">Bicycle
+                        Queensland Inc.</a></p>
+            </div>
+
+        </footer>
+    </section>
+
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/scrollClass.min.js"></script>
+    <script src="js/javascript.js"></script>
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5d9debc5ccaf5291"></script>
+</body>
+
 </html>
