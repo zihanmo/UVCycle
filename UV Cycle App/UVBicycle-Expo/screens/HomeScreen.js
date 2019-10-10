@@ -107,7 +107,8 @@ export default class HomeScreen extends Component {
 
         <View style = {styles.dash}>
           <View style = {styles.dashcontainer}>
-            <Image style = {styles.maindash} source = {require('../assets/images/low.png')}/>
+        
+            {UVindexSwitch(this.state.uv)}
           </View>
           <TouchableOpacity style={styles.button} onPress={this.fetchUV}>
             <Text style={styles.sharebtn}>Refresh</Text>
@@ -287,5 +288,47 @@ function WeatherDescToImageSource(weatherDesc) {
       return    <Image style={styles.imageweather}
       source={require('../assets/images/fog.png')}
     />;
+  }
+}
+
+
+
+
+
+function UVindexSwitch(UVindex) {
+  
+  switch (UVindex) {
+    case 0:
+      return    <Image style = {styles.maindash}
+      source={
+        require('../assets/images/dash0.png')}/>;
+    case 1:
+      return    <Image style = {styles.maindash}
+      source={
+        require('../assets/images/dash1.png')}/>;
+    case 2:
+      return    <Image style = {styles.maindash}
+      source={
+        require('../assets/images/dash2.png')}/>;
+    case 3:
+      return    <Image style = {styles.maindash}
+      source={
+        require('../assets/images/dash3.png')}/>;
+    case 4:
+      return    <Image style = {styles.maindash}
+      source={
+        require('../assets/images/dash4.png')}/>;
+    case 5:
+      return    <Image style = {styles.maindash}
+      source={
+        require('../assets/images/dash5.png')}/>;
+    case 6:
+      return    <Image style = {styles.maindash}
+      source={
+        require('../assets/images/dash6.png')}/>;
+    case 6:
+      return    <Image style = {styles.maindash}
+      source={
+        require('../assets/images/dash6.png')}/>;    
   }
 }
