@@ -76,7 +76,7 @@ nav ul a {
     text-align: center;
 }
 #title h1 {
-    font-size: 8rem;
+    font-size: 10rem;
     color: white;
 }
 #title p {
@@ -88,11 +88,11 @@ nav ul a {
     margin-top: 3rem;
 }
 .go-down button {
-    padding: 0.5em;
+    padding: 0.5rem;
     width: 300px;
     background-color: white;
     color: rgb(44, 176, 81);
-    font-size: 2em;
+    font-size: 2rem;
     border: 4px solid white;
 }
 .go-down button:hover {
@@ -346,9 +346,7 @@ footer #copyright {
     padding-bottom: 2em;
 }
 .other-content p {
-    color: grey;
     line-height: 2em;
-    font-family: 'Quicksand', sans-serif;
 }
 
 #more-contact {
@@ -518,10 +516,6 @@ th, td {
     color: rgb(44, 176, 81);
 }
 
-.portfolio p {
-    padding-top: 2rem;
-    color: black;
-}
 
 #purchase h1{
     color: black;
@@ -530,4 +524,14 @@ th, td {
 
 iframe {
     padding-top: 2rem;
+}
+
+.purposetype {
+    font-size: 3rem;
+    color: rgb(44, 176, 81);
+}
+
+.wecare {
+    font-size: 2rem;
+    color: rgb(44, 176, 81);
 }
