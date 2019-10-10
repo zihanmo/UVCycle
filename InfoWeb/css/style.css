@@ -76,7 +76,7 @@ nav ul a {
     text-align: center;
 }
 #title h1 {
-    font-size: 10rem;
+    font-size: 8rem;
     color: white;
 }
 #title p {
@@ -307,7 +307,8 @@ footer #copyright {
     padding-right: 3em;
 }
 #other-work{
-    position: relative;
+    /* position: relative; */
+    display: block;
 }
 #other-work figure {
     width: 400px;
@@ -317,16 +318,26 @@ footer #copyright {
     border-radius: 5px;
     margin: 2em 0;
 }
-#portfolio {
+.portfolio {
+    display: flex;
+    justify-content: space-around;
+    padding: 2rem 0;
+}
+
+.portfolio article {
     display: block;
     width: 40%;
 }
+.portfolio figure {
+    width: 30%;
+}
+
 #journal {
     width: 40%;
 }
 
 .other-content {
-    display: flex;
+    display: block;
     justify-content: space-between;
     width: 80%;
     margin: 2em auto;
@@ -359,7 +370,7 @@ footer #copyright {
 #logo {
     width: 50%;
     margin: auto;
-    padding-top: 8rem;
+    padding-top: 4rem;
 }
 
 #logo img {
@@ -486,29 +497,27 @@ th, td {
     font-size: 2em;
 }
 
-.funcscroll {
-    /* overflow-x: scroll; */
-    /* overflow-y: hidden; */
-    white-space: nowrap;
-    height: 100%;
-    display: flex;
-    align-items: center;
-}
-.card {
-    display: inline-block;
-    /* margin: 0 auto; */
-    width: 300px;
-    border: 2px solid;
-    margin: 0 3rem;
+#functions {
+    overflow-x: scroll;
+    width: 100%;
+    display: block;
+    padding: 2rem 0;
 }
 
-#functions {
+.funcscroll {
     height: 100%;
-    width: 100%;
-    padding-bottom: 4rem;
+    display: flex;
+}
+.card {
+    padding: 0 3rem;
 }
 
 .card img {
     margin: auto;
     width: 300px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card p {
+    margin-top: 2rem;
 }
