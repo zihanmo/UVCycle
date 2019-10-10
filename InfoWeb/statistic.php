@@ -34,28 +34,33 @@ $db->connect();
 
         </section>
 
-        <hr width="100%">
+        <div id="stattitle">
+                    
+                                <p>Statistics:</p>
+                        
+
+                            </div>
         <section id="main">
             <section id="chart">
-                <div id="Statistics">
-
-                    <p>Statistics:</p>
-
-                </div>
+              
                 <div id="canvas">
                     <canvas id="clicked" width="800" height="400"></canvas>
                 </div>
             </section>
 
-            <hr width="100%">
+           
+            <div id="stattitle1">
+                    
+                                <p>User's comments:</p>
+                        
+
+                            </div>
             <?php
             $query = "SELECT * FROM Users";
             $user = $db->query($query);
             ?>
             <section id="usercomments">
-                <div id="commentheader">
-                    <p>User's comments:</p>
-                </div>
+                
                 <?php foreach ($user as $u) :?>
                     <div id="comments">
                         <div id="comment">

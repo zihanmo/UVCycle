@@ -135,7 +135,50 @@ height:20%;
     display: flex;
     border:2px solid black;
     margin-bottom: 2%;
-    width:80%;
+    width:70%;
+}
+
+#stattitle{
+    height: 50px;
+background:rgb(44, 176, 81);
+
+margin-bottom: 2em;
+align-items: center;
+
+
+
+}
+
+#stattitle1{
+    height: 50px;
+background:rgb(44, 176, 81);
+
+margin-bottom: 2em;
+align-items: center;
+
+
+
+}
+
+#stattitle p{
+    font-size: 1.5em;
+
+
+    color: white;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    width:14%;
+    
+}
+#stattitle1 p{
+    font-size: 1.5em;
+
+
+    color: white;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    width:22%;
+    
 }
 
 
