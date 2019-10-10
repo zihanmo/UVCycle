@@ -24,7 +24,7 @@
         $query = "INSERT INTO Users (`username`, `email`, `phone`, `comment`, `purchase_date`) 
             VALUES ('$username', '$email', $phone, '$comment', '$date')";
         $db->query($query);
-        echo "<script>location='statistic.php'</script>";
+        echo "<script>location='http://deco3801-teamwyzards.uqcloud.net/'</script>";
     }
     $db->disconnect();
 ?>

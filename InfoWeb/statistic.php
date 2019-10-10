@@ -1,6 +1,8 @@
 <?php
 error_reporting(-1);
 ini_set('display_errors', 'On');
+require_once "uq/auth.php";
+auth_require();
 require 'connectDB.php';
 $db = new MySQLDatabase();
 $db->connect();
@@ -35,40 +37,32 @@ $db->connect();
         </section>
 
         <div id="stattitle">
-                    
-                                <p>Statistics:</p>
-                        
-
-                            </div>
+            <p>Statistics:</p>
+        </div>
         <section id="main">
             <section id="chart">
-              
+
                 <div id="canvas">
                     <canvas id="clicked" width="800" height="400"></canvas>
                 </div>
             </section>
-
-           
             <div id="stattitle1">
-                    
-                                <p>User's comments:</p>
-                        
-
-                            </div>
+                <p>User's comments:</p>
+            </div>
             <?php
             $query = "SELECT * FROM Users";
             $user = $db->query($query);
             ?>
             <section id="usercomments">
-                
-                <?php foreach ($user as $u) :?>
+
+                <?php foreach ($user as $u) : ?>
                     <div id="comments">
                         <div id="comment">
-                            <p><?php echo($u["username"])?></p>
-                            <p><?php echo($u["comment"])?></p>
+                            <p><?php echo ($u["username"]) ?></p>
+                            <p><?php echo ($u["comment"]) ?></p>
                         </div>
                     </div>
-                <?php endforeach;?>
+                <?php endforeach; ?>
             </section>
         </section>
     </section>
