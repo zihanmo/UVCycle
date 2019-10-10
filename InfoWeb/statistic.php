@@ -66,12 +66,13 @@
                 <p>Statistics:</p>
 
             </div>
+            <div id="canvas">
             <canvas id="clicked" width="800" height="400"></canvas>
-        
+        </div>
            
             </section>
   
-
+            <hr width="100%">
             
             <section id="usercomments">
                     <div id="commentheader">
@@ -85,18 +86,7 @@
                             </div>
 
 
-                            <div id="comment">
-                                    <p>User's name :</p>   <p>comment2</p>
-                                </div>
-
-                                <div id="comment">
-                                        <p>User's name :</p>   <p>comment3</p>
-                                    </div>
-
-
-                                    <div id="comment">
-                                            <p>User's name :</p>   <p>comment4</p>
-                                        </div>
+                        
 
                   
                 </div>
