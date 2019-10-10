@@ -124,12 +124,13 @@ nav ul a {
     position: relative;
     display: flex;
     justify-content: center;
-    padding: 15rem 5rem;
+    height: 100%;
 }
 
 #share {
     width: 40%;
     margin-left: 4rem;
+    padding-top: 8rem;
 }
 #share-links {
     margin: auto;
@@ -141,7 +142,7 @@ footer {
 }
 
 footer #copyright {
-    font-size: 14px;
+    font-size: 10px;
     text-align: center;
 }
 #contact-me {
@@ -161,7 +162,7 @@ footer #copyright {
 #buttons button {
     padding: 0.5em 1em;
     margin: 0 1em;
-    background: lightgrey;
+    background: white;
 }
 .fa {
     padding: 10px;
@@ -283,6 +284,7 @@ footer #copyright {
     /* justify-content: space-between; */
     /* margin: auto; */
     width: 40%;
+    padding-top: 18rem;
 }
 .purchase-content p {
     line-height: 2em;
@@ -348,25 +350,14 @@ footer #copyright {
     line-height: 2em;
     font-family: 'Quicksand', sans-serif;
 }
+
 #more-contact {
     display: flex;
     justify-content: space-around;
-    width: 80%;
-    margin: 3em auto;
-}
-#more-contact img {
-    width: 200px;
-    height: 100%;
-}
-#more-contact div p {
-    color: rgb(92, 91, 91);
-    padding: 1em;
+    width: 30%;
+    margin: 1em auto;
 }
 
-.contact-element{
-    display: block;
-    padding: 0.5em;
-}
 #logo {
     width: 50%;
     margin: auto;
@@ -520,4 +511,23 @@ th, td {
 
 .card p {
     margin-top: 2rem;
+}
+
+.portfolio h1, h2{
+    text-align: left;
+    color: rgb(44, 176, 81);
+}
+
+.portfolio p {
+    padding-top: 2rem;
+    color: black;
+}
+
+#purchase h1{
+    color: black;
+    text-align: left;
+}
+
+iframe {
+    padding-top: 2rem;
 }
