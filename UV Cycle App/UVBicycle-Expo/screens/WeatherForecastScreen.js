@@ -71,19 +71,16 @@ export default class WeatherScreen extends Component {
     const { isLoading, location,temperature,temperature2,temperature3,temperature4,temperature5,temperature6,
       weather1, weather2, weather3, weather4, weather5, weather6,time1, time2,time3, time4, time5, time6,image1} = this.state;
     return (
-      <ScrollView style={styles.weatherContainer}>
-
-        <TouchableOpacity onPress={()=>this.props.navigation.navigate("Main")}>
-          <Image style = {styles.backPic} source = {require('../assets/images/back.png')}/>
-          </TouchableOpacity>
+      <View style={styles.weatherContainer}>
 
         <View style={styles.titletex}>
           <Text style={styles.subtitle}>Weather Forecast</Text>
         </View>
-        <View style={styles.detailsLabel}>
 
+        <TouchableOpacity onPress={()=>this.props.navigation.navigate("Main")}>
+          <Image style = {styles.backPic} source = {require('../assets/images/back.png')}/>
+        </TouchableOpacity>
 
-        </View>
         <View style={styles.headerContainer}>
           <View style={styles.weainfo}>
             {WeatherDescToImageSource(weather1)}
@@ -124,7 +121,7 @@ export default class WeatherScreen extends Component {
             <Text style={styles.tempText}>{temperature6} °C</Text>
           </View>
         </View>
-      </ScrollView>
+      </View>
     );
   }
 }
@@ -311,19 +308,16 @@ const styles = StyleSheet.create({
   },
 
   headerContainer: {
-    height:"65%",
+    height:"60%",
     alignItems: 'center',
     backgroundColor: '#ffffff',
-    marginTop: 10,
   },
  
   BodyContainer: {
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    height:"35%",
     flexDirection: 'row',
-    marginTop: 40,
   },
 
   title: {

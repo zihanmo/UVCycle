@@ -89,7 +89,6 @@ export default class HomeScreen extends Component {
               <Image style = {styles.loc} source = {require('../assets/images/loc.png')}/>
               <Text style = {styles.loctex}> {location} </Text>
             </View>
-            <Text style = {styles.loctex}> Real-time UV Index: {this.state.uv} </Text>
           </View>
         </View>
 
