@@ -46,7 +46,7 @@ $db->connect();
                 </div>
             </section>
             <div id="stattitle1">
-                <p>User's comments:</p>
+                <p>User feedback:</p>
             </div>
             <?php
             $query = "SELECT * FROM Users";
