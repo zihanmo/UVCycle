@@ -35,18 +35,9 @@ $db->connect();
             </div>
         </section>
 
-<<<<<<< HEAD
-        <div id="stattitle1">
-                    
-                                <p>Statistics:</p>
-                        
-
-                            </div>
-=======
         <div id="stattitle">
             <p>Statistics:</p>
         </div>
->>>>>>> 8669d4111fce263a9c66725f431e8c49d828a014
         <section id="main">
             <section id="chart">
 
@@ -66,13 +57,8 @@ $db->connect();
                 <?php foreach ($user as $u) : ?>
                     <div id="comments">
                         <div id="comment">
-<<<<<<< HEAD
-                            <p><b><?php echo($u["username"])?>:</b></p>
-                            <p><?php echo($u["comment"])?></p>
-=======
                             <p><?php echo ($u["username"]) ?></p>
                             <p><?php echo ($u["comment"]) ?></p>
->>>>>>> 8669d4111fce263a9c66725f431e8c49d828a014
                         </div>
                     </div>
                 <?php endforeach; ?>

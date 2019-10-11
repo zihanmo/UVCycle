@@ -313,8 +313,6 @@ footer #copyright {
 #other-work figure {
     width: 400px;
     height: 250px;
-    overflow: scroll;
-    border: 2px solid black;
     border-radius: 5px;
     margin: 2em 0;
 }
@@ -322,14 +320,12 @@ footer #copyright {
     display: flex;
     justify-content: space-around;
     padding: 2em 0;
+    align-items: center;
 }
 
 .portfolio article {
     display: block;
     width: 40%;
-}
-.portfolio figure {
-    width: 30%;
 }
 
 #journal {
