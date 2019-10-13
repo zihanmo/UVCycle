@@ -1,15 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Encode+Sans+Semi+Expanded|Quicksand');
 
-*{
+* {
     padding: 0;
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Saira";
 }
 
 h1 {
     text-align: center;
-    font-size: 3em;
-    padding-top: 1em;
+    font-size: 2em;
 }
 
 hr {
@@ -21,7 +20,6 @@ nav {
     position: fixed;
     width: 100%;
     z-index: 10;
-    /* background-color: rgb(243, 215, 215); */
 }
 nav ul {
     display: flex;
@@ -40,26 +38,27 @@ nav ul {
     display: block;
 }
 #parta-ul li {
-    font-family: 'Quicksand', sans-serif;
+    font-family: "Saira";
     padding-left: 1em;
     line-height: 2em;
     font-size: 15px;
 }
 nav ul li {
-    background-color:rgba(243, 241, 241, 0.74);
+    background-color:white;
     border-radius: 5px;
     padding: 0.5em 1em;
     margin: 1em 2em;
     list-style: none;
 }
 nav ul li:hover {
-    background-color: rgb(238, 241, 247);
+    background-color: rgb(44, 176, 81);
+    color: white;
 }
+
 nav ul a {
     text-decoration: none;
     color: #241d00;
 }
-
 
 #all {
     position: absolute;
@@ -68,7 +67,7 @@ nav ul a {
 }
 
 #title {
-    background-color: #41BD63;
+    background-color: rgb(44, 176, 81);
     overflow: hidden;
     background-size: 100%;
     background-image: url("../img/apple-keyboard-ballpen-black-and-white-934062.jpg");
@@ -78,41 +77,40 @@ nav ul a {
 }
 #title h1 {
     font-size: 10em;
-    color: lightgrey;
+    color: white;
 }
 #title p {
     font-size: 2em;
-    opacity: 0.7;
 }
 .go-down {
     width: 300px;
     margin: auto;
-    margin-top: 2em;
+    margin-top: 3em;
 }
 .go-down button {
     padding: 0.5em;
     width: 300px;
-    background-color: lightgrey;
-    color: white;
-    font-size: 2em;
+    background-color: white;
+    color: rgb(44, 176, 81);
+    font-size: 1em;
+    border: 4px solid white;
 }
 .go-down button:hover {
-    background-color: white;
-    color: black;
+    background-color: rgb(44, 176, 81);
+    color: white;
 }
 
 #introduction {
     position: relative;
+    padding-top: 5em;
 }
 
 #self-work {
-    /* background-color: #a5a096; */
     position: relative;
     background-attachment: fixed;
     background-size: 100%;
     margin-top: 2em;
     background-color: #b5c1cf;
-    /* background-color: rgb(17, 81, 144); */
 }
 #self-work p,
 #self-work h1,
@@ -121,9 +119,22 @@ nav ul a {
 #self-work ul li {
     color: black;
 }
-#course-reflection {
-    background-color: #cac6bb;
+#purchase {
+    background-color: rgb(44, 176, 81);
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4em 0;
+}
+
+#share {
+    width: 40%;
+    margin-left: 4em;
+}
+#share-links {
+    margin: auto;
+    margin-top: 4em;
 }
 footer {
     background-color: white;
@@ -131,7 +142,7 @@ footer {
 }
 
 footer #copyright {
-    font-size: 14px;
+    font-size: 10px;
     text-align: center;
 }
 #contact-me {
@@ -151,7 +162,7 @@ footer #copyright {
 #buttons button {
     padding: 0.5em 1em;
     margin: 0 1em;
-    background: lightgrey;
+    background: white;
 }
 .fa {
     padding: 10px;
@@ -161,7 +172,7 @@ footer #copyright {
     text-align: center;
     text-decoration: none;
     border-radius: 50%;
-    color: rgb(128, 204, 121);
+    color: rgb(44, 176, 81);
 }
 
 .fa:hover {
@@ -175,7 +186,7 @@ footer #copyright {
     text-align: center;
     text-decoration: none;
     border-radius: 50%;
-    color: rgb(128, 204, 121);;
+    color: rgb(44, 176, 81);
 }
 .fas:hover {
     opacity: 0.5;
@@ -203,12 +214,11 @@ footer #copyright {
     justify-content: center;
     width: 80%;
     margin: auto;
-    margin-top: 2em;
+    margin-top: 5em;
 }
 
 .content p {
     line-height: 2em;
-    font-family: 'Quicksand', sans-serif;
 }
 #summary{
     margin-bottom: 2em;
@@ -269,79 +279,81 @@ footer #copyright {
     justify-content: space-around;
 }
 
-.ref-content {
+.purchase-content {
     display: block;
-    justify-content: space-between;
-    width: 80%;
-    margin: auto;
-    margin-top: 2em;
+    /* justify-content: space-between; */
+    /* margin: auto; */
+    width: 40%;
 }
-.ref-content p {
+.purchase-content p {
     line-height: 2em;
     padding-top: 1em;
     padding-bottom: 2em;
     font-family: 'Quicksand', sans-serif;
 }
-#up{
-    display: flex;
+#purchase-btn {
+    padding: 1em 4em;
+    background: rgb(44, 176, 81);
+    border: 4px solid white;
+    color: white;
+    font-size: 2em;
+}
+
+#purchase-btn:hover {
+    background: white;
+    color: rgb(44, 176, 81);
 }
 
 #expectation p {
     padding-right: 3em;
 }
 #other-work{
-    position: relative;
+    display: block;
 }
 #other-work figure {
     width: 400px;
     height: 250px;
-    overflow: scroll;
-    border: 2px solid black;
     border-radius: 5px;
     margin: 2em 0;
 }
-#portfolio {
+.portfolio {
+    display: flex;
+    justify-content: space-around;
+    padding: 2em 0;
+    align-items: center;
+}
+
+.portfolio article {
     display: block;
     width: 40%;
 }
+
 #journal {
     width: 40%;
 }
 
 .other-content {
-    display: flex;
+    display: block;
     justify-content: space-between;
     width: 80%;
     margin: 2em auto;
     padding-bottom: 2em;
 }
 .other-content p {
-    color: grey;
     line-height: 2em;
-    font-family: 'Quicksand', sans-serif;
 }
+
 #more-contact {
     display: flex;
     justify-content: space-around;
-    width: 80%;
-    margin: 3em auto;
-}
-#more-contact img {
-    width: 200px;
-    height: 100%;
-}
-#more-contact div p {
-    color: rgb(92, 91, 91);
-    padding: 1em;
+    width: 30%;
+    margin: 1em auto;
 }
 
-.contact-element{
-    display: block;
-    padding: 0.5em;
-}
 #logo {
     width: 50%;
     margin: auto;
+    padding-top: 4em;
 }
 
 #logo img {
@@ -359,4 +371,161 @@ footer #copyright {
     100% {
         transform: rotate(-10deg);
     }
+}
+.form-error {
+	color: #da3637;
+	font-family: 'Thasadith', sans-serif;
+	font-weight: lighter;
+	margin-bottom: 10px;
+}
+
+body {
+    font-family: "Saira";
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.welcome {
+    margin: auto;
+    text-align: center;
+    /* padding: 4em; */
+    color: rgb(44, 176, 81);
+}
+
+.link {
+    margin: auto;
+    text-align: center;
+    flex-direction: column;
+    display: block;
+    width: 100%;
+}
+
+#info {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+
+.user-info {
+    margin: 1em auto;
+    padding: 5px 10px;
+    border: 2px solid;
+    width: 300px;
+}
+
+#confirm {
+    margin: auto;
+    width: 18em;
+}
+
+#but {
+    width: 200px;
+    background: rgb(44, 176, 81);
+    border-radius: 10px;
+    padding: 5px 10px;
+    margin: auto;
+}
+
+input {
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+#reg {
+    margin: 0 auto;
+    color: rgb(44, 176, 81);
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2em;
+}
+
+#img {
+    max-width: 100%;
+}
+
+.foot {
+    position: fixed;
+    text-align: center;
+    bottom: 0em;
+    width: 100%;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+.tab {
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10em;
+}
+
+table, th, td {
+    border: 0.1em solid black;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 1em;
+    text-align: center;
+}
+
+#tablenaem {
+    font-size: 2em;
+}
+
+#functions {
+    overflow-x: scroll;
+    width: 100%;
+    display: block;
+    padding: 2em 0;
+}
+
+.funcscroll {
+    height: 100%;
+    display: flex;
+}
+.card {
+    padding: 0 3em;
+}
+
+.card img {
+    margin: auto;
+    width: 300px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card p {
+    margin-top: 2em;
+}
+
+.portfolio h1, h2{
+    text-align: left;
+    color: rgb(44, 176, 81);
+}
+
+
+#purchase h1{
+    color: black;
+    text-align: left;
+}
+
+iframe {
+    padding-top: 2em;
+}
+
+.purposetype {
+    font-size: 3em;
+    color: rgb(44, 176, 81);
+}
+
+.wecare {
+    font-size: 2em;
+    color: rgb(44, 176, 81);
 }
