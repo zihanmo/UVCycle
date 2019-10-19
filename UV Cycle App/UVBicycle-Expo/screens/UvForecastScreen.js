@@ -4,6 +4,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Image
 } from 'react-native';
 
 export default class UvForecastScreen extends Component {
@@ -365,7 +366,7 @@ const styles = StyleSheet.create({
  * change the color of UV container based on the UV index
  * @param {Integer} UVindex - the forecast UV index from API
  */
-function ChangeColorBasedOnUv(UVindex) {
+export function ChangeColorBasedOnUv(UVindex) {
   
   switch (UVindex) {
     case 0:
@@ -394,3 +395,6 @@ function ChangeColorBasedOnUv(UVindex) {
       return "#B568B6";
   }
 }
+
+
+
