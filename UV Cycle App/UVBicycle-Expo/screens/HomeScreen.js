@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { Ionicons } from '@expo/vector-icons';
-import { 
-  Image, 
-  Platform, 
-  ScrollView, 
-  StyleSheet, 
-  Text, 
-  TouchableOpacity, 
-  View
+import {
+  Image,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  AsyncStorage
 } from 'react-native';
 
 export default class HomeScreen extends Component {
@@ -46,15 +47,27 @@ export default class HomeScreen extends Component {
    * Fetch real-time uv index
    */
   fetchUV() {
-    fetch("http://deco3801-teamwyzards.uqcloud.net/realTimeUV.php")
-    .then((response) => response.json())
-    .then((responseJson) => {
-      this.setState({
-        uv: responseJson.uvindex
-      })
+    AsyncStorage.getItem("email").then(res => {
+      fetch("http://deco3801-teamwyzards.uqcloud.net/realTimeUV.php", {
+        method: 'POST',
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          email: res
+        })
+      }).then((response) => response.json())
+        .then((responseJson) => {
+          this.setState({
+            uv: responseJson.uvindex
+          })
+          alert(this.state.uv)
+        }).catch((error) => console.error(error))
     })
-    .catch((error) => console.error(error))
   }
+
+
 
   /**
    * Fetch data from Dark Sky API for temperature, location and weather
@@ -63,40 +76,40 @@ export default class HomeScreen extends Component {
    */
   fetchWeather(lat, lon) {
     fetch(`https://api.darksky.net/forecast/1c881bd9bc7c58c09bf74c28b5ffe195/${lat},${lon}?units=si`)
-    .then(res => res.json())
-    .then(json => {
-      this.setState({ 
-        temperature: Math.round(json.daily.data[0].temperatureMax),
-        weather1: json.daily.data[0].icon,
-        location: json.timezone,
-        isLoading: false
+      .then(res => res.json())
+      .then(json => {
+        this.setState({
+          temperature: Math.round(json.daily.data[0].temperatureMax),
+          weather1: json.daily.data[0].icon,
+          location: json.timezone,
+          isLoading: false
+        });
       });
-    });
   }
   // Views displayed in the home screen
   render() {
-    const { location,temperature, weather1 } = this.state;
+    const { location, temperature, weather1 } = this.state;
     return (
       <ScrollView style={styles.container}>
         <View style={styles.infoContainer}>
-          <View style = {styles.weather}>
-          <TouchableOpacity onPress={()=>this.props.navigation.navigate("Weather")}>
-            {WeatherDescToImageSource(weather1)}
-          </TouchableOpacity>
+          <View style={styles.weather}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate("Weather")}>
+              {WeatherDescToImageSource(weather1)}
+            </TouchableOpacity>
           </View>
-          <View style = {styles.tempnloc}>
-            <Text style = {styles.tempstyle}> {temperature}°C </Text>
-            <View style = {styles.location}>
-              <Image style = {styles.loc} source = {require('../assets/images/loc.png')}/>
-              <Text style = {styles.loctex}> {location} </Text>
+          <View style={styles.tempnloc}>
+            <Text style={styles.tempstyle}> {temperature}°C </Text>
+            <View style={styles.location}>
+              <Image style={styles.loc} source={require('../assets/images/loc.png')} />
+              <Text style={styles.loctex}> {location} </Text>
             </View>
           </View>
         </View>
 
         <View>
           <TouchableOpacity
-            style={styles.infoButton} 
-            onPress={()=>this.props.navigation.navigate("Info")}>
+            style={styles.infoButton}
+            onPress={() => this.props.navigation.navigate("Info")}>
             <Ionicons
               name={Platform.OS === 'ios' ? 'ios-information-circle' : 'md-information-circle'}
               size={30}
@@ -105,22 +118,21 @@ export default class HomeScreen extends Component {
           </TouchableOpacity>
         </View>
 
-        <View style = {styles.dash}>
-          <View style = {styles.dashcontainer}>
-        
+        <View style={styles.dash}>
+          <View style={styles.dashcontainer}>
             {UVindexSwitch(this.state.uv)}
           </View>
           <TouchableOpacity style={styles.button} onPress={this.fetchUV}>
             <Text style={styles.sharebtn}>Refresh</Text>
           </TouchableOpacity>
-        </View>  
-        <View style = {styles.timecontainer}>
-          <View style = {styles.timetex}>
-            <Text style = {styles.tex1}>Time Elapsed</Text>
-            <Text style = {styles.tex2}>Exposed to UV</Text>
+        </View>
+        <View style={styles.timecontainer}>
+          <View style={styles.timetex}>
+            <Text style={styles.tex1}>Time Elapsed</Text>
+            <Text style={styles.tex2}>Exposed to UV</Text>
           </View>
-          <View style = {styles.howlong}>
-            <Text style = {styles.timespent}>9:41</Text>
+          <View style={styles.howlong}>
+            <Text style={styles.timespent}>9:41</Text>
           </View>
         </View>
       </ScrollView>
@@ -201,7 +213,7 @@ const styles = StyleSheet.create({
     fontSize: 60,
     color: '#fff',
     textShadowColor: '#78756f',
-    textShadowOffset: {width: -1, height: 1},
+    textShadowOffset: { width: -1, height: 1 },
     textShadowRadius: 10,
   },
   timetex: {
@@ -236,58 +248,58 @@ const styles = StyleSheet.create({
  * @param {String} weatherDesc - weather description from the API
  */
 function WeatherDescToImageSource(weatherDesc) {
-  
+
   switch (weatherDesc) {
 
     case "partly-cloudy-day":
-      return    <Image style={styles.imageweather}
-      source={ require('../assets/images/partly-cloudy-day.png')}
-    />;
+      return <Image style={styles.imageweather}
+        source={require('../assets/images/partly-cloudy-day.png')}
+      />;
 
     case "clear-day":
-      return    <Image style={styles.imageweather}
-      source={ require('../assets/images/clear-day.png')}
-    />;
+      return <Image style={styles.imageweather}
+        source={require('../assets/images/clear-day.png')}
+      />;
 
     case "partly-cloudy-night":
-      return    <Image style={styles.imageweather}
-      source={require('../assets/images/partly-cloudy-night.png')}
-    />;
+      return <Image style={styles.imageweather}
+        source={require('../assets/images/partly-cloudy-night.png')}
+      />;
 
     case "partly-cloudy-day":
-      return    <Image style={styles.imageweather}
-      source={require('../assets/images/partly-cloudy-day.png')}
-    />;
+      return <Image style={styles.imageweather}
+        source={require('../assets/images/partly-cloudy-day.png')}
+      />;
 
     case "cloudy":
-      return    <Image style={styles.imageweather}
-      source={require('../assets/images/cloudy.png')}
-    />;
+      return <Image style={styles.imageweather}
+        source={require('../assets/images/cloudy.png')}
+      />;
 
     case "rain":
-      return    <Image style={styles.imageweather}
-      source={require('../assets/images/rain.png')}
-    />;
+      return <Image style={styles.imageweather}
+        source={require('../assets/images/rain.png')}
+      />;
 
     case "sleet":
-      return    <Image style={styles.imageweather}
-      source={require('../assets/images/sleet.png')}
-    />;
+      return <Image style={styles.imageweather}
+        source={require('../assets/images/sleet.png')}
+      />;
 
     case "snow":
-      return    <Image style={styles.imageweather}
-      source={require('../assets/images/snow.png')}
-    />;
+      return <Image style={styles.imageweather}
+        source={require('../assets/images/snow.png')}
+      />;
 
     case "wind":
-      return    <Image style={styles.imageweather}
-      source={require('../assets/images/wind.png')}
-    />;
+      return <Image style={styles.imageweather}
+        source={require('../assets/images/wind.png')}
+      />;
 
     case "fog":
-      return    <Image style={styles.imageweather}
-      source={require('../assets/images/fog.png')}
-    />;
+      return <Image style={styles.imageweather}
+        source={require('../assets/images/fog.png')}
+      />;
   }
 }
 
@@ -296,39 +308,39 @@ function WeatherDescToImageSource(weatherDesc) {
 
 
 function UVindexSwitch(UVindex) {
-  
+
   switch (UVindex) {
     case 0:
-      return    <Image style = {styles.maindash}
-      source={
-        require('../assets/images/dash0.png')}/>;
+      return <Image style={styles.maindash}
+        source={
+          require('../assets/images/dash0.png')} />;
     case 1:
-      return    <Image style = {styles.maindash}
-      source={
-        require('../assets/images/dash1.png')}/>;
+      return <Image style={styles.maindash}
+        source={
+          require('../assets/images/dash1.png')} />;
     case 2:
-      return    <Image style = {styles.maindash}
-      source={
-        require('../assets/images/dash2.png')}/>;
+      return <Image style={styles.maindash}
+        source={
+          require('../assets/images/dash2.png')} />;
     case 3:
-      return    <Image style = {styles.maindash}
-      source={
-        require('../assets/images/dash3.png')}/>;
+      return <Image style={styles.maindash}
+        source={
+          require('../assets/images/dash3.png')} />;
     case 4:
-      return    <Image style = {styles.maindash}
-      source={
-        require('../assets/images/dash4.png')}/>;
+      return <Image style={styles.maindash}
+        source={
+          require('../assets/images/dash4.png')} />;
     case 5:
-      return    <Image style = {styles.maindash}
-      source={
-        require('../assets/images/dash5.png')}/>;
+      return <Image style={styles.maindash}
+        source={
+          require('../assets/images/dash5.png')} />;
     case 6:
-      return    <Image style = {styles.maindash}
-      source={
-        require('../assets/images/dash6.png')}/>;
+      return <Image style={styles.maindash}
+        source={
+          require('../assets/images/dash6.png')} />;
     case 6:
-      return    <Image style = {styles.maindash}
-      source={
-        require('../assets/images/dash6.png')}/>;    
+      return <Image style={styles.maindash}
+        source={
+          require('../assets/images/dash6.png')} />;
   }
 }
