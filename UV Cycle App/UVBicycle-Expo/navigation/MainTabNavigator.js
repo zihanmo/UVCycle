@@ -5,6 +5,7 @@ import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import Colors from '../constants/Colors';
 import TabBarIcon from '../components/TabBarIcon';
 import HistoryDiagramScreen from '../screens/HistoryDiagramScreen';
+import HistoryWorkout from '../screens/HistoryWorkout'
 import ProfileScreen from '../screens/ProfileScreen';
 import WeatherScreen from '../screens/WeatherForecastScreen';
 import UvForecastScreen from '../screens/UvForecastScreen';
@@ -39,7 +40,7 @@ HomeStack.path = '';
 
 const HistoryDiagramStack = createStackNavigator(
   {
-    HistoryDiagram: HistoryDiagramScreen,
+    HistoryDiagram: HistoryWorkout,
   },
   config
 );

@@ -15,6 +15,7 @@ import {
   StyleSheet,
   Dimensions,
   ImageBackground,
+  AsyncStorage,
 } from 'react-native';
 import {
   Circle
@@ -37,25 +38,30 @@ export default class HistoryDiagramScreen extends Component {
    * store timestamp and unindex to state variable
    */
   getindex = () => {
-    fetch('http://deco3801-teamwyzards.uqcloud.net/uvhistory.php', {
-      method: 'POST',
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        key: 'test',
+    AsyncStorage.multiGet(["email", "date"]).then(res => {
+      var data = {email: res[0][1], date: res[1][1]};
+      fetch('http://deco3801-teamwyzards.uqcloud.net/uvhistory.php', {
+        method: 'POST',
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        var timetemp = [];
+        var indexes = [];
+        for (t in responseJson) {
+          timetemp.push(t);
+          indexes.push(responseJson[t]);
+        }
+        this.setState({
+          time: timetemp,
+          index: indexes
+        })
       })
     })
-    .then((response) => response.json())
-    .then((res) => {
-      tiemstamp = res.time.split("+");
-      indexes = res.index.split("+");
-      this.setState({
-          time: tiemstamp.slice(1),
-          index: indexes.slice(1)
-      });
-    });
   }
 
   render() {
@@ -96,9 +102,9 @@ export default class HistoryDiagramScreen extends Component {
         </View>
         <View style={{ height: Dimensions.get('window').height - 200, padding: 20, flexDirection: 'row' }}>
           <YAxis
-            data={ data }
-            yAccessor={ ({ item }) => item.index }
-            style={{ marginBottom: xAxisHeight }}
+            data={ [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] }
+            //yAccessor={ ({ item }) => item.index }
+            //style={{ marginBottom: xAxisHeight }}
             contentInset={verticalContentInset}
             svg={axesSvg}/>
           <View style={{ flex: 1, marginLeft: 10 }}>
@@ -110,8 +116,8 @@ export default class HistoryDiagramScreen extends Component {
                 curve={shape.curveNatural}
                 contentInset={verticalContentInset}
                 svg={{ stroke: 'rgb(0, 0, 0)', strokeWidth: 3 }}
-                gridMin={0}
-                gridMax={12}>
+                yMax={12}
+                yMin={0}>
                 <Grid/>
                 <Decorator/>
               </LineChart>
@@ -127,7 +133,7 @@ export default class HistoryDiagramScreen extends Component {
               svg={axesSvg}/>
           </View>
         </View>
-      </ScrollView>
+        </ScrollView>
     )
   }
 }
@@ -153,4 +159,5 @@ const styles = StyleSheet.create({
 
 HistoryDiagramScreen.navigationOptions = {
   header: null,
+  title: 'HistoryPlot'
 };
