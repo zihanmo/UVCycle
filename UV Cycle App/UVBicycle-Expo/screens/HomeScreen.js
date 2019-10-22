@@ -14,14 +14,21 @@ import {
 export default class HomeScreen extends Component {
   constructor(props) {
     super(props);
+    var date = new Date().getDate(); //Current Date
+    var month = new Date().getMonth() + 1; //Current Month
+    var year = new Date().getFullYear(); //Current Year
+    var hours = new Date().getHours(); //Current Hours
+    var min = new Date().getMinutes(); //Current Minutes
     this.state = {
       isLoading: false,
       temperature: 0,
       error: null,
       uv: 0,
-      lastRefresh: Date(Date.now()).toString()
+      lastRefresh: date + '/' + month + '/' + year + ' ' + hours + ':' + min,
+      url: '../assets/images/dash0.png'
     }
     this.fetchUV = this.fetchUV.bind(this)
+    this.fetchUV();
   }
 
   /**
@@ -40,13 +47,12 @@ export default class HomeScreen extends Component {
         });
       }
     );
-    this.fetchUV();
   }
 
   /**
    * Fetch real-time uv index
    */
-  fetchUV() {
+  fetchUV =()=> {
     AsyncStorage.getItem("email").then(res => {
       fetch("http://deco3801-teamwyzards.uqcloud.net/realTimeUV.php", {
         method: 'POST',
@@ -59,10 +65,17 @@ export default class HomeScreen extends Component {
         })
       }).then((response) => response.json())
         .then((responseJson) => {
+          var date = new Date().getDate(); //Current Date
+          var month = new Date().getMonth() + 1; //Current Month
+          var year = new Date().getFullYear(); //Current Year
+          var hours = new Date().getHours(); //Current Hours
+          var min = new Date().getMinutes(); //Current Minutes
           this.setState({
-            uv: responseJson.uvindex
+            uv: responseJson.uvindex,
+            lastRefresh: date + '/' + month + '/' + year + ' ' + hours + ':' + min,
+            url: '../assets/images/dash'+responseJson.uvindex+'.png'
           })
-          alert(this.state.uv)
+          alert(this.state.url);
         }).catch((error) => console.error(error))
     })
   }
@@ -120,11 +133,13 @@ export default class HomeScreen extends Component {
 
         <View style={styles.dash}>
           <View style={styles.dashcontainer}>
-            {UVindexSwitch(this.state.uv)}
+            {/* {UVindexSwitch(this.state.uv)} */}
+            <Image style={styles.maindash} source={{uri:this.state.url}}/>
           </View>
           <TouchableOpacity style={styles.button} onPress={this.fetchUV}>
             <Text style={styles.sharebtn}>Refresh</Text>
           </TouchableOpacity>
+          <Text>Last refresh: {this.state.lastRefresh}</Text>
         </View>
         <View style={styles.timecontainer}>
           <View style={styles.timetex}>
@@ -302,10 +317,6 @@ function WeatherDescToImageSource(weatherDesc) {
       />;
   }
 }
-
-
-
-
 
 function UVindexSwitch(UVindex) {
 
