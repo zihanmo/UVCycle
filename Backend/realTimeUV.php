@@ -6,7 +6,7 @@ require 'database.php';
 $db = new MySQLDatabase();
 $db->connect();
 
-$query = "SELECT * FROM History WHERE historyid = 0";
+$query = "SELECT * FROM History WHERE history_id = 1";
 $result = $db->query($query);
 $check = mysqli_fetch_array($result);
 $realTimeUV = $check["uvindex"];

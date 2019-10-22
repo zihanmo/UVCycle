@@ -52,7 +52,8 @@ export default class HomeScreen extends Component {
       this.setState({
         uv: responseJson.uvindex
       })
-    });
+    })
+    .catch((error) => console.error(error))
   }
 
   /**
