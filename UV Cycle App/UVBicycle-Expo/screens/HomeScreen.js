@@ -25,9 +25,10 @@ export default class HomeScreen extends Component {
       error: null,
       uv: 0,
       lastRefresh: date + '/' + month + '/' + year + ' ' + hours + ':' + min,
-      url: '../assets/images/dash0.png'
+      url: '../assets/images/dash0.png',
+      elapsed: 0
     }
-    this.fetchUV = this.fetchUV.bind(this)
+    this.fetchUV = this.fetchUV.bind(this);
     this.fetchUV();
   }
 
@@ -52,7 +53,7 @@ export default class HomeScreen extends Component {
   /**
    * Fetch real-time uv index
    */
-  fetchUV =()=> {
+  fetchUV = () => {
     AsyncStorage.getItem("email").then(res => {
       fetch("http://deco3801-teamwyzards.uqcloud.net/realTimeUV.php", {
         method: 'POST',
@@ -73,11 +74,35 @@ export default class HomeScreen extends Component {
           this.setState({
             uv: responseJson.uvindex,
             lastRefresh: date + '/' + month + '/' + year + ' ' + hours + ':' + min,
-            url: '../assets/images/dash'+responseJson.uvindex+'.png'
+            url: '../assets/images/dash' + responseJson.uvindex + '.png',
           })
-          alert(this.state.url);
+          this.calculateTime(responseJson.elapse);
         }).catch((error) => console.error(error))
     })
+  }
+
+  /**
+   * Convert time in second to minute and second
+   * @param {int} time 
+   */
+  calculateTime(time) {
+    if (time < 60) {
+      this.setState({
+        elapsed: '00:00'
+      })
+    } else {
+      var min = time / 60;
+      var hour = Math.floor(time / 3600);
+      if (min < 10) {
+        this.setState({
+          elapsed: hour + ':0' + min
+        })
+      } else {
+        this.setState({
+          elapsed: hour + ':' + min
+        })
+      }
+    }
   }
 
 
@@ -134,7 +159,7 @@ export default class HomeScreen extends Component {
         <View style={styles.dash}>
           <View style={styles.dashcontainer}>
             {/* {UVindexSwitch(this.state.uv)} */}
-            <Image style={styles.maindash} source={{uri:this.state.url}}/>
+            <Image style={styles.maindash} source={{ uri: this.state.url }} />
           </View>
           <TouchableOpacity style={styles.button} onPress={this.fetchUV}>
             <Text style={styles.sharebtn}>Refresh</Text>
@@ -147,7 +172,7 @@ export default class HomeScreen extends Component {
             <Text style={styles.tex2}>Exposed to UV</Text>
           </View>
           <View style={styles.howlong}>
-            <Text style={styles.timespent}>9:41</Text>
+            <Text style={styles.timespent}>{this.state.elapsed}</Text>
           </View>
         </View>
       </ScrollView>
@@ -225,7 +250,7 @@ const styles = StyleSheet.create({
     marginRight: 20,
   },
   timespent: {
-    fontSize: 60,
+    fontSize: 40,
     color: '#fff',
     textShadowColor: '#78756f',
     textShadowOffset: { width: -1, height: 1 },
@@ -237,11 +262,11 @@ const styles = StyleSheet.create({
   },
   tex1: {
     color: '#fff',
-    fontSize: 30,
+    fontSize: 25,
   },
   tex2: {
     color: '#fff',
-    fontSize: 25,
+    fontSize: 20,
   },
   howlong: {
     marginTop: 35,
