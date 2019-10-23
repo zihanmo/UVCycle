@@ -154,10 +154,6 @@ export default class ProfileScreen extends Component {
             <Text style={styles.buttonText}>Change Skin Type</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.uvButton}>
-            <Text style={styles.buttonText}>Setup UV Sensor</Text>
-          </TouchableOpacity>
-
           <TouchableOpacity onPress={this.logout}>
             <Text style={styles.textLink}>Log out</Text>
           </TouchableOpacity>
