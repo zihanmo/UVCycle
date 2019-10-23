@@ -1,7 +1,7 @@
 
 import { ChangeColorBasedOnUv } from '../UvForecastScreen';
 
-import { UNIXToDay2 } from '../UvForecastScreen';
+import { UNIXToDay2 } from '../WeatherForecastScreen';
 
 import { UNIXToDay } from '../UvForecastScreen';
 
