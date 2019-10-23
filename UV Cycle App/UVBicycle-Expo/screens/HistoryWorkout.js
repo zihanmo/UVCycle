@@ -39,7 +39,7 @@ export default class HistoryWorkout extends Component {
     // Get email value stored in asyncstorage
     AsyncStorage.getItem("email").then(res => {
       var data = { email: res }
-      fetch("http://deco3801-teamwyzards.uqcloud.net/uvhistoryimprove.php", {
+      fetch("http://deco3801-teamwyzards.uqcloud.net/UVHistoryImprove.php", {
         method: 'POST',
         headers: {
           "Accept": "application/json",

@@ -82,17 +82,21 @@ export default class HomeScreen extends Component {
   }
 
   /**
-   * Convert time in second to minute and second
+   * Format time in minute to standard hour and minute
    * @param {int} time 
    */
   calculateTime(time) {
-    if (time < 60) {
+    if (time < 60 && time > 10) {
       this.setState({
-        elapsed: '00:00'
+        elapsed: '00:' + time
+      })
+    } else if (time < 10) {
+      this.setState({
+        elapsed: '00:0' + time
       })
     } else {
-      var min = time / 60;
-      var hour = Math.floor(time / 3600);
+      var hour = time / 60;
+      var min = time - hour * 60;
       if (min < 10) {
         this.setState({
           elapsed: hour + ':0' + min
@@ -104,8 +108,6 @@ export default class HomeScreen extends Component {
       }
     }
   }
-
-
 
   /**
    * Fetch data from Dark Sky API for temperature, location and weather

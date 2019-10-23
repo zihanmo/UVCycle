@@ -6,10 +6,10 @@ $data = json_decode(file_get_contents('php://input'), true);
 $db = new MySQLDatabase();
 $db->connect();
 $email = $data["email"];
-$uv_query = "SELECT * FROM History h, Users u WHERE u.userid=h.userid AND email='$email' ORDER BY `history_id` DESC, `timestamp` DESC LIMIT 1";
+$uv_query = "SELECT * FROM History h, Users u WHERE u.sensorid=h.sensorid AND email='$email' ORDER BY `history_id` DESC, `timestamp` DESC LIMIT 1";
 $uv_result = $db->query($uv_query);
 
-$time_query = "SELECT COUNT(*) AS `elapse` FROM History h, Users u WHERE u.userid=h.userid AND email='willzhou@gmail.com' GROUP BY `history_id` ORDER BY `history_id` DESC LIMIT 1";
+$time_query = "SELECT TIMESTAMPDIFF(SQL_TSI_MINUTE, mi, ma) AS elapse FROM (SELECT MAX(`timestamp`) as ma, MIN(`timestamp`) as mi, history_id FROM History h, Users u WHERE u.sensorid=h.sensorid AND email='$email' GROUP BY `history_id` ORDER BY `history_id` DESC LIMIT 1) T";
 $time_elapse = $db->query($time_query);
 
 $uv = mysqli_fetch_array($uv_result);
@@ -24,3 +24,4 @@ $historyJson = json_encode($json);
 echo($historyJson);
 $db->disconnect();
 ?>
+
