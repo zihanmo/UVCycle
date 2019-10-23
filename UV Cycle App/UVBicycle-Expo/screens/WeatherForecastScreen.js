@@ -374,7 +374,7 @@ const styles = StyleSheet.create({
  * Change the weather images based on weather description
  * @param {String} weatherDesc - the weather from DarkSky API
  */
-function WeatherDescToImageSource(weatherDesc) {
+export function WeatherDescToImageSource(weatherDesc) {
   
   switch (weatherDesc) {
     case "partly-cloudy-day":
@@ -457,6 +457,10 @@ function WeatherDescToImageSource(weatherDesc) {
       }
       style={styles.welcomeImage}
     />;
+    case "foggy":
+      return "fog image";
+    case "rainy":
+      return "rain image";
   }
 }
 
@@ -464,7 +468,7 @@ function WeatherDescToImageSource(weatherDesc) {
  * Change the weather images based on weather description
  * @param {String} weatherDesc1 - the weather from DarkSky API
  */
-function WeatherDescToSmallImageSource(weatherDesc1) {
+export function WeatherDescToSmallImageSource(weatherDesc1) {
   
   switch (weatherDesc1) {
     case "partly-cloudy-day":
@@ -520,5 +524,9 @@ function WeatherDescToSmallImageSource(weatherDesc1) {
       source={require('../assets/images/fog1.png')}
       style={styles.welcomeImage2}
     />;
+    case "snowy":
+        return "snow small image";
+    case "rainy":
+        return "rain small image";
   }
 }
