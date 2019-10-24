@@ -44,19 +44,22 @@ export default class SignupScreen extends ValidationComponent {
   formValidation = () => {
     this.validate({
       email: {email: true, required: true},
-      password: {minlength: 6, required: true},
-      firstName: {minlength: 1, required: true},
-      lastName: {minlength: 1, required: true}
+      password: {minlength: 5, required: true},
+      firstName: {minlength: 0, required: true},
+      lastName: {minlength: 0, required: true},
+      sensorid: {minlength: 0, require: true}
     });
     if (this.isFieldInError("email")) {
       alert("Please enter correct email")
     } else if (this.isFieldInError("password")) {
-      alert("Password should has least 6 characters")
-    } else if (this.isFieldInError("firstname")) {
+      alert("Password should have least 6 characters")
+    } else if (this.isFieldInError("firstName")) {
       alert("Please enter you first name")
-    } else if (this.isFieldInError("lastname")) {
+    } else if (this.isFieldInError("lastName")) {
       alert("Please enter you last name")
-    } 
+    } else if (this.isFieldInError("sensorid")) {
+      alert("Please enter the given sensor ID")
+    }
     if (this.isFormValid()) {
       this.addNewUser();
     }
