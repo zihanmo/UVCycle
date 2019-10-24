@@ -21,7 +21,8 @@ export default class ProfileScreen extends Component {
       name: '',
       skinType: 0,
       romanNumerals: ["I", "II", "III", "IV", "V", "VI"],
-      sensor: '',
+      sensor: ''
+      ,
       skinRomanNumeral: '',
       isModalVisible: false,
       checked: [false, false, false, false, false, false],
@@ -50,7 +51,7 @@ export default class ProfileScreen extends Component {
         // combile first name and last name
         const fullName = responseJson.firstname + " " + responseJson.lastname
         const skintype = responseJson.skintype
-        const sensor = responseJson.sensor
+        const sensor = responseJson.sensorid
         const email = responseJson.email
         this.setState({
           email: email,
@@ -144,7 +145,7 @@ export default class ProfileScreen extends Component {
           </View>
           <View style={styles.settingMoreContainer}>
             <MaterialIcons name="bluetooth" size={25} color="gray" style={styles.settingIcons} />
-            <Text style={styles.settingText}>UV Sensor</Text>
+            <Text style={styles.settingText}>UV Sensor {this.state.sensor}</Text>
           </View>
         </View>
 

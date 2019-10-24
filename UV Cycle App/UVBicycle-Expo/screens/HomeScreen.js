@@ -280,6 +280,7 @@ const styles = StyleSheet.create({
   maindash: {
     width: 300,
     height: 150,
+    resizeMode: 'contain'
   },
   dash: {
     justifyContent: 'center',
