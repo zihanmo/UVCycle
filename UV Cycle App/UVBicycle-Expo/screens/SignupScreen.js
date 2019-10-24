@@ -20,7 +20,7 @@ export default class SignupScreen extends ValidationComponent {
       firstName: '',
       lastName: '',
       skinType: 0,
-      sensorName: '',
+      sensorid: 13,
       checked: [false, false, false, false, false, false]
     }
   }
@@ -73,7 +73,7 @@ export default class SignupScreen extends ValidationComponent {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       skinType: this.state.skinType,
-      sensorName: this.state.sensorName
+      sensorid: this.state.sensorid
     }
     fetch("http://deco3801-teamwyzards.uqcloud.net/signup.php", {
         method: 'POST',
@@ -191,9 +191,15 @@ export default class SignupScreen extends ValidationComponent {
             </View>
 
             <View style={styles.detailsLabel}>
-              <TouchableOpacity style={styles.uvButton} >
+              {/* <TouchableOpacity style={styles.uvButton} >
                 <Text style={styles.buttonText}>Set up UV sensor</Text>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
+              <TextInput
+              ref={"sensorid"}
+              style={styles.detailsLabelInput}
+              placeholder={ "Sensor ID" }
+              onChangeText={(text) => this.setState({sensorid:text})}
+              />
             </View>
             
             <View style={styles.detailsLabel}>

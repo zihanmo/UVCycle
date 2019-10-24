@@ -393,6 +393,10 @@ export function ChangeColorBasedOnUv(UVindex) {
       return "#FE4C1E";
     case 11:
       return "#B568B6";
+    default:
+        return "#B568B6";
+
+ 
   }
 }
 

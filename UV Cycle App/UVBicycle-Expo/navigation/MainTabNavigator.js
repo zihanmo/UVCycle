@@ -38,13 +38,13 @@ HomeStack.navigationOptions = {
 };
 HomeStack.path = '';
 
-const HistoryDiagramStack = createStackNavigator(
+const HistoryWorkoutStack = createStackNavigator(
   {
-    HistoryDiagram: HistoryWorkout,
+    HistoryWorkout: HistoryWorkout,
   },
   config
 );
-HistoryDiagramStack.navigationOptions = {
+HistoryWorkoutStack.navigationOptions = {
   tabBarLabel: 'UV history',
   tabBarIcon: ({ focused }) =>{
     const image = focused
@@ -58,7 +58,7 @@ HistoryDiagramStack.navigationOptions = {
     )
   }
 };
-HistoryDiagramStack.path = '';
+HistoryWorkoutStack.path = '';
 
 const UvForecastStack = createStackNavigator(
   {
@@ -108,7 +108,7 @@ ProfileStack.path = '';
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
   ProfileStack,
-  HistoryDiagramStack,
+  HistoryWorkoutStack,
   UvForecastStack,
 });
 

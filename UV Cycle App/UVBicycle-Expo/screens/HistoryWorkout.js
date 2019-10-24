@@ -2,44 +2,35 @@ import React, {
   Component
 } from 'react';
 import {
-  LineChart,
-  XAxis,
-  YAxis,
-  Grid,
-  AreaChart
-} from 'react-native-svg-charts';
-import {
   ScrollView,
   View,
   Text,
   FlatList,
   StyleSheet,
-  Dimensions,
-  ImageBackground,
-  Button,
   TouchableOpacity,
   AsyncStorage,
-  Image
+  RefreshControl
 } from 'react-native';
-import {
-  Circle
-} from 'react-native-svg';
-import * as shape from 'd3-shape';
-import { object } from 'yup';
-
 export default class HistoryWorkout extends Component {
   constructor(props) {
     super(props);
     this.state = {
       workout: [],
+      refreshing: false,
     }
-    this.fetchData();
+    this.fetchWorkout();
+    this.fetchWorkout = this.fetchWorkout.bind(this);
   }
-  fetchData() {
+  _onRefresh = () => {
+    this.setState({ refreshing: true }, function () { this.fetchWorkout() });
+    this.setState({ refreshing: false });
+  }
+
+  fetchWorkout() {
     // Get email value stored in asyncstorage
     AsyncStorage.getItem("email").then(res => {
       var data = { email: res }
-      fetch("http://deco3801-teamwyzards.uqcloud.net/uvhistoryimprove.php", {
+      fetch("http://deco3801-teamwyzards.uqcloud.net/UVHistoryImprove.php", {
         method: 'POST',
         headers: {
           "Accept": "application/json",
@@ -50,36 +41,47 @@ export default class HistoryWorkout extends Component {
         .then((response) => response.json())
         .then((responseJson) => {
           this.setState({
-            workout: responseJson,
+            workout: responseJson
+          })
+          const dataArray = [];
+          for (i = 0; i < this.state.workout.length; i++) {
+            dataArray.push({
+              key: this.state.workout[i]
+            });
+          }
+          this.setState({
+            data: dataArray
           })
         })
         .catch((error) => console.error(error))
     })
   }
+
   getWorkout(value) {
     AsyncStorage.setItem("date", value);
     this.props.navigation.navigate('HistoryPlot');
   }
 
-
   render() {
-    const data = [];
-    for (i = 0; i < this.state.workout.length; i++) {
-      data.push({
-        key: this.state.workout[i]
-      });
-    }
+
     return (
-      <ScrollView>
+      <ScrollView
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this._onRefresh}
+          />
+        }>
         <View>
           <Text style={styles.subtitle}>UV History Workout</Text>
         </View>
         <FlatList
-          data={data}
+          data={this.state.data}
           renderItem={({ item }) =>
             <TouchableOpacity style={styles.container} onPress={() => this.getWorkout(item.key)}>
               <Text style={styles.text}>{item.key}</Text>
             </TouchableOpacity>} />
+        <Text style={styles.sharebtn}>Pull down to refresh</Text>
       </ScrollView>
     )
   }
@@ -108,5 +110,10 @@ const styles = StyleSheet.create({
     fontSize: 33,
     color: '#1E6738',
     alignSelf: 'center'
-  }
+  },
+  sharebtn: {
+    fontSize: 30,
+    color: '#41BD63',
+    textAlign: 'center'
+  },
 });

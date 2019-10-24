@@ -54,12 +54,12 @@ export default class WeatherScreen extends Component {
         weather4: json.daily.data[3].icon,
         weather5: json.daily.data[4].icon,
         weather6: json.daily.data[5].icon,
-        time1: UNIXToDay(json.daily.data[0].time*1000),
-        time2: UNIXToDay(json.daily.data[1].time*1000),
-        time3: UNIXToDay(json.daily.data[2].time*1000),
-        time4: UNIXToDay(json.daily.data[3].time*1000),
-        time5: UNIXToDay(json.daily.data[4].time*1000),
-        time6: UNIXToDay(json.daily.data[5].time*1000),
+        time1: UNIXToDay2(json.daily.data[0].time*1000),
+        time2: UNIXToDay2(json.daily.data[1].time*1000),
+        time3: UNIXToDay2(json.daily.data[2].time*1000),
+        time4: UNIXToDay2(json.daily.data[3].time*1000),
+        time5: UNIXToDay2(json.daily.data[4].time*1000),
+        time6: UNIXToDay2(json.daily.data[5].time*1000),
         location: json.timezone,
         
         isLoading: false
@@ -134,7 +134,7 @@ WeatherScreen.navigationOptions = {
  * Convert the UNIX time to the day
  * @param {int} timestamp - the UNIX time from dark sky api
  */
-function UNIXToDay(timestamp) {
+export function UNIXToDay2(timestamp) {
   var day = (new Date(timestamp)).getDay()
   
   switch (day) {
@@ -374,7 +374,7 @@ const styles = StyleSheet.create({
  * Change the weather images based on weather description
  * @param {String} weatherDesc - the weather from DarkSky API
  */
-function WeatherDescToImageSource(weatherDesc) {
+export function WeatherDescToImageSource(weatherDesc) {
   
   switch (weatherDesc) {
     case "partly-cloudy-day":
@@ -457,6 +457,10 @@ function WeatherDescToImageSource(weatherDesc) {
       }
       style={styles.welcomeImage}
     />;
+    case "foggy":
+      return "fog image";
+    case "rainy":
+      return "rain image";
   }
 }
 
@@ -464,7 +468,7 @@ function WeatherDescToImageSource(weatherDesc) {
  * Change the weather images based on weather description
  * @param {String} weatherDesc1 - the weather from DarkSky API
  */
-function WeatherDescToSmallImageSource(weatherDesc1) {
+export function WeatherDescToSmallImageSource(weatherDesc1) {
   
   switch (weatherDesc1) {
     case "partly-cloudy-day":
@@ -520,5 +524,9 @@ function WeatherDescToSmallImageSource(weatherDesc1) {
       source={require('../assets/images/fog1.png')}
       style={styles.welcomeImage2}
     />;
+    case "snowy":
+        return "snow small image";
+    case "rainy":
+        return "rain small image";
   }
 }

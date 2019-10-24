@@ -19,6 +19,12 @@ export default class HomeScreen extends Component {
     var year = new Date().getFullYear(); //Current Year
     var hours = new Date().getHours(); //Current Hours
     var min = new Date().getMinutes(); //Current Minutes
+    if (min < 10) {
+      min = '0' + min;
+    }
+    if (hours < 10) {
+      hours = '0' + hours
+    }
     this.state = {
       isLoading: false,
       temperature: 0,
@@ -29,7 +35,6 @@ export default class HomeScreen extends Component {
       elapsed: 0
     }
     this.fetchUV = this.fetchUV.bind(this);
-    this.fetchUV();
   }
 
   /**
@@ -38,22 +43,6 @@ export default class HomeScreen extends Component {
    * before loading the page
    */
   componentDidMount() {
-    navigator.geolocation.getCurrentPosition(
-      position => {
-        this.fetchWeather(position.coords.latitude, position.coords.longitude);
-      },
-      error => {
-        this.setState({
-          error: 'Error Gettig Weather Condtions'
-        });
-      }
-    );
-  }
-
-  /**
-   * Fetch real-time uv index
-   */
-  fetchUV = () => {
     AsyncStorage.getItem("email").then(res => {
       fetch("http://deco3801-teamwyzards.uqcloud.net/realTimeUV.php", {
         method: 'POST',
@@ -71,6 +60,59 @@ export default class HomeScreen extends Component {
           var year = new Date().getFullYear(); //Current Year
           var hours = new Date().getHours(); //Current Hours
           var min = new Date().getMinutes(); //Current Minutes
+          if (min < 10) {
+            min = '0' + min;
+          }
+          if (hours < 10) {
+            hours = '0' + hours
+          }
+          this.setState({
+            uv: responseJson.uvindex,
+            lastRefresh: date + '/' + month + '/' + year + ' ' + hours + ':' + min,
+            url: '../assets/images/dash' + responseJson.uvindex + '.png',
+          })
+          this.calculateTime(responseJson.elapse);
+        }).catch((error) => console.error(error))
+    })
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        this.fetchWeather(position.coords.latitude, position.coords.longitude);
+      },
+      error => {
+        this.setState({
+          error: 'Error Gettig Weather Condtions'
+        });
+      }
+    );
+  }
+
+  /**
+   * Fetch real-time uv index
+   */
+  fetchUV() {
+    AsyncStorage.getItem("email").then(res => {
+      fetch("http://deco3801-teamwyzards.uqcloud.net/realTimeUV.php", {
+        method: 'POST',
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          email: res
+        })
+      }).then((response) => response.json())
+        .then((responseJson) => {
+          var date = new Date().getDate(); //Current Date
+          var month = new Date().getMonth() + 1; //Current Month
+          var year = new Date().getFullYear(); //Current Year
+          var hours = new Date().getHours(); //Current Hours
+          var min = new Date().getMinutes(); //Current Minutes
+          if (min < 10) {
+            min = '0' + min;
+          }
+          if (hours < 10) {
+            hours = '0' + hours
+          }
           this.setState({
             uv: responseJson.uvindex,
             lastRefresh: date + '/' + month + '/' + year + ' ' + hours + ':' + min,
@@ -82,30 +124,40 @@ export default class HomeScreen extends Component {
   }
 
   /**
-   * Convert time in second to minute and second
-   * @param {int} time 
+   * Format time in minute to standard hour and minute
+   * @param {Integer} time time in minutes
    */
   calculateTime(time) {
-    if (time < 60) {
+    if (time < 60 && time > 10) {
       this.setState({
-        elapsed: '00:00'
+        elapsed: '00:' + time
+      })
+    } else if (time < 10) {
+      this.setState({
+        elapsed: '00:0' + time
       })
     } else {
-      var min = time / 60;
-      var hour = Math.floor(time / 3600);
-      if (min < 10) {
+      var hour = Math.floor(time / 60);
+      var min = time - hour * 60;
+      if (hour < 10 && min < 10) {
         this.setState({
-          elapsed: hour + ':0' + min
+          elapsed: '0' + hour + ':0' + min
         })
-      } else {
+      } else if (hour < 10 && min > 10) {
+        this.setState({
+          elapsed: '0' + hour + ':' + min
+        })
+      } else if (hour > 10 && min > 10) {
         this.setState({
           elapsed: hour + ':' + min
+        })
+      } else if (hour > 10 && min < 10) {
+        this.setState({
+          elapsed: hour + ':0' + min
         })
       }
     }
   }
-
-
 
   /**
    * Fetch data from Dark Sky API for temperature, location and weather
@@ -158,8 +210,7 @@ export default class HomeScreen extends Component {
 
         <View style={styles.dash}>
           <View style={styles.dashcontainer}>
-            {/* {UVindexSwitch(this.state.uv)} */}
-            <Image style={styles.maindash} source={{ uri: this.state.url }} />
+            {UVindexSwitch(this.state.uv)}
           </View>
           <TouchableOpacity style={styles.button} onPress={this.fetchUV}>
             <Text style={styles.sharebtn}>Refresh</Text>
@@ -224,7 +275,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingTop: 20,
   },
-  dashcontainer: {},
+  dashcontainer: {
+  },
   maindash: {
     width: 300,
     height: 150,
@@ -343,40 +395,67 @@ function WeatherDescToImageSource(weatherDesc) {
   }
 }
 
+/**
+ * Switch UV dash according to real-time UV index
+ * @param {Integer}} UVindex 
+ */
 function UVindexSwitch(UVindex) {
-
-  switch (UVindex) {
-    case 0:
-      return <Image style={styles.maindash}
-        source={
-          require('../assets/images/dash0.png')} />;
-    case 1:
-      return <Image style={styles.maindash}
-        source={
-          require('../assets/images/dash1.png')} />;
-    case 2:
-      return <Image style={styles.maindash}
-        source={
-          require('../assets/images/dash2.png')} />;
-    case 3:
-      return <Image style={styles.maindash}
-        source={
-          require('../assets/images/dash3.png')} />;
-    case 4:
-      return <Image style={styles.maindash}
-        source={
-          require('../assets/images/dash4.png')} />;
-    case 5:
-      return <Image style={styles.maindash}
-        source={
-          require('../assets/images/dash5.png')} />;
-    case 6:
-      return <Image style={styles.maindash}
-        source={
-          require('../assets/images/dash6.png')} />;
-    case 6:
-      return <Image style={styles.maindash}
-        source={
-          require('../assets/images/dash6.png')} />;
+  if (UVindex == 1) {
+    return <Image style={styles.maindash}
+      source={
+        require('../assets/images/dash1.png')} />;
+  } else if (UVindex == 2) {
+    return <Image style={styles.maindash}
+      source={
+        require('../assets/images/dash2.png')} />;
+  } else if (UVindex == 3) {
+    return <Image style={styles.maindash}
+      source={
+        require('../assets/images/dash3.png')} />;
+  } else if (UVindex == 4) {
+    return <Image style={styles.maindash}
+      source={
+        require('../assets/images/dash4.png')} />;
+  } else if (UVindex == 5) {
+    return <Image style={styles.maindash}
+      source={
+        require('../assets/images/dash5.png')} />;
+  } else if (UVindex == 6) {
+    return <Image style={styles.maindash}
+      source={
+        require('../assets/images/dash6.png')} />;
+  } else if (UVindex == 7) {
+    return <Image style={styles.maindash}
+      source={
+        require('../assets/images/dash7.png')} />;
+  } else if (UVindex == 0) {
+    return <Image style={styles.maindash}
+      source={
+        require('../assets/images/dash0.png')} />;
+  }else if (UVindex == 8) {
+    return <Image style={styles.maindash}
+      source={
+        require('../assets/images/dash8.png')} />;
+  }else if (UVindex == 9) {
+    return <Image style={styles.maindash}
+      source={
+        require('../assets/images/dash9.png')} />;
+  }else if (UVindex == 10) {
+    return <Image style={styles.maindash}
+      source={
+        require('../assets/images/dash10.png')} />;
+  }else if (UVindex == 11) {
+    return <Image style={styles.maindash}
+      source={
+        require('../assets/images/dash11.png')} />;
+  }else if (UVindex == 12) {
+    return <Image style={styles.maindash}
+      source={
+        require('../assets/images/dash12.png')} />;
+  }else if (UVindex == 13) {
+    return <Image style={styles.maindash}
+      source={
+        require('../assets/images/dash13.png')} />;
   }
+  
 }

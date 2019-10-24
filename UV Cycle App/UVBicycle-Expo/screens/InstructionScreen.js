@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   View,
   ScrollView,
@@ -13,47 +13,47 @@ export default class InstructionScreen extends Component {
   render() {
     const { navigate } = this.props.navigation;
     return (
-      <ScrollView style = {styles.container}>
-          <TouchableOpacity style={styles.uvButton} onPress={() => navigate("Main")}>
-          <Image style = {styles.backPic} source = {require('../assets/images/back.png')}/>
-          </TouchableOpacity>
-        <View style = {styles.desc}>
-          <View style = {styles.picCon}>
-            <Image style = {styles.titlePic} source = {require('../assets/images/uv.png')}/>
+      <ScrollView style={styles.container}>
+        <TouchableOpacity style={styles.uvButton} onPress={() => navigate("Main")}>
+          <Image style={styles.backPic} source={require('../assets/images/back.png')} />
+        </TouchableOpacity>
+        <View style={styles.desc}>
+          <View style={styles.picCon}>
+            <Image style={styles.titlePic} source={require('../assets/images/uv.png')} />
           </View>
-          <View style = {styles.sub}>
-            <Text style = {styles.subTitle}>What is Ultraviolet(UV)?</Text>
-            <Text style = {styles.desctext}> 
+          <View style={styles.sub}>
+            <Text style={styles.subTitle}>What is Ultraviolet(UV)?</Text>
+            <Text style={styles.desctext}>
               Ultraviolet light is a type of electromagnetic radiation that is all around us even though our eye can't detect it. Our body use it to make vitamin D, but too much exposure can cause painful burns and even cancer.
             </Text>
           </View>
         </View>
 
-        <View style = {styles.desc}>
-          <View style = {styles.picCon}>
-            <Image style = {styles.titlePic} source = {require('../assets/images/ring.png')}/>
+        <View style={styles.desc}>
+          <View style={styles.picCon}>
+            <Image style={styles.titlePic} source={require('../assets/images/ring.png')} />
           </View>
-          <View style = {styles.sub}>
-          <Text style = {styles.subTitle}>How to read UV index</Text>
-            <Text style = {styles.desctext}>
+          <View style={styles.sub}>
+            <Text style={styles.subTitle}>How to read UV index</Text>
+            <Text style={styles.desctext}>
               The UV index provides a daily forecast of the expected risk of overexposure to the sun. The index represents the UV intensity levels on a scale of 0 (minimal risk) to 10+ (very high risk).
             </Text>
           </View>
         </View>
 
-        <View style = {styles.desc}>
-          <View style = {styles.picCon}>
-            <Image style = {styles.titlePic} source = {require('../assets/images/sung.jpg')}/>
+        <View style={styles.desc}>
+          <View style={styles.picCon}>
+            <Image style={styles.titlePic} source={require('../assets/images/sung.jpg')} />
           </View>
-          <View style = {styles.sub}>
-            <Text style = {styles.subTitle}>UV light prevention</Text>
-            <Text style = {styles.desctext}>
+          <View style={styles.sub}>
+            <Text style={styles.subTitle}>UV light prevention</Text>
+            <Text style={styles.desctext}>
               Wear a wide brim hat to shade your face, head, ears, and neck. Wear wraparound sunglassed. Use sunscreen with SPF 15 or higher. Avoid indoor tannin.
             </Text>
           </View>
         </View>
         <View style={styles.detailsLabel}>
-        
+
         </View>
       </ScrollView>
     );
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     ...Platform.select({
       ios: {
-        shadowOffset: {width: 0, height: 1},
+        shadowOffset: { width: 0, height: 1 },
         shadowColor: 'grey',
         shadowOpacity: 0.2,
       },
@@ -100,8 +100,8 @@ const styles = StyleSheet.create({
   backPic: {
     height: 30,
     width: 25,
-    marginLeft:15,
-  
+    marginLeft: 15,
+
   },
   sub: {
     marginRight: 50,

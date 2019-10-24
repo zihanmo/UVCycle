@@ -13,15 +13,15 @@ $password = $user["password"];
 $password = password_hash($password, PASSWORD_DEFAULT);
 $email = $user["email"];
 $skintype = $user["skinType"];
-$sensor = $user["sensorName"];
+$sensor = $user["sensorid"];
 
 $query = "SELECT * FROM Users WHERE email = '$email'";
 $result = $db->query($query);
 $check = mysqli_fetch_array($result);
 
 if (!isset($check)) { // check if the user is existing, otherwise create a new account
-    $query = "INSERT INTO Users (`firstname`, `lastname`, `password`, `email`, `sensor`, `skintype`) 
-        VALUES ('$firstname', '$lastname', '$password', '$email', '$sensor', $skintype)";
+    $query = "INSERT INTO Users (`firstname`, `lastname`, `password`, `email`, `skintype`, `sensorid`) 
+        VALUES ('$firstname', '$lastname', '$password', '$email', $skintype, $sensor)";
     $db->query($query);
     $response = "Sign Up successfully";
     $responseJson = json_encode($response);

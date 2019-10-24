@@ -7,13 +7,8 @@ $email = $userEmail["email"];
 $db = new MySQLDatabase();
 $db->connect();
 
-// get userid
-$query = "SELECT userid FROM Users WHERE email = '$email'";
-$result = $db->query($query);
-$userid = mysqli_fetch_array($result)['userid'];
-
 // fetch all recorded date according to userid
-$query = "SELECT DISTINCT date FROM HistoryDemo WHERE userid = $userid"; // alter to $userid
+$query = "SELECT DISTINCT date(`timestamp`) AS `date` FROM History h, Users u WHERE h.sensorid = u.sensorid AND u.email = '$email'";
 $result = $db->query($query);
 $arr = array();
 if ($result->num_rows > 0) {

@@ -1,30 +1,28 @@
 <?php
-require 'database.php';
 
+require 'database.php';
+session_start();
+
+$info = json_decode(file_get_contents('php://input'), true);
+$email = $info["email"];
+$date = $info["date"];
 $db = new MySQLDatabase();
 $db->connect();
-$query = "SELECT * FROM History";
+
+// get userid
+$query = "SELECT userid FROM Users WHERE email = '$email'";
 $result = $db->query($query);
-$timestamps = "";
-$indexes = "";
+$userid = mysqli_fetch_array($result)['userid'];
+
+// fetch all recorded date according to userid
+$query = "SELECT * FROM History h, Users u 
+WHERE h.sensorid = u.sensorid AND date(`timestamp`) = '$date' AND email = '$email'"; 
+$result = $db->query($query);
+$arr = array();
 if ($result->num_rows > 0) {
 	while ($row = $result->fetch_assoc()) {
-        // echo json_encode(array(
-        //     'timestamp' => $row['timestamp'],
-        //     'index' => $row['uvindex']
-        // ));
-	if ($row['uvindex'] >= 0 && $row['uvindex'] <= 12) {
-		$timestamps = $timestamps.("+".$row['timestamp']);
-        	$indexes = $indexes.("+".$row['uvindex']);
-	}
-        
+        $arr[$row["timestamp"]] = $row["uvindex"];
     }
 }
-
-$json = json_encode(array(
-    'time' => $timestamps,
-    'index' => $indexes
-));
-echo $json;
 $db->disconnect();
-?>
+echo(json_encode($arr));
