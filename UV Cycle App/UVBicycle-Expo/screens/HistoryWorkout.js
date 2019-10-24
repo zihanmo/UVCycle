@@ -18,17 +18,18 @@ export default class HistoryWorkout extends Component {
       workout: [],
       refreshing: false,
     }
-    this.fetchData();
-    this.fetchData = this.fetchData.bind(this);
+    this.fetchWorkout();
+    this.fetchWorkout = this.fetchWorkout.bind(this);
   }
   _onRefresh = () => {
-    this.setState({ refreshing: true });
-    fetchData().then(() => {
-      this.setState({ refreshing: false });
-    });
+    this.setState({ refreshing: true }, function () { this.fetchWorkout() });
+    this.setState({ refreshing: false });
+    // fetchWorkout().then(() => {
+    //   this.setState({ refreshing: false });
+    // });
   }
 
-  fetchData() {
+  fetchWorkout() {
     // Get email value stored in asyncstorage
     AsyncStorage.getItem("email").then(res => {
       var data = { email: res }
@@ -43,7 +44,16 @@ export default class HistoryWorkout extends Component {
         .then((response) => response.json())
         .then((responseJson) => {
           this.setState({
-            workout: responseJson,
+            workout: responseJson
+          })
+          const dataArray = [];
+          for (i = 0; i < this.state.workout.length; i++) {
+            dataArray.push({
+              key: this.state.workout[i]
+            });
+          }
+          this.setState({
+            data: dataArray
           })
         })
         .catch((error) => console.error(error))
@@ -58,12 +68,7 @@ export default class HistoryWorkout extends Component {
 
 
   render() {
-    const data = [];
-    for (i = 0; i < this.state.workout.length; i++) {
-      data.push({
-        key: this.state.workout[i]
-      });
-    }
+
     return (
       <ScrollView
         refreshControl={
@@ -76,14 +81,12 @@ export default class HistoryWorkout extends Component {
           <Text style={styles.subtitle}>UV History Workout</Text>
         </View>
         <FlatList
-          data={data}
+          data={this.state.data}
           renderItem={({ item }) =>
             <TouchableOpacity style={styles.container} onPress={() => this.getWorkout(item.key)}>
               <Text style={styles.text}>{item.key}</Text>
             </TouchableOpacity>} />
-        <TouchableOpacity style={styles.button} onPress={() => this.fetchData}>
-          <Text style={styles.sharebtn}>Refresh</Text>
-        </TouchableOpacity>
+        <Text style={styles.sharebtn}>Pull to refresh</Text>
       </ScrollView>
     )
   }
@@ -113,16 +116,9 @@ const styles = StyleSheet.create({
     color: '#1E6738',
     alignSelf: 'center'
   },
-  button: {
-    backgroundColor: '#41BD63',
-    alignItems: 'center',
-    borderRadius: 3,
-    marginTop: 50,
-    marginHorizontal: 50
-  },
   sharebtn: {
     fontSize: 30,
-    color: '#fff',
+    color: '#41BD63',
     textAlign: 'center'
   },
 });
