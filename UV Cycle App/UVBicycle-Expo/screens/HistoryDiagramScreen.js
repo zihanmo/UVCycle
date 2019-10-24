@@ -69,6 +69,7 @@ export default class HistoryDiagramScreen extends Component {
   }
 
   render() {
+    const {navigate}=this.props.navigation;
     const Decorator = ({
       x,
       y,
@@ -101,12 +102,13 @@ export default class HistoryDiagramScreen extends Component {
 
     return (
       <ScrollView>
-        <TouchableOpacity style={styles.uvButton} onPress={() => navigate("Main")}>
-          <Image style={styles.backPic} source={require('../assets/images/back.png')} />
-        </TouchableOpacity>
+        
         <View style={styles.titleContainer}>
           <Text style={styles.title}>UV History Index</Text>
         </View>
+        <TouchableOpacity style={styles.uvButton} onPress={() => navigate.goBack(null) }>
+          <Image style={styles.backPic} source={require('../assets/images/back.png')} />
+        </TouchableOpacity>
         <View style={{ height: Dimensions.get('window').height - 200, padding: 20, flexDirection: 'row' }}>
           <YAxis
             data={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}
@@ -129,15 +131,6 @@ export default class HistoryDiagramScreen extends Component {
                 <Decorator />
               </LineChart>
             </ImageBackground>
-            {/* <XAxis
-              style={{ marginHorizontal: -10, height: xAxisHeight, marginTop: 10 }}
-              data={data}
-              xAccessor={({ item }) => item.time}
-              numberOfTicks={data.length}
-              // format improvement
-              // formatLabel={value => `22:${value}`}
-              contentInset={{ left: 10, right: 10 }}
-              svg={axesSvg} /> */}
           </View>
         </View>
       </ScrollView>
