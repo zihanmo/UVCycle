@@ -27,8 +27,8 @@ export default class LoginScreen extends ValidationComponent {
    */
   formValidation = () => {
     this.validate({
-      email: {email: true, required: true},
-      password: {minlength: 6, required: true}
+      email: { email: true, required: true },
+      password: { minlength: 6, required: true }
     });
   }
 
@@ -39,18 +39,18 @@ export default class LoginScreen extends ValidationComponent {
    */
   login = () => {
     fetch("http://deco3801-teamwyzards.uqcloud.net/login.php", {
-        method: 'POST',
-        headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            email: this.state.email,
-            password: this.state.password,
-        })
+      method: 'POST',
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email: this.state.email,
+        password: this.state.password,
+      })
     })
-    .then((response) => response.json())
-    .then((responseJson) => {
+      .then((response) => response.json())
+      .then((responseJson) => {
         if (responseJson == "Credential matched!") {
           AsyncStorage.setItem("email", this.state.email);
           // redirect to HomeScreen
@@ -58,46 +58,47 @@ export default class LoginScreen extends ValidationComponent {
         } else {
           alert(responseJson)
         }
-    })
-    .catch((error) => console.error(error))
+      })
+      .catch((error) => console.error(error))
   }
 
   render() {
     const { navigate } = this.props.navigation;
     return (
-      
+
       <ScrollView style={styles.container}>
         <KeyboardAvoidingView
-            style={styles.detailsContainer} 
-            behavior="position" >
+          style={styles.detailsContainer}
+          behavior="position" >
           <View
-              style={styles.container}
-              contentContainerStyle={styles.contentContainer}>
+            style={styles.container}
+            contentContainerStyle={styles.contentContainer}>
             <View style={styles.titleContainer}>
               <Text style={styles.title}>UV Cycle</Text>
             </View>
-            <Image style={styles.teamLogo} source={require('../assets/images/TeamWyzards.png') } />
-          
+            <View style={styles.teamLogoContainer}>
+              <Image style={styles.teamLogo} source={require('../assets/images/TeamWyzards.png')} />
+            </View>
             <View>
-            
+
               <View style={styles.detailsLabel}>
                 <TextInput
-                style={styles.detailsLabelInput}
-                placeholder={ "Email" }
-                autoCapitalize = {'none'}
-                onChangeText={(text) => this.setState({email:text})}
+                  style={styles.detailsLabelInput}
+                  placeholder={"Email"}
+                  autoCapitalize={'none'}
+                  onChangeText={(text) => this.setState({ email: text })}
                 />
               </View>
 
               <View style={styles.detailsLabel}>
                 <TextInput
-                secureTextEntry={true}
-                style={styles.detailsLabelInput}
-                placeholder={ "Password" }
-                autoCapitalize = {'none'}
-                onChangeText={(text) => this.setState({password:text})}/>
+                  secureTextEntry={true}
+                  style={styles.detailsLabelInput}
+                  placeholder={"Password"}
+                  autoCapitalize={'none'}
+                  onChangeText={(text) => this.setState({ password: text })} />
               </View>
-            
+
               <View style={styles.detailsLabel}>
 
                 <TouchableOpacity style={styles.uvButton} onPress={this.login}>
@@ -112,7 +113,7 @@ export default class LoginScreen extends ValidationComponent {
             </View>
           </View >
         </KeyboardAvoidingView>
-        <Image style={styles.logo} source={require('../assets/images/BicycleQueensland.jpg') } />
+        <Image style={styles.logo} source={require('../assets/images/BicycleQueensland.jpg')} />
       </ScrollView>
     );
   }
@@ -135,7 +136,7 @@ const styles = StyleSheet.create({
   titleContainer: {
     alignItems: 'center',
     paddingTop: 70,
-    marginBottom: 50,
+    paddingBottom: 50,
   },
   title: {
     fontSize: 30,
@@ -215,9 +216,10 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
   teamLogo: {
-    width: 300,
-    height: 300,
-    alignSelf: 'center'
+    width: 250,
+    height: 250,
+    alignSelf: 'center',
+    resizeMode: 'contain'
   },
   textLink: {
     fontSize: 16,
