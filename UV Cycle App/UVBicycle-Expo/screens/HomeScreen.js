@@ -128,11 +128,12 @@ export default class HomeScreen extends Component {
    * @param {Integer} time time in minutes
    */
   calculateTime(time) {
-    if (time < 60 && time > 10) {
+    if (time < 60 && time >= 10) {
       this.setState({
         elapsed: '00:' + time
       })
-    } else if (time < 10) {
+    } 
+    else if (time < 10) {
       this.setState({
         elapsed: '00:0' + time
       })
@@ -143,11 +144,11 @@ export default class HomeScreen extends Component {
         this.setState({
           elapsed: '0' + hour + ':0' + min
         })
-      } else if (hour < 10 && min > 10) {
+      } else if (hour < 10 && min >= 10) {
         this.setState({
           elapsed: '0' + hour + ':' + min
         })
-      } else if (hour > 10 && min > 10) {
+      } else if (hour > 10 && min >= 10) {
         this.setState({
           elapsed: hour + ':' + min
         })

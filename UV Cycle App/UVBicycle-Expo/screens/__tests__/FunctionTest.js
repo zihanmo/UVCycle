@@ -2,13 +2,9 @@
 import { ChangeColorBasedOnUv } from '../UvForecastScreen';
 
 import { UNIXToDay2 } from '../WeatherForecastScreen';
-
 import { UNIXToDay } from '../UvForecastScreen';
-
 import { WeatherDescToImageSource } from '../WeatherForecastScreen';
-
 import { WeatherDescToSmallImageSource } from '../WeatherForecastScreen';
-
 
 test('When UV index is 0, the color of the bar will be light green', () => {
     expect(ChangeColorBasedOnUv(0)).toBe("#A5CF2E");
