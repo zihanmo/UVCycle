@@ -24,9 +24,6 @@ export default class HistoryWorkout extends Component {
   _onRefresh = () => {
     this.setState({ refreshing: true }, function () { this.fetchWorkout() });
     this.setState({ refreshing: false });
-    // fetchWorkout().then(() => {
-    //   this.setState({ refreshing: false });
-    // });
   }
 
   fetchWorkout() {
@@ -59,13 +56,11 @@ export default class HistoryWorkout extends Component {
         .catch((error) => console.error(error))
     })
   }
+
   getWorkout(value) {
     AsyncStorage.setItem("date", value);
     this.props.navigation.navigate('HistoryPlot');
   }
-
-
-
 
   render() {
 
@@ -86,7 +81,7 @@ export default class HistoryWorkout extends Component {
             <TouchableOpacity style={styles.container} onPress={() => this.getWorkout(item.key)}>
               <Text style={styles.text}>{item.key}</Text>
             </TouchableOpacity>} />
-        <Text style={styles.sharebtn}>Pull to refresh</Text>
+        <Text style={styles.sharebtn}>Pull down to refresh</Text>
       </ScrollView>
     )
   }
