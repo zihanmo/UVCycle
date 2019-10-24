@@ -152,7 +152,7 @@ export default class HomeScreen extends Component {
   }
   // Views displayed in the home screen
   render() {
-    const { location, temperature, weather1} = this.state;
+    const { location, temperature, weather1 } = this.state;
     return (
       <ScrollView style={styles.container}>
         <View style={styles.infoContainer}>
@@ -184,10 +184,7 @@ export default class HomeScreen extends Component {
 
         <View style={styles.dash}>
           <View style={styles.dashcontainer}>
-            {/* {UVindexSwitch({this.state.uv})} */}
-            <Text>{this.state.uv}</Text>
-            <Image style={styles.maindash} source={{ uri: this.state.url }} />
-            <Text>{this.state.url}</Text>
+            {UVindexSwitch(this.state.uv)}
           </View>
           <TouchableOpacity style={styles.button} onPress={this.fetchUV}>
             <Text style={styles.sharebtn}>Refresh</Text>
@@ -253,7 +250,6 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
   dashcontainer: {
-    borderWidth: 2
   },
   maindash: {
     width: 300,
@@ -373,49 +369,42 @@ function WeatherDescToImageSource(weatherDesc) {
   }
 }
 
+/**
+ * Switch UV dash according to real-time UV index
+ * @param {Integer}} UVindex 
+ */
 function UVindexSwitch(UVindex) {
-
-  if (this.state.uv == 1) {
+  if (UVindex == 1) {
     return <Image style={styles.maindash}
-        source={
-          require('../assets/images/dash1.png')} />;
-  } else {
+      source={
+        require('../assets/images/dash1.png')} />;
+  } else if (UVindex == 2) {
     return <Image style={styles.maindash}
-        source={
-          require('../assets/images/dash0.png')} />;
+      source={
+        require('../assets/images/dash2.png')} />;
+  } else if (UVindex == 3) {
+    return <Image style={styles.maindash}
+      source={
+        require('../assets/images/dash3.png')} />;
+  } else if (UVindex == 4) {
+    return <Image style={styles.maindash}
+      source={
+        require('../assets/images/dash4.png')} />;
+  } else if (UVindex == 5) {
+    return <Image style={styles.maindash}
+      source={
+        require('../assets/images/dash5.png')} />;
+  } else if (UVindex == 6) {
+    return <Image style={styles.maindash}
+      source={
+        require('../assets/images/dash6.png')} />;
+  } else if (UVindex == 7) {
+    return <Image style={styles.maindash}
+      source={
+        require('../assets/images/dash7.png')} />;
+  } else if (UVindex == 0) {
+    return <Image style={styles.maindash}
+      source={
+        require('../assets/images/dash7.png')} />;
   }
-  // switch (UVindex) {
-  //   case 0:
-  //     return <Image style={styles.maindash}
-  //       source={
-  //         require('../assets/images/dash0.png')} />;
-  //   case 1:
-  //     return <Image style={styles.maindash}
-  //       source={
-  //         require('../assets/images/dash1.png')} />;
-  //   case 2:
-  //     return <Image style={styles.maindash}
-  //       source={
-  //         require('../assets/images/dash2.png')} />;
-  //   case 3:
-  //     return <Image style={styles.maindash}
-  //       source={
-  //         require('../assets/images/dash3.png')} />;
-  //   case 4:
-  //     return <Image style={styles.maindash}
-  //       source={
-  //         require('../assets/images/dash4.png')} />;
-  //   case 5:
-  //     return <Image style={styles.maindash}
-  //       source={
-  //         require('../assets/images/dash5.png')} />;
-  //   case 6:
-  //     return <Image style={styles.maindash}
-  //       source={
-  //         require('../assets/images/dash6.png')} />;
-  //   case 6:
-  //     return <Image style={styles.maindash}
-  //       source={
-  //         require('../assets/images/dash6.png')} />;
-  // }
 }
