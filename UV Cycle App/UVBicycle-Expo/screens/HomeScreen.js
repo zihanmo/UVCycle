@@ -423,6 +423,31 @@ function UVindexSwitch(UVindex) {
   } else if (UVindex == 0) {
     return <Image style={styles.maindash}
       source={
-        require('../assets/images/dash7.png')} />;
+        require('../assets/images/dash0.png')} />;
+  }else if (UVindex == 8) {
+    return <Image style={styles.maindash}
+      source={
+        require('../assets/images/dash8.png')} />;
+  }else if (UVindex == 9) {
+    return <Image style={styles.maindash}
+      source={
+        require('../assets/images/dash9.png')} />;
+  }else if (UVindex == 10) {
+    return <Image style={styles.maindash}
+      source={
+        require('../assets/images/dash10.png')} />;
+  }else if (UVindex == 11) {
+    return <Image style={styles.maindash}
+      source={
+        require('../assets/images/dash11.png')} />;
+  }else if (UVindex == 12) {
+    return <Image style={styles.maindash}
+      source={
+        require('../assets/images/dash12.png')} />;
+  }else if (UVindex == 13) {
+    return <Image style={styles.maindash}
+      source={
+        require('../assets/images/dash13.png')} />;
   }
+  
 }
