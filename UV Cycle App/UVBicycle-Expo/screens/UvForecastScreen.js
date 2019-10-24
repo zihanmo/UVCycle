@@ -424,3 +424,66 @@ export function UNIXToDay2(timestamp) {
       return "ERROR";
   }
 }
+
+export function UVindexSwitch(UVindex) {
+  if (UVindex == 1) {
+    return <Image style={styles.maindash}
+      source={
+        require('../assets/images/dash1.png')} />;
+  } else if (UVindex == 2) {
+    return <Image style={styles.maindash}
+      source={
+        require('../assets/images/dash2.png')} />;
+  } else if (UVindex == 3) {
+    return <Image style={styles.maindash}
+      source={
+        require('../assets/images/dash3.png')} />;
+  } else if (UVindex == 4) {
+    return <Image style={styles.maindash}
+      source={
+        require('../assets/images/dash4.png')} />;
+  } else if (UVindex == 5) {
+    return <Image style={styles.maindash}
+      source={
+        require('../assets/images/dash5.png')} />;
+  } else if (UVindex == 6) {
+    return <Image style={styles.maindash}
+      source={
+        require('../assets/images/dash6.png')} />;
+  } else if (UVindex == 7) {
+    return <Image style={styles.maindash}
+      source={
+        require('../assets/images/dash7.png')} />;
+  } else if (UVindex == 0) {
+    return <Image style={styles.maindash}
+      source={
+        require('../assets/images/dash0.png')} />;
+  }else if (UVindex == 8) {
+    return <Image style={styles.maindash}
+      source={
+        require('../assets/images/dash8.png')} />;
+  }else if (UVindex == 9) {
+    return <Image style={styles.maindash}
+      source={
+        require('../assets/images/dash9.png')} />;
+  }else if (UVindex == 10) {
+    return <Image style={styles.maindash}
+      source={
+        require('../assets/images/dash10.png')} />;
+  }else if (UVindex == 11) {
+    return <Image style={styles.maindash}
+      source={
+        require('../assets/images/dash11.png')} />;
+  }else if (UVindex == 12) {
+    return <Image style={styles.maindash}
+      source={
+        require('../assets/images/dash12.png')} />;
+  }else if (UVindex == 13) {
+    return <Image style={styles.maindash}
+      source={
+        require('../assets/images/dash13.png')} />;
+  }else{
+    return "default image"
+  }
+  
+}
