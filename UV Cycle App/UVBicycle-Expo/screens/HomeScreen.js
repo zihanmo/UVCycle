@@ -19,6 +19,12 @@ export default class HomeScreen extends Component {
     var year = new Date().getFullYear(); //Current Year
     var hours = new Date().getHours(); //Current Hours
     var min = new Date().getMinutes(); //Current Minutes
+    if (min < 10) {
+      min = '0' + min;
+    }
+    if (hours < 10) {
+      hours = '0' + hours
+    }
     this.state = {
       isLoading: false,
       temperature: 0,
@@ -54,6 +60,12 @@ export default class HomeScreen extends Component {
           var year = new Date().getFullYear(); //Current Year
           var hours = new Date().getHours(); //Current Hours
           var min = new Date().getMinutes(); //Current Minutes
+          if (min < 10) {
+            min = '0' + min;
+          }
+          if (hours < 10) {
+            hours = '0' + hours
+          }
           this.setState({
             uv: responseJson.uvindex,
             lastRefresh: date + '/' + month + '/' + year + ' ' + hours + ':' + min,
@@ -95,6 +107,12 @@ export default class HomeScreen extends Component {
           var year = new Date().getFullYear(); //Current Year
           var hours = new Date().getHours(); //Current Hours
           var min = new Date().getMinutes(); //Current Minutes
+          if (min < 10) {
+            min = '0' + min;
+          }
+          if (hours < 10) {
+            hours = '0' + hours
+          }
           this.setState({
             uv: responseJson.uvindex,
             lastRefresh: date + '/' + month + '/' + year + ' ' + hours + ':' + min,

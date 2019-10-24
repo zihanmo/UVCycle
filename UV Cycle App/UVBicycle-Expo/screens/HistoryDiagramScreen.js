@@ -106,7 +106,7 @@ export default class HistoryDiagramScreen extends Component {
         <View style={styles.titleContainer}>
           <Text style={styles.title}>UV History Index</Text>
         </View>
-        <TouchableOpacity style={styles.uvButton} onPress={() => navigate.goBack(null) }>
+        <TouchableOpacity style={styles.uvButton} onPress={() => navigate('Main') }>
           <Image style={styles.backPic} source={require('../assets/images/back.png')} />
         </TouchableOpacity>
         <View style={{ height: Dimensions.get('window').height - 200, padding: 20, flexDirection: 'row' }}>

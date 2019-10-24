@@ -2,39 +2,32 @@ import React, {
   Component
 } from 'react';
 import {
-  LineChart,
-  XAxis,
-  YAxis,
-  Grid,
-  AreaChart
-} from 'react-native-svg-charts';
-import {
   ScrollView,
   View,
   Text,
   FlatList,
   StyleSheet,
-  Dimensions,
-  ImageBackground,
-  Button,
   TouchableOpacity,
   AsyncStorage,
-  Image
+  RefreshControl
 } from 'react-native';
-import {
-  Circle
-} from 'react-native-svg';
-import * as shape from 'd3-shape';
-import { object } from 'yup';
-
 export default class HistoryWorkout extends Component {
   constructor(props) {
     super(props);
     this.state = {
       workout: [],
+      refreshing: false,
     }
     this.fetchData();
+    this.fetchData = this.fetchData.bind(this);
   }
+  _onRefresh = () => {
+    this.setState({ refreshing: true });
+    fetchData().then(() => {
+      this.setState({ refreshing: false });
+    });
+  }
+
   fetchData() {
     // Get email value stored in asyncstorage
     AsyncStorage.getItem("email").then(res => {
@@ -62,6 +55,8 @@ export default class HistoryWorkout extends Component {
   }
 
 
+
+
   render() {
     const data = [];
     for (i = 0; i < this.state.workout.length; i++) {
@@ -70,7 +65,13 @@ export default class HistoryWorkout extends Component {
       });
     }
     return (
-      <ScrollView>
+      <ScrollView
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this._onRefresh}
+          />
+        }>
         <View>
           <Text style={styles.subtitle}>UV History Workout</Text>
         </View>
@@ -80,6 +81,9 @@ export default class HistoryWorkout extends Component {
             <TouchableOpacity style={styles.container} onPress={() => this.getWorkout(item.key)}>
               <Text style={styles.text}>{item.key}</Text>
             </TouchableOpacity>} />
+        <TouchableOpacity style={styles.button} onPress={() => this.fetchData}>
+          <Text style={styles.sharebtn}>Refresh</Text>
+        </TouchableOpacity>
       </ScrollView>
     )
   }
@@ -108,5 +112,17 @@ const styles = StyleSheet.create({
     fontSize: 33,
     color: '#1E6738',
     alignSelf: 'center'
-  }
+  },
+  button: {
+    backgroundColor: '#41BD63',
+    alignItems: 'center',
+    borderRadius: 3,
+    marginTop: 50,
+    marginHorizontal: 50
+  },
+  sharebtn: {
+    fontSize: 30,
+    color: '#fff',
+    textAlign: 'center'
+  },
 });

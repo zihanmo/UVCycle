@@ -55,8 +55,9 @@ export default class LoginScreen extends ValidationComponent {
           AsyncStorage.setItem("email", this.state.email);
           // redirect to HomeScreen
           this.props.navigation.navigate('Main');
+        } else {
+          alert(responseJson)
         }
-        alert(responseJson);
     })
     .catch((error) => console.error(error))
   }
